@@ -247,8 +247,25 @@ export const App: React.FC = () => {
             />
           )}
         </div>
-      </main>
 
+        {/* PWA Install Banner */}
+        {deferredPrompt && (
+          <div className="pwa-install-banner">
+            <div className="pwa-install-content">
+              <div className="pwa-install-text">
+                <strong>Установить DevLingo</strong>
+                <span>Как приложение на телефон</span>
+              </div>
+              <button className="btn-primary pwa-install-btn" onClick={handleInstallApp}>
+                Установить
+              </button>
+              <button className="pwa-dismiss-btn" onClick={() => setDeferredPrompt(null)}>
+                <X size={16} />
+              </button>
+            </div>
+          </div>
+        )}
+      </main>
       {/* Fullscreen interactive Lesson View overlay */}
       {activeLesson && (
         <LessonRunner
