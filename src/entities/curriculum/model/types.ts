@@ -1,13 +1,14 @@
 export interface TheorySlide {
   type: 'theory';
   title: string;
-  definition: string;
+  definition?: string;
+  content?: string;
   comparison?: {
     title: string;
     headers: string[];
     rows: string[][];
   };
-  pitfalls: string[];
+  pitfalls?: string[];
   codeSnippet?: string;
   codeExample?: string;
   practiceLink?: string;
@@ -61,15 +62,17 @@ export type Slide = TheorySlide | ChoiceSlide | TrueFalseSlide | OrderSlide | Co
 export interface Lesson {
   id: string;
   title: string;
-  xpReward: number;
+  xpReward?: number;
   slides: Slide[];
 }
 
 export interface SkillNode {
   id: string;
+  week?: number;
   title: string;
-  category: 'HTTP' | 'HTML/CSS' | 'JavaScript' | 'TypeScript' | 'Tooling' | 'React' | 'Tools';
+  category?: 'HTTP' | 'HTML/CSS' | 'JavaScript' | 'TypeScript' | 'Tooling' | 'React' | 'Tools' | 'Architecture' | 'SPA';
   description: string;
-  iconName: 'Globe' | 'Layout' | 'Code' | 'Shield' | 'Settings' | 'Layers' | 'Zap' | 'RefreshCw' | 'Package' | 'MousePointer';
+  iconName?: 'Globe' | 'Layout' | 'Code' | 'Shield' | 'Settings' | 'Layers' | 'Zap' | 'RefreshCw' | 'Package' | 'MousePointer';
   lessons: Lesson[];
+  topics?: Lesson[];
 }

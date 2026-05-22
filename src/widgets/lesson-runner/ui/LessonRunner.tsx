@@ -259,7 +259,7 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
         origin: { y: 0.8 }
       });
       const comboMultiplier = comboCount >= 7 ? 3 : comboCount >= 5 ? 2 : comboCount >= 3 ? 1.5 : 1;
-      onComplete(Math.round(lesson.xpReward * comboMultiplier));
+      onComplete(Math.round((lesson.xpReward || 30) * comboMultiplier));
     }
   };
 
@@ -349,10 +349,18 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
           {currentSlide.type === 'theory' && (
             <div className="theory-slide anim-slide-in">
               <h2 className="slide-title">{currentSlide.title}</h2>
-              <div className="theory-definition card">
-                <p className="section-label">Определение</p>
-                <p className="definition-text">{currentSlide.definition}</p>
-              </div>
+              {currentSlide.definition && (
+                <div className="theory-definition card">
+                  <p className="section-label">Определение</p>
+                  <p className="definition-text">{currentSlide.definition}</p>
+                </div>
+              )}
+
+              {currentSlide.content && (
+                <div className="theory-definition card">
+                  <pre className="definition-text content-text">{currentSlide.content}</pre>
+                </div>
+              )}
 
               {/* Key Terms Cards */}
               {currentSlide.keyTerms && currentSlide.keyTerms.length > 0 && (
@@ -464,15 +472,18 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
                 </div>
               )}
 
-              <div className="theory-pitfalls card">
-                <p className="section-label pitfalls-label">
-                  <AlertTriangle size={14} />
-                  <span>Подводные камни и типичные грабли</span>
-                </p>
-                <ul>
-                  {currentSlide.pitfalls.map((p, i) => <li key={i}>{p}</li>)}
-                </ul>
-              </div>
+
+              {currentSlide.pitfalls && currentSlide.pitfalls.length > 0 && (
+                <div className="theory-pitfalls card">
+                  <p className="section-label pitfalls-label">
+                    <AlertTriangle size={14} />
+                    <span>Подводные камни и типичные грабли</span>
+                  </p>
+                  <ul>
+                    {currentSlide.pitfalls.map((p, i) => <li key={i}>{p}</li>)}
+                  </ul>
+                </div>
+              )}
             </div>
           )}
 
@@ -835,6 +846,16 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
           line-height: 1.6;
           word-break: break-word;
           overflow-wrap: break-word;
+        }
+
+        .content-text {
+          font-family: inherit;
+          font-size: 13px;
+          white-space: pre-wrap;
+          word-break: break-word;
+          overflow-wrap: break-word;
+          margin: 0;
+          line-height: 1.7;
         }
 
         @media (max-width: 600px) {

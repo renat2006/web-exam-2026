@@ -25,9 +25,9 @@ export const SkillPath: React.FC<SkillPathProps> = ({
   const grouped = useMemo(() => {
     const map = new Map<string, SkillNode[]>();
     nodes.forEach(node => {
-      const list = map.get(node.category) || [];
+      const list = map.get(node.category || 'Tools') || [];
       list.push(node);
-      map.set(node.category, list);
+      map.set(node.category || 'Tools', list);
     });
     return Array.from(map.entries());
   }, [nodes]);
@@ -96,7 +96,7 @@ export const SkillPath: React.FC<SkillPathProps> = ({
               const isActive = isUnlocked && !isCompleted;
               const isSelected = selectedNode?.id === node.id;
               const progress = getNodeProgress(node);
-              const IconComponent = (Icons as any)[node.iconName] || Icons.Code;
+              const IconComponent = (Icons as any)[node.iconName || 'Code'] || Icons.Code;
               const theoryCount = node.lessons.reduce((a, l) => a + l.slides.filter(s => s.type === 'theory').length, 0);
               const practiceCount = node.lessons.reduce((a, l) => a + l.slides.filter(s => s.type !== 'theory').length, 0);
 
