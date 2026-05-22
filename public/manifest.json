@@ -1,0 +1,66 @@
+{
+  "name": "DevLingo - Web Dev Prep",
+  "short_name": "DevLingo",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "description": "Gamified study guide for your Web Development Assessment. Streak, review, and live code on the go.",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Карта тем",
+      "short_name": "Карта",
+      "description": "Открыть карту учебных тем",
+      "url": "/?tab=map",
+      "icons": [
+        {
+          "src": "/icon.svg",
+          "sizes": "512x512",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Статистика",
+      "short_name": "Статистика",
+      "description": "Посмотреть свой прогресс и XP",
+      "url": "/?tab=stats",
+      "icons": [
+        {
+          "src": "/icon.svg",
+          "sizes": "512x512",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Достижения",
+      "short_name": "Достижения",
+      "description": "Проверить открытые кубки и награды",
+      "url": "/?tab=achievements",
+      "icons": [
+        {
+          "src": "/icon.svg",
+          "sizes": "512x512",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+}
