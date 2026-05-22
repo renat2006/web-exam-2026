@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useUserState } from '../entities/user/model/userState';
 import { Sidebar } from '../widgets/sidebar/ui/Sidebar';
 import { Header } from '../widgets/header/ui/Header';
@@ -7,6 +7,7 @@ import { StatsPage } from '../pages/stats/ui/StatsPage';
 import { AchievementsPage } from '../pages/achievements/ui/AchievementsPage';
 import { LessonRunner } from '../widgets/lesson-runner/ui/LessonRunner';
 import { SettingsModal } from '../features/settings-modal/ui/SettingsModal';
+import { Onboarding } from '../features/onboarding/ui/Onboarding';
 import { vibrateClick } from '../shared/lib/haptics/vibrate';
 import { Trophy, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -15,6 +16,7 @@ import { ACHIEVEMENTS } from '../entities/achievement/model/achievements';
 export const App: React.FC = () => {
   const {
     xp,
+    setXp,
     streak,
     hearts,
     completedSkills,
@@ -39,9 +41,20 @@ export const App: React.FC = () => {
     masteredSlides,
     handleMasterSlide,
     isReviewMode,
+    gems,
+    setGems,
+    streakFreezes,
+    dailyXpEarned,
+    dailyXpGoal,
+    level,
+    levelTitle,
+    totalLessons,
+    lessonsToday,
+    longestStreak,
   } = useUserState();
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(() => !localStorage.getItem('devlingo_onboarded'));
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
 
   const [activeToast, setActiveToast] = useState<{ title: string; description: string; xpReward: number } | null>(null);
@@ -89,9 +102,16 @@ export const App: React.FC = () => {
     setDeferredPrompt(null);
   };
 
+  const handleOnboardingComplete = useCallback(() => {
+    setXp(prev => prev + 50);
+    setGems(prev => prev + 50);
+    localStorage.setItem('devlingo_onboarded', 'true');
+    setShowOnboarding(false);
+  }, [setXp, setGems]);
+
   // Real-time Achievements unlock tracker and Toast announcer
   useEffect(() => {
-    const currentState = { xp, streak, completedSkills, perfectLessons, nightLessons };
+    const currentState = { xp, streak, completedSkills, perfectLessons, nightLessons, totalLessons, lessonsToday, longestStreak };
     
     // Find all currently completed achievements
     const completedIds = ACHIEVEMENTS.filter(ach => {
@@ -143,7 +163,7 @@ export const App: React.FC = () => {
         origin: { y: 0.2 }
       });
     }
-  }, [xp, streak, completedSkills, perfectLessons, nightLessons, unlockedSeen, vibrationEnabled]);
+  }, [xp, streak, completedSkills, perfectLessons, nightLessons, totalLessons, lessonsToday, longestStreak, unlockedSeen, vibrationEnabled]);
 
   // Auto-close Toast timer
   useEffect(() => {
@@ -157,6 +177,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="app-container">
+      {showOnboarding && <Onboarding onComplete={handleOnboardingComplete} />}
       {/* Sidebar navigation */}
       <Sidebar
         currentTab={currentTab}
@@ -177,6 +198,12 @@ export const App: React.FC = () => {
           hearts={hearts}
           vibrationEnabled={vibrationEnabled}
           onOpenSettings={() => setIsSettingsOpen(true)}
+          gems={gems}
+          level={level}
+          levelTitle={levelTitle}
+          dailyXpEarned={dailyXpEarned}
+          dailyXpGoal={dailyXpGoal}
+          streakFreezes={streakFreezes}
         />
 
         <div className="scroll-content">
@@ -214,6 +241,9 @@ export const App: React.FC = () => {
               nightLessons={nightLessons}
               onClaimReward={handleClaimAchievement}
               vibrationEnabled={vibrationEnabled}
+              totalLessons={totalLessons}
+              lessonsToday={lessonsToday}
+              longestStreak={longestStreak}
             />
           )}
         </div>

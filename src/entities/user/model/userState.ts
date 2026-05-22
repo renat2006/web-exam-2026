@@ -43,6 +43,42 @@ export const useUserState = () => {
     return data ? JSON.parse(data) : [];
   });
 
+  // Gamification: gems, streak freezes, daily goal, totals
+  const [gems, setGems] = useState<number>(() => {
+    return Number(localStorage.getItem('devlingo_gems') || '50'); // Endowed Progress: start with 50
+  });
+  const [streakFreezes, setStreakFreezes] = useState<number>(() => {
+    return Number(localStorage.getItem('devlingo_streak_freezes') || '1'); // Start with 1 free
+  });
+  const [dailyXpEarned, setDailyXpEarned] = useState<number>(() => {
+    const savedDate = localStorage.getItem('devlingo_daily_xp_date');
+    const today = new Date().toISOString().split('T')[0];
+    if (savedDate === today) {
+      return Number(localStorage.getItem('devlingo_daily_xp_earned') || '0');
+    }
+    return 0;
+  });
+  const dailyXpGoal = 100;
+  const [totalLessons, setTotalLessons] = useState<number>(() => {
+    return Number(localStorage.getItem('devlingo_total_lessons') || '0');
+  });
+  const [lessonsToday, setLessonsToday] = useState<number>(() => {
+    const savedDate = localStorage.getItem('devlingo_lessons_today_date');
+    const today = new Date().toISOString().split('T')[0];
+    if (savedDate === today) {
+      return Number(localStorage.getItem('devlingo_lessons_today') || '0');
+    }
+    return 0;
+  });
+  const [longestStreak, setLongestStreak] = useState<number>(() => {
+    return Number(localStorage.getItem('devlingo_longest_streak') || '1');
+  });
+  const [daysAbsent, setDaysAbsent] = useState<number>(0);
+
+  // Computed: level from XP
+  const level = 1 + Math.floor(xp / 200);
+  const levelTitle = level >= 13 ? 'Сеньор' : level >= 10 ? 'Мидл' : level >= 7 ? 'Джуниор' : level >= 4 ? 'Стажёр' : 'Новичок';
+
   const lostHeartInCurrentLesson = useRef<boolean>(false);
 
   // Settings
@@ -147,6 +183,29 @@ export const useUserState = () => {
     localStorage.setItem('devlingo_mastered_slides', JSON.stringify(masteredSlides));
   }, [masteredSlides]);
 
+  useEffect(() => {
+    localStorage.setItem('devlingo_gems', gems.toString());
+  }, [gems]);
+  useEffect(() => {
+    localStorage.setItem('devlingo_streak_freezes', streakFreezes.toString());
+  }, [streakFreezes]);
+  useEffect(() => {
+    const today = new Date().toISOString().split('T')[0];
+    localStorage.setItem('devlingo_daily_xp_earned', dailyXpEarned.toString());
+    localStorage.setItem('devlingo_daily_xp_date', today);
+  }, [dailyXpEarned]);
+  useEffect(() => {
+    localStorage.setItem('devlingo_total_lessons', totalLessons.toString());
+  }, [totalLessons]);
+  useEffect(() => {
+    const today = new Date().toISOString().split('T')[0];
+    localStorage.setItem('devlingo_lessons_today', lessonsToday.toString());
+    localStorage.setItem('devlingo_lessons_today_date', today);
+  }, [lessonsToday]);
+  useEffect(() => {
+    localStorage.setItem('devlingo_longest_streak', longestStreak.toString());
+  }, [longestStreak]);
+
   const handleClaimAchievement = (id: string, xpReward: number) => {
     if (claimedAchievements.includes(id)) return;
     setXp(prev => prev + xpReward);
@@ -160,7 +219,7 @@ export const useUserState = () => {
     });
   };
 
-  // Daily Streak Engine
+  // Daily Streak Engine with Streak Freeze support
   useEffect(() => {
     const todayStr = new Date().toISOString().split('T')[0];
     if (lastActiveDate) {
@@ -171,18 +230,25 @@ export const useUserState = () => {
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
         if (diffDays === 1) {
-          // Returned consecutive day - increment streak
           const newStreak = streak + 1;
           setStreak(newStreak);
+          if (newStreak > longestStreak) setLongestStreak(newStreak);
+          // Gem bonus every 7 days of streak
+          if (newStreak % 7 === 0) setGems(prev => prev + 10);
         } else if (diffDays > 1) {
-          // Missed a day - reset streak
-          setStreak(1);
+          // Streak Freeze: auto-use if available
+          if (streakFreezes > 0) {
+            setStreakFreezes(prev => prev - 1);
+            // Keep streak alive
+          } else {
+            setDaysAbsent(diffDays);
+            setStreak(1);
+          }
         }
         setLastActiveDate(todayStr);
         localStorage.setItem('devlingo_last_active', todayStr);
       }
     } else {
-      // First launch
       setLastActiveDate(todayStr);
       localStorage.setItem('devlingo_last_active', todayStr);
     }
@@ -217,6 +283,15 @@ export const useUserState = () => {
     // In review mode, no XP earned
     if (!isReviewMode) {
       setXp(prev => prev + xpEarned);
+      setDailyXpEarned(prev => prev + xpEarned);
+    }
+
+    // Gems: +5 per lesson, +10 for perfect
+    const isPerfect = !lostHeartInCurrentLesson.current;
+    if (activeLesson.skillId !== 'review') {
+      setGems(prev => prev + (isPerfect ? 10 : 5));
+      setTotalLessons(prev => prev + 1);
+      setLessonsToday(prev => prev + 1);
     }
 
     // If all lessons in skill node completed, mark skill completed
@@ -229,7 +304,7 @@ export const useUserState = () => {
 
     // Track statistics for achievements
     if (activeLesson.skillId !== 'review') {
-      if (!lostHeartInCurrentLesson.current) {
+      if (isPerfect) {
         setPerfectLessons(prev => prev + 1);
       }
       const hour = new Date().getHours();
@@ -310,6 +385,14 @@ export const useUserState = () => {
     }
   };
 
+  // Buy streak freeze with gems
+  const buyStreakFreeze = () => {
+    if (gems < 30 || streakFreezes >= 3) return false;
+    setGems(prev => prev - 30);
+    setStreakFreezes(prev => prev + 1);
+    return true;
+  };
+
   return {
     xp,
     setXp,
@@ -341,5 +424,18 @@ export const useUserState = () => {
     handleMasterSlide,
     isReviewMode,
     heartsNextRegenAt,
+    // New gamification
+    gems,
+    setGems,
+    streakFreezes,
+    buyStreakFreeze,
+    dailyXpEarned,
+    dailyXpGoal,
+    level,
+    levelTitle,
+    totalLessons,
+    lessonsToday,
+    longestStreak,
+    daysAbsent,
   };
 };

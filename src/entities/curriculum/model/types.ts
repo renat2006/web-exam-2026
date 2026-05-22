@@ -9,6 +9,7 @@ export interface TheorySlide {
   };
   pitfalls: string[];
   codeSnippet?: string;
+  codeExample?: string;
   practiceLink?: string;
   keyTerms?: { term: string; definition: string; iconName?: string }[];
   mnemonic?: string;
@@ -16,7 +17,7 @@ export interface TheorySlide {
     type: 'flow' | 'layers' | 'comparison';
     title?: string;
     items: string[];
-    secondColumn?: string[]; // For 'comparison' type
+    secondColumn?: string[];
   };
 }
 
@@ -67,8 +68,8 @@ export interface Lesson {
 export interface SkillNode {
   id: string;
   title: string;
-  category: 'HTTP' | 'HTML/CSS' | 'JavaScript' | 'TypeScript' | 'Tooling' | 'React';
+  category: 'HTTP' | 'HTML/CSS' | 'JavaScript' | 'TypeScript' | 'Tooling' | 'React' | 'Tools';
   description: string;
-  iconName: 'Globe' | 'Layout' | 'Code' | 'Shield' | 'Settings' | 'Layers';
+  iconName: 'Globe' | 'Layout' | 'Code' | 'Shield' | 'Settings' | 'Layers' | 'Zap' | 'RefreshCw' | 'Package' | 'MousePointer';
   lessons: Lesson[];
 }

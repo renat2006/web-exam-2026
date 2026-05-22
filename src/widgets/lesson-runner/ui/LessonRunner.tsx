@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, ArrowRight, CheckCircle, XCircle, BookOpen, HelpCircle, ListOrdered, Code, Lightbulb, AlertTriangle, RefreshCw, ChevronRight } from 'lucide-react';
+import { X, ArrowRight, CheckCircle, XCircle, BookOpen, HelpCircle, ListOrdered, Code, Lightbulb, AlertTriangle, RefreshCw, ChevronRight, Zap } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import type { Lesson, Slide } from '../../../entities/curriculum/model/types';
 import { CodeSandbox } from '../../../features/run-tests/ui/CodeSandbox';
@@ -48,6 +48,11 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
   // Mascot states
   const [mascotState, setMascotState] = useState<MascotState>('idle');
   const [mascotSpeech, setMascotSpeech] = useState<string>('Привет! Готовы потренироваться? Изучите теорию и нажмите кнопку внизу.');
+
+  // Combo & bonus state
+  const [comboCount, setComboCount] = useState(0);
+  const [showComboPopup, setShowComboPopup] = useState<string | null>(null);
+  const [showBonusXp, setShowBonusXp] = useState(false);
 
   const currentSlide: Slide = lesson.slides[currentSlideIndex];
   const progressPercent = ((currentSlideIndex) / lesson.slides.length) * 100;
@@ -122,6 +127,20 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
     }
   }, [currentSlideIndex, lesson]);
 
+  useEffect(() => {
+    if (showComboPopup) {
+      const t = setTimeout(() => setShowComboPopup(null), 1500);
+      return () => clearTimeout(t);
+    }
+  }, [showComboPopup]);
+
+  useEffect(() => {
+    if (showBonusXp) {
+      const t = setTimeout(() => setShowBonusXp(false), 1500);
+      return () => clearTimeout(t);
+    }
+  }, [showBonusXp]);
+
   // Handle reordering clicks
   const handleOrderClick = (itemId: string) => {
     if (isAnswered) return;
@@ -163,12 +182,20 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
       setMascotSpeech('Отлично! Вы ответили абсолютно верно! Двигаемся дальше.');
       playSynthesizedSound('correct', soundEnabled);
       vibrateSuccess(vibrationEnabled);
+      const newCombo = comboCount + 1;
+      setComboCount(newCombo);
+      if (newCombo === 3) setShowComboPopup('Combo x3!');
+      else if (newCombo === 5) setShowComboPopup('На огне!');
+      else if (newCombo === 7) setShowComboPopup('Невероятно!');
+      else if (newCombo > 7 && newCombo % 3 === 0) setShowComboPopup(`Combo x${newCombo}!`);
+      if (Math.random() < 0.15) setShowBonusXp(true);
     } else {
       setMascotState('error');
       setMascotSpeech(`Ой, не совсем верно... ${feedback}`);
       playSynthesizedSound('incorrect', soundEnabled);
       vibrateError(vibrationEnabled);
       onLoseHeart();
+      setComboCount(0);
     }
   };
 
@@ -190,7 +217,8 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
         spread: 60,
         origin: { y: 0.8 }
       });
-      onComplete(lesson.xpReward);
+      const comboMultiplier = comboCount >= 7 ? 3 : comboCount >= 5 ? 2 : comboCount >= 3 ? 1.5 : 1;
+      onComplete(Math.round(lesson.xpReward * comboMultiplier));
     }
   };
 
@@ -202,6 +230,13 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
     setMascotSpeech('Потрясающе! Ваш код прошел все автоматические тесты! Прекрасная работа.');
     playSynthesizedSound('correct', soundEnabled);
     vibrateSuccess(vibrationEnabled);
+    const newCombo = comboCount + 1;
+    setComboCount(newCombo);
+    if (newCombo === 3) setShowComboPopup('Combo x3!');
+    else if (newCombo === 5) setShowComboPopup('На огне!');
+    else if (newCombo === 7) setShowComboPopup('Невероятно!');
+    else if (newCombo > 7 && newCombo % 3 === 0) setShowComboPopup(`Combo x${newCombo}!`);
+    if (Math.random() < 0.15) setShowBonusXp(true);
   };
 
   const handleCodeFailure = () => {
@@ -212,6 +247,7 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
     playSynthesizedSound('incorrect', soundEnabled);
     vibrateError(vibrationEnabled);
     onLoseHeart();
+    setComboCount(0);
   };
 
   return (
@@ -241,6 +277,18 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
           </div>
         )}
       </div>
+
+      {showComboPopup && (
+        <div className="combo-popup">
+          <Zap size={16} />
+          <span>{showComboPopup}</span>
+        </div>
+      )}
+      {showBonusXp && (
+        <div className="bonus-xp-popup">
+          <span>Бонус! Двойной XP</span>
+        </div>
+      )}
 
       {/* Main Slide Panel */}
       <div className="lesson-workspace">
@@ -1523,6 +1571,48 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
           background-color: rgba(16, 185, 129, 0.1);
           color: #6ee7b7;
           border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .combo-popup {
+          position: fixed;
+          top: 70px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.05));
+          border: 1px solid rgba(245,158,11,0.3);
+          color: #fbbf24;
+          padding: 8px 20px;
+          border-radius: 100px;
+          font-size: 14px;
+          font-weight: 800;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          z-index: 1100;
+          animation: combo-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+          backdrop-filter: blur(12px);
+        }
+
+        .bonus-xp-popup {
+          position: fixed;
+          top: 110px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(99,102,241,0.05));
+          border: 1px solid rgba(99,102,241,0.3);
+          color: #a5b4fc;
+          padding: 6px 16px;
+          border-radius: 100px;
+          font-size: 12px;
+          font-weight: 700;
+          z-index: 1100;
+          animation: combo-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+          backdrop-filter: blur(12px);
+        }
+
+        @keyframes combo-in {
+          from { transform: translateX(-50%) scale(0.5); opacity: 0; }
+          to { transform: translateX(-50%) scale(1); opacity: 1; }
         }
       `}</style>
     </div>

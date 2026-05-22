@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Icons from 'lucide-react';
 import { Lock, Award, CheckCircle, Gift, Crown, Code, BookOpen } from 'lucide-react';
 import { ACHIEVEMENTS, getAchievementStatus } from '../../../entities/achievement/model/achievements';
+import type { AchievementCategory } from '../../../entities/achievement/model/achievements';
 import { vibrateSuccess } from '../../../shared/lib/haptics/vibrate';
 import confetti from 'canvas-confetti';
 
@@ -14,7 +15,23 @@ interface AchievementsPageProps {
   nightLessons: number;
   onClaimReward: (id: string, xpReward: number) => void;
   vibrationEnabled: boolean;
+  totalLessons: number;
+  lessonsToday: number;
+  longestStreak: number;
 }
+
+const CATEGORY_LABELS: Record<AchievementCategory, { label: string; icon: string }> = {
+  learning: { label: 'Учёба', icon: 'BookOpen' },
+  streaks: { label: 'Серии', icon: 'Flame' },
+  mastery: { label: 'Мастерство', icon: 'Target' },
+  hidden: { label: 'Скрытые', icon: 'Eye' },
+};
+
+const RARITY_COLORS = {
+  common: { border: 'rgba(148,163,184,0.2)', label: 'Обычное', color: '#94a3b8' },
+  rare: { border: 'rgba(99,102,241,0.3)', label: 'Редкое', color: '#818cf8' },
+  legendary: { border: 'rgba(251,191,36,0.3)', label: 'Легендарное', color: '#fbbf24' },
+};
 
 export const AchievementsPage: React.FC<AchievementsPageProps> = ({
   xp,
@@ -25,8 +42,12 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
   nightLessons,
   onClaimReward,
   vibrationEnabled,
+  totalLessons,
+  lessonsToday,
+  longestStreak,
 }) => {
-  const userState = { xp, streak, completedSkills, perfectLessons, nightLessons };
+  const userState = { xp, streak, completedSkills, perfectLessons, nightLessons, totalLessons, lessonsToday, longestStreak };
+  const [activeCategory, setActiveCategory] = useState<AchievementCategory | 'all'>('all');
 
   // Calculate completed achievements count
   const completedAchievements = ACHIEVEMENTS.map(ach => {
@@ -106,9 +127,9 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
             {rank.icon}
           </div>
           <div>
-            <span className="rank-subtitle">Текущее звание:</span>
+          <span className="rank-subtitle">Текущее звание:</span>
             <h3 className="rank-title-text" style={{ color: rank.color }}>{rank.title}</h3>
-            <p className="rank-progress-desc">Разблокировано {completedCount} из {ACHIEVEMENTS.length} кубков зачета</p>
+            <p className="rank-progress-desc">Разблокировано {completedCount} из {ACHIEVEMENTS.filter(a => !a.hidden).length}</p>
           </div>
         </div>
         
@@ -125,28 +146,59 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
         </div>
       </div>
 
+      {/* Category filter tabs */}
+      <div className="ach-category-tabs">
+        <button
+          className={`ach-cat-tab ${activeCategory === 'all' ? 'active' : ''}`}
+          onClick={() => setActiveCategory('all')}
+        >Все</button>
+        {(Object.keys(CATEGORY_LABELS) as AchievementCategory[]).map(cat => {
+          const CatIcon = (Icons as any)[CATEGORY_LABELS[cat].icon];
+          return (
+            <button
+              key={cat}
+              className={`ach-cat-tab ${activeCategory === cat ? 'active' : ''}`}
+              onClick={() => setActiveCategory(cat)}
+            >
+              {CatIcon && <CatIcon size={12} />}
+              {CATEGORY_LABELS[cat].label}
+            </button>
+          );
+        })}
+      </div>
+
       <div className="achievements-grid">
-        {ACHIEVEMENTS.map((ach) => {
+        {ACHIEVEMENTS
+          .filter(ach => activeCategory === 'all' || ach.category === activeCategory)
+          .map((ach) => {
           const { progress, completed } = getAchievementStatus(ach, userState);
           const isClaimed = claimedAchievements.includes(ach.id);
+          const isHiddenLocked = ach.hidden && !completed;
           const IconComponent = (Icons as any)[ach.iconName] || Icons.Award;
+          const rarity = RARITY_COLORS[ach.rarity];
 
           return (
             <div 
               key={ach.id} 
               className={`achievement-card card ${completed ? 'completed' : 'locked'} ${isClaimed ? 'claimed' : ''}`}
+              style={{ borderColor: completed ? rarity.border : undefined }}
             >
+              {/* Rarity indicator */}
+              <span className="rarity-tag" style={{ color: rarity.color }}>{rarity.label}</span>
+
               <div className="ach-card-header">
                 <div className={`ach-card-icon-container ${completed ? 'completed-icon' : ''}`}>
-                  {completed ? (
+                  {isHiddenLocked ? (
+                    <Icons.HelpCircle size={20} className="ach-icon-lock" />
+                  ) : completed ? (
                     <IconComponent size={24} className="ach-icon success-glow" />
                   ) : (
                     <Lock size={20} className="ach-icon-lock" />
                   )}
                 </div>
                 <div className="ach-card-header-texts">
-                  <h4>{ach.title}</h4>
-                  <p>{ach.description}</p>
+                  <h4>{isHiddenLocked ? '???' : ach.title}</h4>
+                  <p>{isHiddenLocked ? 'Скрытое достижение' : ach.description}</p>
                 </div>
               </div>
 
@@ -196,11 +248,57 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
       </div>
 
       <style>{`
+        .ach-category-tabs {
+          display: flex;
+          gap: 6px;
+          margin-top: 20px;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          padding-bottom: 4px;
+        }
+        .ach-category-tabs::-webkit-scrollbar { display: none; }
+        .ach-cat-tab {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          padding: 6px 14px;
+          border-radius: var(--radius-full);
+          border: 1px solid var(--border-color);
+          background: transparent;
+          color: var(--text-secondary);
+          font-size: 12px;
+          font-weight: 700;
+          cursor: pointer;
+          white-space: nowrap;
+          transition: all var(--transition-fast);
+          font-family: inherit;
+        }
+        .ach-cat-tab.active {
+          background: rgba(99,102,241,0.1);
+          border-color: rgba(99,102,241,0.3);
+          color: #a5b4fc;
+        }
+        .ach-cat-tab:hover:not(.active) {
+          border-color: rgba(255,255,255,0.15);
+          color: var(--text-primary);
+        }
+
+        .rarity-tag {
+          position: absolute;
+          top: 8px;
+          right: 10px;
+          font-size: 9px;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
         .achievements-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
           gap: 16px;
-          margin-top: 24px;
+          margin-top: 16px;
         }
 
         .achievements-dashboard {
@@ -269,6 +367,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
           padding: 20px !important;
           transition: all var(--transition-normal);
           height: 100%;
+          position: relative;
         }
 
         .achievement-card.locked {

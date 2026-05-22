@@ -88,10 +88,11 @@ export const SkillPath: React.FC<SkillPathProps> = ({
           </div>
 
           <div className="category-nodes">
-            {categoryNodes.map((node) => {
-              const globalIndex = nodes.indexOf(node);
+            {categoryNodes.map((node, categoryIndex) => {
               const isCompleted = completedSkillIds.includes(node.id);
-              const isUnlocked = globalIndex === 0 || completedSkillIds.includes(nodes[globalIndex - 1].id);
+              // First node of each category is always unlocked; subsequent nodes require previous in same category
+              const isUnlocked = categoryIndex === 0 ||
+                completedSkillIds.includes(categoryNodes[categoryIndex - 1].id);
               const isActive = isUnlocked && !isCompleted;
               const isSelected = selectedNode?.id === node.id;
               const progress = getNodeProgress(node);

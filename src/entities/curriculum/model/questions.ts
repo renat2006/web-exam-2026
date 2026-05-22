@@ -1214,4 +1214,828 @@ User.create('Гость'); // статический метод`,
       },
     ],
   },
+
+  // ═══════════════════════════════════════════════
+  // БЛОК 10: События и всплытие (Week 03)
+  // Theory вопросы: #22, #29, #33, #40, #41
+  // ═══════════════════════════════════════════════
+  {
+    id: 'events-and-bubbling',
+    title: 'События и всплытие',
+    category: 'JavaScript',
+    description: 'Как работают DOM-события, всплытие, делегирование и разница между preventDefault и stopPropagation.',
+    iconName: 'MousePointer',
+    lessons: [
+      {
+        id: 'events-core',
+        title: 'DOM-события: от клика до делегирования',
+        xpReward: 10,
+        slides: [
+          {
+            type: 'theory',
+            title: 'Как добавить обработчик события?',
+            definition:
+              'Событие в JavaScript — сигнал браузера о действии пользователя или браузера. Подписываемся через addEventListener(тип, функция). Объект event внутри обработчика содержит все детали: target, key, clientX и т.д.',
+            codeExample: `// ✅ Правильно — именованная функция (можно удалить)
+function handleClick(event) {
+  console.log('Клик на:', event.target);
+}
+button.addEventListener('click', handleClick);
+button.removeEventListener('click', handleClick); // удаляем
+
+// ❌ Анонимную функцию удалить нельзя!
+button.addEventListener('click', () => alert('навсегда'));`,
+            comparison: {
+              title: 'Популярные события',
+              headers: ['Событие', 'Когда срабатывает', 'Ключевые данные в event'],
+              rows: [
+                ['click', 'Клик мышью', 'target, clientX/Y'],
+                ['keydown', 'Нажатие клавиши', 'event.key, event.code'],
+                ['submit', 'Отправка формы', 'target (форма)'],
+                ['DOMContentLoaded', 'HTML разобран (без картинок)', '—'],
+                ['mouseover / mouseout', 'Наведение / уход мыши', 'relatedTarget'],
+              ],
+            },
+            pitfalls: [
+              'removeEventListener требует ту же самую функцию — анонимные не удаляются.',
+              'DOMContentLoaded ≠ load. load ждёт картинки и стили, DOMContentLoaded — только HTML.',
+              'Если скрипт в <head> без defer — getElementById вернёт null, DOM ещё не построен.',
+            ],
+            keyTerms: [
+              { term: 'addEventListener', definition: 'Метод, подписывающий функцию на событие элемента' },
+              { term: 'event.target', definition: 'Элемент, на котором фактически произошло событие (цель)' },
+              { term: 'event.currentTarget', definition: 'Элемент, на котором висит обработчик (может быть родителем)' },
+              { term: 'DOMContentLoaded', definition: 'Событие: HTML разобран и DOM построен, стили/картинки ещё грузятся' },
+            ],
+            mnemonic: 'target — это ЦЕЛЬ (куда кликнули), currentTarget — это ХОЗЯИН обработчика (на ком висит слушатель). Запомни: target = точка попадания, currentTarget = владелец.',
+          },
+          {
+            type: 'theory',
+            title: 'Всплытие (bubbling) и перехват (capturing)',
+            definition:
+              'Событие в браузере проходит три фазы: 1) Захват (capturing) — сверху от window вниз к цели; 2) Цель (target) — на самом элементе; 3) Всплытие (bubbling) — обратно вверх до window. По умолчанию обработчики срабатывают в фазе всплытия.',
+            diagram: {
+              type: 'flow',
+              title: 'Путь события при клике на <button> внутри <div>',
+              items: [
+                'window (capturing ↓)',
+                'document (capturing ↓)',
+                '<div> (capturing ↓)',
+                '<button> — TARGET PHASE',
+                '<div> (bubbling ↑)',
+                'document (bubbling ↑)',
+                'window (bubbling ↑)',
+              ],
+            },
+            codeExample: `// Обработчик в фазе всплытия (по умолчанию, 3-й аргумент false/отсутствует)
+div.addEventListener('click', fn);        // bubbling
+div.addEventListener('click', fn, false); // то же самое
+
+// Обработчик в фазе захвата (3-й аргумент true)
+div.addEventListener('click', fn, true);  // capturing
+
+// Остановить всплытие — событие не пойдёт дальше вверх
+event.stopPropagation();
+
+// Отменить действие браузера по умолчанию (переход по ссылке, submit формы)
+event.preventDefault();`,
+            comparison: {
+              title: 'preventDefault vs stopPropagation',
+              headers: ['Метод', 'Что делает', 'Когда применять'],
+              rows: [
+                ['event.preventDefault()', 'Отменяет действие браузера по умолчанию', 'Форма без перезагрузки страницы, ссылка без перехода'],
+                ['event.stopPropagation()', 'Останавливает всплытие события вверх по DOM', 'Кнопка внутри кликабельного блока — чтобы не сработал родитель'],
+              ],
+            },
+            pitfalls: [
+              'stopPropagation не отменяет действие браузера — для этого нужен preventDefault.',
+              'preventDefault не останавливает всплытие — событие продолжит идти вверх.',
+              'stopImmediatePropagation — останавливает ещё и остальные обработчики на том же элементе.',
+            ],
+            keyTerms: [
+              { term: 'Bubbling (всплытие)', definition: 'Событие поднимается от целевого элемента вверх по DOM-дереву' },
+              { term: 'Capturing (захват)', definition: 'Событие опускается от window вниз к целевому элементу' },
+              { term: 'preventDefault()', definition: 'Отменяет поведение браузера по умолчанию (переход, отправка формы)' },
+              { term: 'stopPropagation()', definition: 'Останавливает распространение события по DOM-дереву' },
+            ],
+            mnemonic: 'Bubble = пузырёк поднимается ВВЕРХ 🫧. Capture = захватываем при СПУСКЕ вниз. Две разные стрелки — одна вниз, другая вверх.',
+          },
+          {
+            type: 'theory',
+            title: 'Делегирование событий',
+            definition:
+              'Делегирование событий — паттерн: вместо навешивания обработчика на каждый дочерний элемент, вешаем ОДИН обработчик на родителя и определяем цель через event.target. Работает благодаря всплытию.',
+            codeExample: `// ❌ Без делегирования — N обработчиков
+document.querySelectorAll('.item').forEach(item => {
+  item.addEventListener('click', handleItemClick);
+});
+
+// ✅ С делегированием — 1 обработчик на родителе
+document.querySelector('.list').addEventListener('click', (event) => {
+  // event.target — элемент, по которому кликнули
+  if (event.target.classList.contains('item')) {
+    handleItemClick(event.target);
+  }
+});
+// Работает даже для элементов, добавленных ПОСЛЕ!`,
+            pitfalls: [
+              'event.target может быть дочерним элементом внутри .item — используй closest() для надёжности.',
+              'Не все события всплывают (blur, focus, scroll). Для них делегирование не работает.',
+              'Делегирование не поможет, если событие остановлено через stopPropagation внутри дочернего элемента.',
+            ],
+            keyTerms: [
+              { term: 'Делегирование событий', definition: 'Один обработчик на родителе вместо обработчиков на каждом дочернем элементе' },
+              { term: 'event.target', definition: 'Фактический элемент, вызвавший событие (дочерний)' },
+              { term: 'closest(selector)', definition: 'Метод, идущий вверх по DOM и находящий ближайший подходящий предок' },
+            ],
+            mnemonic: 'Делегирование = «начальник (родитель) принимает все задачи, а потом разбирается кто прислал». Один обработчик — порядок, N обработчиков — хаос.',
+          },
+          {
+            type: 'multiple-choice',
+            question: 'Чем event.target отличается от event.currentTarget?',
+            options: [
+              'Нет разницы, это синонимы',
+              'target — элемент с обработчиком, currentTarget — элемент-цель клика',
+              'target — элемент-цель клика, currentTarget — элемент с обработчиком',
+              'currentTarget всегда равен document',
+            ],
+            correctIndex: 2,
+            explanation:
+              'event.target — это элемент, на котором фактически произошло событие (куда кликнули). event.currentTarget — элемент, на котором зарегистрирован обработчик. При делегировании они разные: кликаем на дочерний (target), а обработчик на родителе (currentTarget).',
+          },
+          {
+            type: 'multiple-choice',
+            question: 'Пользователь кликает по кнопке Submit в форме. Как предотвратить перезагрузку страницы?',
+            options: [
+              'event.stopPropagation() — остановит событие',
+              'event.preventDefault() — отменит стандартное поведение формы',
+              'return false в обработчике — всегда работает',
+              'Убрать атрибут action из <form>',
+            ],
+            correctIndex: 1,
+            explanation:
+              'event.preventDefault() отменяет действие браузера по умолчанию — в данном случае отправку формы и перезагрузку страницы. stopPropagation() лишь останавливает всплытие, но не отменяет поведение браузера. return false работает только в inline-обработчиках, а не в addEventListener.',
+          },
+          {
+            type: 'multiple-choice',
+            question: 'Какой порядок фаз события при клике на вложенный элемент?',
+            options: [
+              'Target → Bubbling → Capturing',
+              'Bubbling → Target → Capturing',
+              'Capturing → Target → Bubbling',
+              'Capturing → Bubbling → Target',
+            ],
+            correctIndex: 2,
+            explanation:
+              'Правильный порядок: Capturing (захват — событие идёт сверху вниз) → Target (на целевом элементе) → Bubbling (всплытие — событие идёт снизу вверх). Запомни: вниз → цель → вверх.',
+          },
+        ],
+      },
+    ],
+  },
+
+  // ═══════════════════════════════════════════════
+  // БЛОК 11: Асинхронность и Promise (Week 03)
+  // Theory вопросы: #34, #37, #38, #39, #45
+  // ═══════════════════════════════════════════════
+  {
+    id: 'async-promise',
+    title: 'Асинхронность и Promise',
+    category: 'JavaScript',
+    description: 'Колбэки, промисы, async/await — три эпохи асинхронного JS. Плюсы, минусы, обработка ошибок.',
+    iconName: 'Zap',
+    lessons: [
+      {
+        id: 'async-fundamentals',
+        title: 'От колбэков к async/await',
+        xpReward: 15,
+        slides: [
+          {
+            type: 'theory',
+            title: 'Синхронный vs Асинхронный код',
+            definition:
+              'JavaScript — однопоточный язык. Синхронный код выполняется строка за строкой, блокируя поток. Асинхронный код позволяет "отложить" задачу и продолжить работу — браузер не замерзает.',
+            codeExample: `// Синхронный — блокирует поток
+console.log('1');
+// heavyComputation(); // заморозит браузер
+console.log('2');
+
+// Асинхронный — не блокирует
+console.log('1');
+setTimeout(() => console.log('таймер'), 0);
+console.log('2');
+// Вывод: 1 → 2 → таймер`,
+            pitfalls: [
+              'setTimeout(fn, 0) не гарантирует мгновенное выполнение — fn попадает в очередь макрозадач.',
+              'Синхронный "тяжёлый" код заморозит вкладку — долгие вычисления нужно переносить в Web Worker.',
+              'JS однопоточный — параллельности нет, есть только асинхронность через очереди.',
+            ],
+            keyTerms: [
+              { term: 'Однопоточность', definition: 'JS выполняет только одну задачу в единицу времени' },
+              { term: 'Асинхронность', definition: 'Способ запустить операцию и продолжить работу, не дожидаясь её завершения' },
+              { term: 'setTimeout', definition: 'Функция, откладывающая выполнение колбэка на указанное время (макрозадача)' },
+            ],
+            mnemonic: 'Синхрон = очередь в банке: стоишь и ждёшь. Асинхрон = взял талончик и пошёл пить кофе — тебя вызовут когда придёт очередь ☕',
+          },
+          {
+            type: 'theory',
+            title: 'Callback Hell и как из него выйти',
+            definition:
+              'Callback (колбэк) — функция, передаваемая как аргумент и вызываемая позже. При цепочке асинхронных операций возникает "ад колбэков" — глубокая вложенность, которую тяжело читать и отлаживать.',
+            codeExample: `// ❌ Callback Hell — "Пирамида смерти"
+getUser(1, function(user) {
+  getPosts(user, function(posts) {
+    getComments(posts[0], function(comments) {
+      // Логика всё глубже...
+      updateUI(comments);  // А если ошибка?
+    });
+  });
+});
+
+// ✅ Promise — плоские цепочки
+getUser(1)
+  .then(user => getPosts(user))
+  .then(posts => getComments(posts[0]))
+  .then(comments => updateUI(comments))
+  .catch(error => handleError(error));
+
+// ✅✅ async/await — как синхронный код
+async function loadData() {
+  try {
+    const user = await getUser(1);
+    const posts = await getPosts(user);
+    const comments = await getComments(posts[0]);
+    updateUI(comments);
+  } catch (error) {
+    handleError(error);
+  }
+}`,
+            comparison: {
+              title: 'Три способа работы с асинхронностью',
+              headers: ['Подход', 'Плюсы', 'Минусы'],
+              rows: [
+                ['Callbacks', 'Просто, нет зависимостей', 'Callback hell, сложная обработка ошибок'],
+                ['Promise', 'Плоские цепочки, .catch() централизует ошибки, Promise.all()', 'Синтаксис .then() непривычен новичкам'],
+                ['async/await', 'Читается как синхронный код, try/catch, легко дебажить', 'await нельзя на верхнем уровне (ES2022 — можно), нужен async-контекст'],
+              ],
+            },
+            pitfalls: [
+              'await можно использовать только внутри async-функции — иначе SyntaxError.',
+              'async-функция ВСЕГДА возвращает Promise — даже если внутри return 42.',
+              'Забытый await: const data = fetchData() вернёт Promise, а не данные.',
+            ],
+            keyTerms: [
+              { term: 'Callback hell', definition: 'Глубокая вложенность асинхронных колбэков — "пирамида смерти"' },
+              { term: 'Promise', definition: 'Объект-обещание: будет выполнен успешно (resolve) или с ошибкой (reject)' },
+              { term: 'async/await', definition: 'Синтаксический сахар над Promise — асинхронный код в синхронном стиле' },
+            ],
+            mnemonic: 'Callback — матрёшка 🪆 (функция в функции в функции). Promise — конвейер 🏭 (.then → .then → .catch). async/await — обычный код с волшебным словом await.',
+          },
+          {
+            type: 'theory',
+            title: 'Promise: состояния и методы',
+            definition:
+              'Promise — объект с тремя состояниями: pending (ожидание), fulfilled (успех), rejected (ошибка). Переход необратим: из pending можно попасть только в fulfilled или rejected.',
+            diagram: {
+              type: 'flow',
+              title: 'Жизненный цикл Promise',
+              items: ['new Promise(...)', 'PENDING (ожидание)', 'resolve() → FULFILLED', 'reject() → REJECTED', '.then(result)', '.catch(error)', '.finally() — всегда'],
+            },
+            codeExample: `const promise = new Promise((resolve, reject) => {
+  const success = Math.random() > 0.3;
+  setTimeout(() => {
+    if (success) resolve({ data: 'Всё ок' }); // → fulfilled
+    else reject(new Error('Что-то пошло не так')); // → rejected
+  }, 1000);
+});
+
+// Promise.all — ждёт ВСЕ, падает если ХОТЯ БЫ ОДИН упал
+Promise.all([fetch('/api/users'), fetch('/api/posts')])
+  .then(([users, posts]) => { /* оба готовы */ });
+
+// Promise.allSettled — ждёт все, не падает при ошибке
+Promise.allSettled([p1, p2])
+  .then(results => results.forEach(r => console.log(r.status)));`,
+            pitfalls: [
+              'Promise.all() провалится при первой же ошибке — для "подождать всех несмотря на ошибки" используй Promise.allSettled().',
+              '.catch() ловит ошибки из всей предшествующей цепочки .then().',
+              '.finally() не принимает аргументы — данные из resolve/reject туда не передаются.',
+            ],
+            keyTerms: [
+              { term: 'pending', definition: 'Начальное состояние Promise — операция ещё не завершена' },
+              { term: 'fulfilled', definition: 'Promise выполнен успешно — вызван resolve()' },
+              { term: 'rejected', definition: 'Promise завершился ошибкой — вызван reject()' },
+              { term: 'Promise.all()', definition: 'Ждёт все промисы; падает, если хотя бы один отклонён' },
+            ],
+            mnemonic: 'Три состояния: жду (pending) → получил (fulfilled) → облом (rejected). Как заказ еды: жду → привезли → не привезли.',
+          },
+          {
+            type: 'theory',
+            title: 'Обработка ошибок в асинхронном коде',
+            definition:
+              'В Promise ошибки ловятся через .catch(). В async/await — через try/catch. Важно: try/catch НЕ ловит ошибки в колбэках setTimeout и addEventListener — только синхронные и await-выражения.',
+            codeExample: `// ✅ Promise — .catch ловит ошибки всей цепочки
+fetch('/api/data')
+  .then(res => res.json())
+  .then(data => processData(data))
+  .catch(err => console.error('Любая ошибка:', err));
+
+// ✅ async/await — try/catch
+async function loadData() {
+  try {
+    const res = await fetch('/api/data');
+    const data = await res.json();
+    return processData(data);
+  } catch (err) {
+    console.error('Ошибка:', err);
+  }
+}
+
+// ❌ try/catch НЕ поймает ошибку внутри setTimeout
+try {
+  setTimeout(() => { throw new Error('не поймаю!'); }, 0);
+} catch (e) {
+  console.log('никогда не сработает');
+}`,
+            pitfalls: [
+              'try/catch не ловит ошибки в асинхронных колбэках (setTimeout, addEventListener).',
+              'Если не поставить await перед async-функцией — ошибка уйдёт в unhandledRejection.',
+              'Всегда добавляй .catch() или try/catch — необработанный rejected Promise крашит Node.js.',
+            ],
+            keyTerms: [
+              { term: 'try/catch', definition: 'Конструкция для перехвата синхронных ошибок и ошибок из await-выражений' },
+              { term: '.catch()', definition: 'Метод Promise для перехвата rejected-состояния' },
+              { term: 'unhandledRejection', definition: 'Событие: Promise отклонён, но .catch() не добавлен' },
+            ],
+            mnemonic: 'try/catch — страховочная сетка 🪢. Но она натянута только под синхронным канатом! Под setTimeout — другая арена, там нужен свой try/catch внутри колбэка.',
+          },
+          {
+            type: 'multiple-choice',
+            question: 'async-функция всегда возвращает...',
+            options: [
+              'Значение, которое указано в return',
+              'Promise, обёртывающий возвращаемое значение',
+              'undefined, если нет явного return',
+              'Зависит от того, есть ли внутри await',
+            ],
+            correctIndex: 1,
+            explanation:
+              'async-функция ВСЕГДА возвращает Promise. Если внутри написать return 42 — вернётся Promise.resolve(42). Если выбросить ошибку — вернётся Promise.reject(error). Это фундаментальное свойство async/await.',
+          },
+          {
+            type: 'multiple-choice',
+            question: 'Что выведет код: Promise.resolve().then(() => console.log("A")).then(() => console.log("B")); console.log("C");',
+            options: [
+              'A → B → C',
+              'C → A → B',
+              'A → C → B',
+              'C → B → A',
+            ],
+            correctIndex: 1,
+            explanation:
+              'Порядок: C (синхронный код выполняется первым) → A → B (микрозадачи после очистки стека). Promise.then добавляет колбэки в Microtask Queue, которая обрабатывается после завершения синхронного кода.',
+          },
+          {
+            type: 'multiple-choice',
+            question: 'В чём главное отличие Promise.all() от Promise.allSettled()?',
+            options: [
+              'Promise.all() быстрее',
+              'Promise.all() падает при первой ошибке; Promise.allSettled() ждёт всех и возвращает статусы',
+              'Promise.allSettled() падает при первой ошибке',
+              'Нет разницы, только синтаксис отличается',
+            ],
+            correctIndex: 1,
+            explanation:
+              'Promise.all() — режим "все или ничего": если хотя бы один Promise отклонён, весь Promise.all переходит в rejected. Promise.allSettled() ждёт завершения всех промисов и возвращает массив объектов {status: "fulfilled"|"rejected", value/reason}.',
+          },
+        ],
+      },
+    ],
+  },
+
+  // ═══════════════════════════════════════════════
+  // БЛОК 12: Event Loop (Week 03)
+  // Theory вопросы: #23, #35, #43, #46, #47
+  // ═══════════════════════════════════════════════
+  {
+    id: 'event-loop',
+    title: 'Event Loop',
+    category: 'JavaScript',
+    description: 'Как JavaScript выполняет асинхронный код: Call Stack, Web APIs, очереди микро- и макрозадач.',
+    iconName: 'RefreshCw',
+    lessons: [
+      {
+        id: 'event-loop-core',
+        title: 'Event Loop: сердце асинхронного JS',
+        xpReward: 15,
+        slides: [
+          {
+            type: 'theory',
+            title: 'Модель выполнения JS в браузере',
+            definition:
+              'JavaScript использует Event Loop для управления асинхронным кодом. Есть 4 компонента: Call Stack (выполняет код), Web APIs (браузерные задачи: таймеры, fetch), Microtask Queue (Promise.then, await), Task Queue (setTimeout, события). Event Loop следит: когда Call Stack пуст — сначала сливает все микрозадачи, потом берёт одну макрозадачу.',
+            diagram: {
+              type: 'flow',
+              title: 'Event Loop — один цикл',
+              items: [
+                '1. Выполнить весь синхронный код (Call Stack)',
+                '2. Очистить Microtask Queue (ВСЕ Promise.then / await)',
+                '3. Браузер перерисовывает экран (если нужно)',
+                '4. Взять ОДНУ макрозадачу из Task Queue (setTimeout/setInterval)',
+                '5. Вернуться к шагу 2',
+              ],
+            },
+            comparison: {
+              title: 'Микрозадачи vs Макрозадачи',
+              headers: ['Тип', 'Примеры', 'Приоритет', 'Очередь'],
+              rows: [
+                ['Микрозадачи', 'Promise.then, async/await, queueMicrotask, MutationObserver', 'ВЫШЕ — всегда первыми', 'Microtask Queue'],
+                ['Макрозадачи', 'setTimeout, setInterval, DOM-события, fetch (колбэки)', 'НИЖЕ — по одной за раз', 'Task Queue'],
+              ],
+            },
+            pitfalls: [
+              'После каждой макрозадачи — полный слив Microtask Queue. Бесконечные микрозадачи заблокируют браузер.',
+              'setTimeout(fn, 0) — не "немедленно", а "после всех микрозадач" → минимум несколько миллисекунд.',
+              'fetch-запросы — Web API: сам запрос выполняет браузер, а .then() попадает в Microtask Queue.',
+            ],
+            keyTerms: [
+              { term: 'Call Stack', definition: 'Стек вызовов — здесь выполняется синхронный JS-код, LIFO' },
+              { term: 'Web APIs', definition: 'Браузерные API (setTimeout, fetch, DOM events) — выполняются вне JS-потока' },
+              { term: 'Microtask Queue', definition: 'Очередь микрозадач (Promise, await) — опустошается полностью после каждого синхронного блока' },
+              { term: 'Task Queue', definition: 'Очередь макрозадач (setTimeout) — берётся по одной после микрозадач' },
+              { term: 'Event Loop', definition: 'Цикл, следящий за Call Stack и перекладывающий задачи из очередей' },
+            ],
+            mnemonic: 'Запомни порядок через "С-М-М-М": Синхронный код → Микрозадачи (все!) → Макрозадача (одна) → Микрозадачи снова → Макрозадача... как мотор: ц-ц-ц-ц-ц',
+          },
+          {
+            type: 'theory',
+            title: 'Race Condition — состояние гонки',
+            definition:
+              'Race condition (состояние гонки) — ситуация, когда результат зависит от порядка завершения нескольких асинхронных операций, который непредсказуем. Например: пользователь быстро меняет город — два запроса "бегут", и более старый может прийти ПОЗЖЕ нового.',
+            codeExample: `// ❌ Проблема: старый запрос может прийти позже нового
+let lastRequestId = 0;
+
+async function search(query) {
+  const requestId = ++lastRequestId;
+  const data = await fetch(\`/api?q=\${query}\`);
+  
+  // ❌ Показываем всё подряд — включая устаревшие данные
+  showResults(data);
+}
+
+// ✅ Решение 1: игнорируем устаревшие ответы
+async function searchFixed(query) {
+  const requestId = ++lastRequestId;
+  const data = await fetch(\`/api?q=\${query}\`);
+  
+  if (requestId !== lastRequestId) return; // устаревший ответ — игнорируем
+  showResults(data);
+}
+
+// ✅ Решение 2: AbortController — отменяем предыдущий запрос
+let controller;
+async function searchWithAbort(query) {
+  controller?.abort(); // отменяем прошлый
+  controller = new AbortController();
+  const data = await fetch(\`/api?q=\${query}\`, { signal: controller.signal });
+  showResults(data);
+}`,
+            pitfalls: [
+              'Race condition чаще всего возникает в поиске, пагинации, табах — везде, где запросы могут "обгонять" друг друга.',
+              'AbortController — современный способ отменить fetch-запрос.',
+              'Promise.race() — берёт результат первого завершившегося промиса (быстрейшего).',
+            ],
+            keyTerms: [
+              { term: 'Race condition', definition: 'Ошибка когда результат зависит от непредсказуемого порядка асинхронных операций' },
+              { term: 'AbortController', definition: 'API для отмены fetch-запросов' },
+              { term: 'Promise.race()', definition: 'Возвращает первый завершившийся Promise (любой — успех или ошибка)' },
+            ],
+            mnemonic: 'Race condition = гонка автобусов 🚌🚌. Ты сел в автобус №2, но приехал автобус №1 (который отправился после). Нужно либо остановить старый автобус (AbortController), либо проверить номер рейса (requestId).',
+          },
+          {
+            type: 'multiple-choice',
+            question: 'Что выведет код? console.log("A"); setTimeout(() => console.log("B"), 0); Promise.resolve().then(() => console.log("C")); console.log("D");',
+            options: [
+              'A → B → C → D',
+              'A → D → B → C',
+              'A → D → C → B',
+              'A → C → D → B',
+            ],
+            correctIndex: 2,
+            explanation:
+              'Порядок: A и D — синхронный код (выполняется первым). C — микрозадача (Promise.then, выполняется после всего синхронного кода). B — макрозадача (setTimeout, выполняется после всех микрозадач). Итог: A → D → C → B.',
+          },
+          {
+            type: 'multiple-choice',
+            question: 'Почему setTimeout(fn, 0) НЕ выполняется немедленно?',
+            options: [
+              'Это баг в браузере',
+              'Колбэк попадает в Task Queue и ждёт, пока Call Stack и Microtask Queue очистятся',
+              'Минимальная задержка setTimeout — 4 мс по спецификации',
+              'JavaScript не поддерживает нулевые таймауты',
+            ],
+            correctIndex: 1,
+            explanation:
+              'setTimeout(fn, 0) передаёт fn в Web API таймера, и после истечения 0 мс (или 4 мс — минимум по спецификации) колбэк попадает в Task Queue. Event Loop возьмёт его только после того, как Call Stack пуст И Microtask Queue очищена. Поэтому Promise.then() всегда выполнится раньше setTimeout.',
+          },
+          {
+            type: 'multiple-choice',
+            question: 'Какую проблему решает Event Loop?',
+            options: [
+              'Позволяет JS выполнять несколько функций одновременно',
+              'Позволяет однопоточному JS не блокировать интерфейс при ожидании асинхронных операций',
+              'Ускоряет выполнение синхронного кода',
+              'Управляет памятью и сборщиком мусора',
+            ],
+            correctIndex: 1,
+            explanation:
+              'Event Loop позволяет JavaScript оставаться однопоточным, но при этом не "замораживать" браузер. Пока идёт, например, fetch-запрос — JS продолжает обрабатывать события интерфейса. Когда данные придут — Event Loop поместит колбэк в очередь и выполнит его.',
+          },
+        ],
+      },
+    ],
+  },
+
+  // ═══════════════════════════════════════════════
+  // БЛОК 13: npm, сборщики и CI/CD (Week 04)
+  // Theory вопросы: #48–63
+  // ═══════════════════════════════════════════════
+  {
+    id: 'tools-npm-bundlers-ci',
+    title: 'npm, сборщики и CI/CD',
+    category: 'Tools',
+    description: 'Node.js, npm-зависимости, Webpack vs Vite, ESLint, Prettier и основы CI/CD с GitLab.',
+    iconName: 'Package',
+    lessons: [
+      {
+        id: 'npm-basics',
+        title: 'npm: пакетный менеджер',
+        xpReward: 10,
+        slides: [
+          {
+            type: 'theory',
+            title: 'npm и package.json',
+            definition:
+              'npm (Node Package Manager) — менеджер пакетов для JavaScript. Управляет зависимостями, версиями и скриптами проекта. package.json — центральный файл конфигурации проекта.',
+            comparison: {
+              title: 'Ключевые файлы npm-проекта',
+              headers: ['Файл', 'Что содержит', 'В Git?'],
+              rows: [
+                ['package.json', 'Зависимости, скрипты, метаданные проекта', '✅ Да'],
+                ['package-lock.json', 'Точные версии всех установленных пакетов', '✅ Да'],
+                ['node_modules/', 'Физический код библиотек', '❌ Нет (.gitignore)'],
+              ],
+            },
+            codeExample: `// Основные команды npm
+npm init -y                    // Создать package.json
+npm install react              // Установить в dependencies
+npm install eslint --save-dev  // Установить в devDependencies
+npm uninstall react            // Удалить пакет
+npm run build                  // Запустить скрипт из package.json
+npm ci                         // Чистая установка по package-lock.json (для CI)
+
+// Semver: MAJOR.MINOR.PATCH
+// "^18.2.0" → ставит любую 18.x.x (MAJOR фиксирован)
+// "~18.2.0" → ставит 18.2.x (MINOR фиксирован)
+// "18.2.0"  → строго эта версия`,
+            pitfalls: [
+              'dependencies — нужны в продакшене (React, Axios). devDependencies — только для разработки (ESLint, Vite, TypeScript).',
+              'npm ci ≠ npm install: npm ci строго следует package-lock.json и удаляет node_modules. Используется в CI.',
+              'node_modules — в .gitignore. Весит сотни мегабайт.',
+            ],
+            keyTerms: [
+              { term: 'package.json', definition: 'Манифест проекта: зависимости, скрипты, версия, автор' },
+              { term: 'dependencies', definition: 'Пакеты, нужные в production (React, Axios)' },
+              { term: 'devDependencies', definition: 'Пакеты только для разработки (ESLint, Vite, Jest)' },
+              { term: 'Semver', definition: 'Semantic Versioning: MAJOR.MINOR.PATCH — стандарт версионирования' },
+              { term: 'npm ci', definition: 'Строгая установка зависимостей по lock-файлу для CI-среды' },
+            ],
+            mnemonic: 'Semver: MAJOR = сломал обратную совместимость 💥, MINOR = добавил фичу ✨, PATCH = починил баг 🩹. Каретка ^ — держусь за MAJOR, тильда ~ — держусь за MINOR.',
+          },
+          {
+            type: 'theory',
+            title: 'Сборщики: Webpack, Vite, Rollup',
+            definition:
+              'Bundler (сборщик) — инструмент, объединяющий модули (JS, CSS, картинки) в оптимизированный набор файлов для браузера. Выполняет: сборку, минификацию, tree shaking, code splitting.',
+            comparison: {
+              title: 'Webpack vs Vite vs Rollup',
+              headers: ['Инструмент', 'Скорость dev', 'Конфиг', 'Когда выбирать'],
+              rows: [
+                ['Webpack', '⬛ Медленнее', '⚙️ Сложный', 'Легаси проекты, микрофронтенды, сложная кастомизация'],
+                ['Vite', '⚡ Очень быстрый (ESM)', '✅ Минимальный', 'Новые проекты, React/Vue/Svelte — выбор по умолчанию'],
+                ['Rollup', '—', '⚙️ Средний', 'Публикация npm-библиотек (маленький бандл)'],
+              ],
+            },
+            codeExample: `// Ключевые концепции Webpack
+module.exports = {
+  entry: './src/main.js',       // точка входа — начало графа модулей
+  output: { filename: 'bundle.js', path: '/dist' }, // куда класть
+  module: {
+    rules: [
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] }, // loader
+    ]
+  },
+  plugins: [new HtmlWebpackPlugin()] // plugins — мощнее loader'ов
+};
+
+// Loaders — преобразуют файлы (CSS → JS, TypeScript → JS)
+// Plugins — работают на уровне всей сборки (генерация HTML, очистка dist)
+
+// Tree shaking — автоматически удаляет неиспользуемый код
+// import { add } from './math'; // только add попадёт в бандл, не весь math.js
+
+// Code splitting — разбивка бандла на части для lazy loading`,
+            pitfalls: [
+              'Loaders в Webpack применяются СПРАВА НАЛЕВО в массиве: ["style-loader", "css-loader"] — сначала css-loader, потом style-loader.',
+              'Tree shaking работает только с ES-модулями (import/export), не с CommonJS (require).',
+              'Vite в dev использует нативные ESM — не собирает бандл. В prod — Rollup.',
+            ],
+            keyTerms: [
+              { term: 'Bundler', definition: 'Инструмент, собирающий модули в оптимизированный набор файлов' },
+              { term: 'Entry', definition: 'Точка входа — файл, с которого начинается граф зависимостей' },
+              { term: 'Loader', definition: 'Webpack: преобразует файл (TypeScript → JS, CSS → JS-модуль)' },
+              { term: 'Plugin', definition: 'Webpack: расширяет сборку (генерация HTML, оптимизация, очистка)' },
+              { term: 'Tree shaking', definition: 'Удаление неиспользуемого ("мёртвого") кода из бандла' },
+              { term: 'HMR', definition: 'Hot Module Replacement — обновление модуля без перезагрузки страницы' },
+              { term: 'Code splitting', definition: 'Разбивка бандла на части для загрузки по мере необходимости' },
+            ],
+            mnemonic: 'Loader = рабочий 👷 (обрабатывает один файл). Plugin = прораб 👨‍💼 (управляет всей стройкой). Дерево без листьев = Tree shaking: трясём дерево — падают только ненужные листья.',
+          },
+          {
+            type: 'theory',
+            title: 'ESLint и Prettier: качество кода',
+            definition:
+              'ESLint — линтер: анализирует код статически, находит ошибки, плохие практики, нарушения правил. Prettier — форматтер: автоматически приводит код к единому стилю. Они дополняют, а не заменяют друг друга.',
+            comparison: {
+              title: 'ESLint vs Prettier',
+              headers: ['Инструмент', 'Что делает', 'Пример'],
+              rows: [
+                ['ESLint', 'Находит ошибки и плохой код', 'no-unused-vars, eqeqeq (запрет ==), no-console'],
+                ['Prettier', 'Форматирует код (стиль)', 'Заменяет " на \', добавляет точки с запятой, переносит строки'],
+              ],
+            },
+            codeExample: `// Установка
+npm install eslint prettier --save-dev
+
+// package.json — npm-скрипты
+{
+  "scripts": {
+    "lint": "eslint .",            // найти ошибки
+    "lint:fix": "eslint . --fix",  // исправить автоматически
+    "format": "prettier . --write" // отформатировать
+  }
+}
+
+// .prettierrc — конфиг форматтера
+{
+  "singleQuote": true,   // одинарные кавычки
+  "semi": true,          // точки с запятой
+  "tabWidth": 2,         // 2 пробела
+  "printWidth": 100      // максимальная длина строки
+}
+
+// eslint.config.mjs — конфиг линтера (новый формат)
+export default [{ files: ["**/*.js"], rules: { "no-unused-vars": "error" } }]`,
+            pitfalls: [
+              'ESLint и Prettier могут конфликтовать — установи eslint-config-prettier для отключения правил форматирования ESLint.',
+              'Конфиги (.eslintrc, .prettierrc) должны быть в корне проекта.',
+              'Линтер работает только при написании кода, не в рантайме — на пользователей не влияет.',
+            ],
+            keyTerms: [
+              { term: 'Линтер (ESLint)', definition: 'Статический анализатор кода — находит ошибки и нарушения правил' },
+              { term: 'Форматтер (Prettier)', definition: 'Инструмент приведения кода к единому стилю' },
+              { term: 'Статический анализ', definition: 'Анализ кода без его выполнения — находит проблемы на этапе написания' },
+              { term: 'AST', definition: 'Abstract Syntax Tree — структура кода, которую строит ESLint для анализа' },
+            ],
+            mnemonic: 'ESLint = полицейский 👮 (ищет нарушителей). Prettier = уборщик 🧹 (наводит порядок). Оба нужны: один поймал нарушителей, другой — убрал беспорядок.',
+          },
+          {
+            type: 'theory',
+            title: 'CI/CD и GitLab Pipeline',
+            definition:
+              'CI (Continuous Integration) — автоматическая проверка кода при каждом push: сборка, линтинг, тесты. CD (Delivery) — из main всегда можно задеплоить. CD (Deployment) — деплой автоматически. В GitLab всё описывается в .gitlab-ci.yml.',
+            diagram: {
+              type: 'flow',
+              title: 'Типичный frontend CI-пайплайн',
+              items: [
+                'git push → GitLab запускает пайплайн',
+                'Stage: install — npm ci',
+                'Stage: test — npm run lint + npm test (параллельно)',
+                'Stage: build — npm run build → артефакт dist/',
+                'Stage: deploy — деплой на сервер (manual или auto)',
+              ],
+            },
+            codeExample: `# .gitlab-ci.yml — конфиг пайплайна
+
+stages:
+  - install
+  - test
+  - build
+
+default:
+  image: node:18  # Docker-образ для всех джоб
+  cache:
+    key: \${CI_COMMIT_REF_SLUG}
+    paths: [node_modules/]
+
+install_deps:
+  stage: install
+  script:
+    - npm ci
+
+lint:
+  stage: test
+  needs: ["install_deps"]  # ждёт установки зависимостей
+  script:
+    - npm run lint
+
+build:
+  stage: build
+  needs: ["install_deps"]
+  script:
+    - npm run build
+  artifacts:
+    paths: [dist/]
+    expire_in: 3 days`,
+            comparison: {
+              title: 'CI vs CD (Delivery) vs CD (Deployment)',
+              headers: ['Практика', 'Что делает', 'Ключевой признак'],
+              rows: [
+                ['CI', 'Автоматически проверяет код при push', 'Линтинг + тесты + сборка на каждый коммит'],
+                ['CD Delivery', 'Готовит артефакт для деплоя', 'Деплой — ручной шаг (кнопка)'],
+                ['CD Deployment', 'Автоматически деплоит в продакшен', 'Push в main = деплой без участия человека'],
+              ],
+            },
+            pitfalls: [
+              'package.json vs .gitlab-ci.yml: package.json описывает скрипты, .gitlab-ci.yml — когда и где их запускать автоматически.',
+              'Джобы в одном stage выполняются параллельно, stages — последовательно.',
+              'needs: [] позволяет джобе не ждать весь предыдущий stage — только указанные джобы.',
+              'Без раннеров пайплайн зависнет в статусе pending.',
+            ],
+            keyTerms: [
+              { term: 'CI', definition: 'Continuous Integration — автоматическая проверка кода при каждом push' },
+              { term: 'Pipeline', definition: 'Последовательность стейджей и джоб в CI/CD' },
+              { term: 'Stage', definition: 'Этап пайплайна (install, test, build, deploy)' },
+              { term: 'Job', definition: 'Конкретная задача: установка, линтинг, сборка' },
+              { term: 'Артефакт', definition: 'Результат сборки (dist/), передаваемый между стейджами' },
+              { term: 'Runner', definition: 'Исполнитель джоб — процесс, реально запускающий команды' },
+            ],
+            mnemonic: 'Pipeline = конвейер на заводе 🏭: сырьё (код) → обработка (lint/test) → упаковка (build) → склад/магазин (deploy). Каждый этап (stage) — своя станция. Если одна сломалась — конвейер стоп.',
+          },
+          {
+            type: 'multiple-choice',
+            question: 'Чем отличаются dependencies от devDependencies в package.json?',
+            options: [
+              'Нет разницы, просто разные секции для порядка',
+              'dependencies нужны только в разработке, devDependencies — в продакшене',
+              'dependencies попадают в продакшен-сборку, devDependencies — только для разработки (линтеры, тесты)',
+              'devDependencies устанавливаются быстрее',
+            ],
+            correctIndex: 2,
+            explanation:
+              'dependencies — библиотеки, нужные в production (React, Axios, lodash). devDependencies — инструменты только для разработки: ESLint, Prettier, Vite, TypeScript, Jest. В production их не нужно устанавливать (npm install --production или npm ci --omit=dev).',
+          },
+          {
+            type: 'multiple-choice',
+            question: 'В чём разница между Loader и Plugin в Webpack?',
+            options: [
+              'Loader быстрее, Plugin медленнее',
+              'Loader преобразует отдельные файлы; Plugin работает на уровне всего процесса сборки',
+              'Plugin работает с JS, Loader — с CSS',
+              'Нет разницы, это синонимы',
+            ],
+            correctIndex: 1,
+            explanation:
+              'Loader в Webpack преобразует отдельные файлы перед добавлением в граф модулей: css-loader → читает CSS, babel-loader → компилирует TypeScript/ES6. Plugin расширяет поведение на уровне всей сборки: HtmlWebpackPlugin генерирует index.html, CleanWebpackPlugin очищает dist/ перед сборкой.',
+          },
+          {
+            type: 'multiple-choice',
+            question: 'Что такое tree shaking и при каком условии он работает?',
+            options: [
+              'Удаление комментариев из кода — работает всегда',
+              'Удаление неиспользуемого кода из бандла — работает только с ES-модулями (import/export)',
+              'Разделение бандла на части — работает с любым модульным кодом',
+              'Минификация переменных — требует TypeScript',
+            ],
+            correctIndex: 1,
+            explanation:
+              'Tree shaking ("встряхивание дерева") — удаление "мёртвого" кода, который импортируется но не используется. Работает только с ES-модулями (import/export), потому что они статически анализируемы. CommonJS (require) — динамический, анализировать его сложно. Vite и Rollup используют tree shaking по умолчанию.',
+          },
+          {
+            type: 'multiple-choice',
+            question: 'Что произойдёт с CI-пайплайном, если стейдж test упал?',
+            options: [
+              'Пайплайн продолжит выполнение со следующего стейджа',
+              'Пайплайн остановится: стейджи build и deploy не запустятся',
+              'GitLab автоматически исправит ошибки',
+              'Только упавшая джоба помечается как failed, остальные продолжают',
+            ],
+            correctIndex: 1,
+            explanation:
+              'Стейджи выполняются последовательно. Если хотя бы одна джоба в стейдже failed — весь пайплайн помечается как failed и следующие стейджи не запускаются. Это ключевая цель CI: не допустить сломанный код в prod.',
+          },
+        ],
+      },
+    ],
+  },
 ];

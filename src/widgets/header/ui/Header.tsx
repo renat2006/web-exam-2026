@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, Zap, Heart, HeartOff, Settings, Code } from 'lucide-react';
+import { Flame, Zap, Heart, HeartOff, Settings, Code, Gem, Shield } from 'lucide-react';
 import { vibrateClick, vibrateTick } from '../../../shared/lib/haptics/vibrate';
 
 interface HeaderProps {
@@ -8,9 +8,15 @@ interface HeaderProps {
   hearts: number;
   vibrationEnabled: boolean;
   onOpenSettings: () => void;
+  gems: number;
+  level: number;
+  levelTitle: string;
+  dailyXpEarned: number;
+  dailyXpGoal: number;
+  streakFreezes: number;
 }
 
-export const Header: React.FC<HeaderProps> = ({ xp, streak, hearts, vibrationEnabled, onOpenSettings }) => {
+export const Header: React.FC<HeaderProps> = ({ xp, streak, hearts, vibrationEnabled, onOpenSettings, gems, level, levelTitle, dailyXpEarned, dailyXpGoal, streakFreezes }) => {
   const triggerHeaderVibe = () => {
     vibrateClick(vibrationEnabled);
   };
@@ -28,38 +34,51 @@ export const Header: React.FC<HeaderProps> = ({ xp, streak, hearts, vibrationEna
       </div>
 
       <div className="header-stat-container">
-        {/* Streak */}
-        <div className="stat-badge streak-badge" onClick={triggerHeaderVibe} title="Ежедневная серия дней обучения">
-          <Flame size={18} className="stat-icon" fill={streak > 0 ? "currentColor" : "none"} />
+        {/* Level badge */}
+        <div className="stat-badge level-badge" onClick={triggerHeaderVibe} title={`${levelTitle} — Уровень ${level}`}>
+          <span className="level-num">{level}</span>
           <span className="stat-value">
-            {streak} <span className="stat-label-text">{getDaysWord(streak)}</span>
+            <span className="stat-label-text">{levelTitle}</span>
           </span>
         </div>
 
-        {/* XP */}
-        <div className="stat-badge xp-badge" onClick={triggerHeaderVibe} title="Очки опыта (XP)">
+        {/* Streak */}
+        <div className="stat-badge streak-badge" onClick={triggerHeaderVibe} title={`Серия: ${streak} ${getDaysWord(streak)}${streakFreezes > 0 ? ` | Заморозок: ${streakFreezes}` : ''}`}>
+          <Flame size={18} className="stat-icon" fill={streak > 0 ? "currentColor" : "none"} />
+          <span className="stat-value">
+            {streak}
+            {streakFreezes > 0 && <Shield size={10} className="freeze-icon" />}
+          </span>
+        </div>
+
+        {/* Gems */}
+        <div className="stat-badge gems-badge" onClick={triggerHeaderVibe} title="Гемы — валюта для заморозок">
+          <Gem size={16} className="stat-icon" />
+          <span className="stat-value">{gems}</span>
+        </div>
+
+        {/* XP with daily progress */}
+        <div className="stat-badge xp-badge" onClick={triggerHeaderVibe} title={`${dailyXpEarned}/${dailyXpGoal} XP сегодня`}>
           <Zap size={18} className="stat-icon" fill="currentColor" />
           <span className="stat-value">
             {xp} <span className="stat-label-text">XP</span>
           </span>
+          <div className="daily-xp-bar">
+            <div className="daily-xp-fill" style={{ width: `${Math.min(100, (dailyXpEarned / dailyXpGoal) * 100)}%` }} />
+          </div>
         </div>
 
         {/* Hearts */}
-        <div className="stat-badge hearts-badge" onClick={triggerHeaderVibe} title="Количество жизней">
+        <div className="stat-badge hearts-badge" onClick={triggerHeaderVibe} title="Жизни">
           {hearts > 0 ? (
             <>
               <Heart size={18} className="stat-icon heart-active" fill="currentColor" />
-              <span className="stat-value">
-                {hearts} <span className="stat-label-text">/ 5</span>
-              </span>
+              <span className="stat-value">{hearts}</span>
             </>
           ) : (
             <>
               <HeartOff size={18} className="stat-icon heart-empty" />
-              <span className="stat-value text-error">
-                <span className="stat-label-text">Нет жизней</span>
-                <span className="stat-label-text-mobile">0</span>
-              </span>
+              <span className="stat-value text-error">0</span>
             </>
           )}
         </div>
@@ -159,11 +178,65 @@ export const Header: React.FC<HeaderProps> = ({ xp, streak, hearts, vibrationEna
         .xp-badge {
           color: var(--color-accent);
           border-color: rgba(99, 102, 241, 0.2);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .daily-xp-bar {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: rgba(99, 102, 241, 0.15);
+        }
+        .daily-xp-fill {
+          height: 100%;
+          background: var(--color-accent);
+          border-radius: 0 2px 2px 0;
+          transition: width 0.5s ease-out;
         }
 
         .xp-badge:hover {
           border-color: var(--color-accent);
           background-color: rgba(99, 102, 241, 0.05);
+        }
+
+        .level-badge {
+          color: #e0e7ff;
+          border-color: rgba(139, 92, 246, 0.25);
+          gap: 4px;
+        }
+        .level-badge:hover {
+          border-color: rgba(139, 92, 246, 0.5);
+          background-color: rgba(139, 92, 246, 0.06);
+        }
+        .level-num {
+          width: 22px;
+          height: 22px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, #7c3aed, #6366f1);
+          border-radius: var(--radius-full);
+          font-size: 11px;
+          font-weight: 800;
+          color: #fff;
+          flex-shrink: 0;
+        }
+
+        .gems-badge {
+          color: #67e8f9;
+          border-color: rgba(34, 211, 238, 0.2);
+        }
+        .gems-badge:hover {
+          border-color: rgba(34, 211, 238, 0.4);
+          background-color: rgba(34, 211, 238, 0.05);
+        }
+
+        .freeze-icon {
+          color: #38bdf8;
+          margin-left: 2px;
         }
 
         .hearts-badge {
