@@ -3,6 +3,7 @@ import { X, ArrowRight, CheckCircle, XCircle, BookOpen, HelpCircle, ListOrdered,
 import confetti from 'canvas-confetti';
 import type { Lesson, Slide } from '../../../entities/curriculum/model/types';
 import { CodeSandbox } from '../../../features/run-tests/ui/CodeSandbox';
+import { CodeBlock } from '../../../shared/ui/code-block/CodeBlock';
 import { Mascot } from '../../../shared/ui/mascot/Mascot';
 import type { MascotState } from '../../../shared/ui/mascot/Mascot';
 import { vibrateSuccess, vibrateError, vibrateComplete, vibrateClick } from '../../../shared/lib/haptics/vibrate';
@@ -454,9 +455,12 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
               )}
 
               {currentSlide.codeSnippet && (
-                <div className="theory-code card">
-                  <p className="section-label">Пример кода</p>
-                  <pre><code>{currentSlide.codeSnippet}</code></pre>
+                <div className="theory-code-section">
+                  <p className="section-label">
+                    <Code size={13} />
+                    <span>Пример кода</span>
+                  </p>
+                  <CodeBlock code={currentSlide.codeSnippet} />
                 </div>
               )}
 
@@ -881,16 +885,20 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
           }
         }
 
-        .theory-code pre {
-          margin: 0;
-          overflow-x: auto;
-          font-size: 12px;
-          -webkit-overflow-scrolling: touch;
+        .theory-code-section {
+          margin: 12px 0;
+        }
+
+        .theory-code-section .section-label {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          margin-bottom: 8px;
         }
 
         @media (max-width: 600px) {
-          .theory-code pre {
-            font-size: 11px;
+          .theory-code-section {
+            margin: 8px 0;
           }
           .theory-code.card, .theory-pitfalls.card, .diagram-container.card, .theory-definition.card {
             padding: 10px 12px !important;
