@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useUserState } from '../entities/user/model/userState';
 import { Sidebar } from '../widgets/sidebar/ui/Sidebar';
 import { Header } from '../widgets/header/ui/Header';
+import { ExamCountdown } from '../widgets/exam-countdown/ui/ExamCountdown';
 import { MapPage } from '../pages/map/ui/MapPage';
 import { StatsPage } from '../pages/stats/ui/StatsPage';
 import { AchievementsPage } from '../pages/achievements/ui/AchievementsPage';
@@ -205,6 +206,8 @@ export const App: React.FC = () => {
           dailyXpGoal={dailyXpGoal}
           streakFreezes={streakFreezes}
         />
+
+        <ExamCountdown />
 
         <div className="scroll-content">
           {/* TAB: Skill Map */}
