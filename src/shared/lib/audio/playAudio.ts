@@ -1,4 +1,4 @@
-export type SoundType = 'correct' | 'incorrect' | 'complete';
+export type SoundType = 'correct' | 'incorrect' | 'complete' | 'tap';
 
 /**
  * Dynamically synthesizes sound effects using the Web Audio API.
@@ -65,6 +65,21 @@ export const playSynthesizedSound = (type: SoundType, enabled: boolean): void =>
       
       osc.start(now);
       osc.stop(now + 0.6);
+    } else if (type === 'tap') {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      
+      const now = ctx.currentTime;
+      osc.frequency.setValueAtTime(800, now);
+      
+      gain.gain.setValueAtTime(0.06, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      
+      osc.start(now);
+      osc.stop(now + 0.08);
     }
   } catch (e) {
     console.error('AudioContext synthesis error:', e);

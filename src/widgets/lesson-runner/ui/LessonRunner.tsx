@@ -5,7 +5,7 @@ import type { Lesson, Slide } from '../../../entities/curriculum/model/types';
 import { CodeSandbox } from '../../../features/run-tests/ui/CodeSandbox';
 import { Mascot } from '../../../shared/ui/mascot/Mascot';
 import type { MascotState } from '../../../shared/ui/mascot/Mascot';
-import { vibrateSuccess, vibrateError, vibrateComplete } from '../../../shared/lib/haptics/vibrate';
+import { vibrateSuccess, vibrateError, vibrateComplete, vibrateClick } from '../../../shared/lib/haptics/vibrate';
 import { playSynthesizedSound } from '../../../shared/lib/audio/playAudio';
 
 interface LessonRunnerProps {
@@ -53,6 +53,25 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
   const [comboCount, setComboCount] = useState(0);
   const [showComboPopup, setShowComboPopup] = useState<string | null>(null);
   const [showBonusXp, setShowBonusXp] = useState(false);
+  const [feedbackEmoji, setFeedbackEmoji] = useState<{icon: string; show: boolean}>({icon: '', show: false});
+
+  const CORRECT_MESSAGES = [
+    'Отлично! Абсолютно верно!',
+    'Так держать! Правильный ответ!',
+    'Великолепно! Вы на верном пути!',
+    'Верно! Продолжайте в том же духе!',
+    'Точно в цель! Молодец!',
+    'Супер! Всё правильно!',
+    'Браво! Отличный ответ!',
+  ];
+  const WRONG_MESSAGES = [
+    'Не совсем... Посмотрите объяснение.',
+    'Ой, мимо! Ничего, разберёмся.',
+    'Почти! Но не в этот раз.',
+    'Неверно. Вот как правильно:',
+    'Не угадали! Но это полезная ошибка.',
+  ];
+  const pickRandom = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
 
   const currentSlide: Slide = lesson.slides[currentSlideIndex];
   const progressPercent = ((currentSlideIndex) / lesson.slides.length) * 100;
@@ -135,6 +154,13 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
   }, [showComboPopup]);
 
   useEffect(() => {
+    if (feedbackEmoji.show) {
+      const t = setTimeout(() => setFeedbackEmoji(p => ({...p, show: false})), 1200);
+      return () => clearTimeout(t);
+    }
+  }, [feedbackEmoji.show]);
+
+  useEffect(() => {
     if (showBonusXp) {
       const t = setTimeout(() => setShowBonusXp(false), 1500);
       return () => clearTimeout(t);
@@ -144,6 +170,7 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
   // Handle reordering clicks
   const handleOrderClick = (itemId: string) => {
     if (isAnswered) return;
+    vibrateClick(vibrationEnabled);
     if (orderedItems.includes(itemId)) {
       setOrderedItems(prev => prev.filter(id => id !== itemId));
     } else {
@@ -179,9 +206,21 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
 
     if (correct) {
       setMascotState('success');
-      setMascotSpeech('Отлично! Вы ответили абсолютно верно! Двигаемся дальше.');
+      setMascotSpeech(pickRandom(CORRECT_MESSAGES));
       playSynthesizedSound('correct', soundEnabled);
       vibrateSuccess(vibrationEnabled);
+      setFeedbackEmoji({icon: '✓', show: true});
+      // Mini sparkle burst
+      confetti({
+        particleCount: 25,
+        spread: 45,
+        startVelocity: 20,
+        gravity: 0.8,
+        scalar: 0.7,
+        origin: { y: 0.6 },
+        colors: ['#10b981', '#34d399', '#6ee7b7'],
+        disableForReducedMotion: true,
+      });
       const newCombo = comboCount + 1;
       setComboCount(newCombo);
       if (newCombo === 3) setShowComboPopup('Combo x3!');
@@ -191,9 +230,10 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
       if (Math.random() < 0.15) setShowBonusXp(true);
     } else {
       setMascotState('error');
-      setMascotSpeech(`Ой, не совсем верно... ${feedback}`);
+      setMascotSpeech(`${pickRandom(WRONG_MESSAGES)} ${feedback}`);
       playSynthesizedSound('incorrect', soundEnabled);
       vibrateError(vibrationEnabled);
+      setFeedbackEmoji({icon: '✗', show: true});
       onLoseHeart();
       setComboCount(0);
     }
@@ -451,7 +491,11 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
                     <button
                       key={index}
                       disabled={isAnswered}
-                      onClick={() => setSelectedOption(index)}
+                      onClick={() => {
+                        setSelectedOption(index);
+                        vibrateClick(vibrationEnabled);
+                        playSynthesizedSound('tap', soundEnabled);
+                      }}
                       className={`quiz-option ${optionClass}`}
                     >
                       <span>{option}</span>
@@ -481,7 +525,11 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
                     <button
                       key={val ? 'true' : 'false'}
                       disabled={isAnswered}
-                      onClick={() => setSelectedBool(val)}
+                      onClick={() => {
+                        setSelectedBool(val);
+                        vibrateClick(vibrationEnabled);
+                        playSynthesizedSound('tap', soundEnabled);
+                      }}
                       className={`quiz-option tf-btn ${btnClass}`}
                     >
                       <span>{val ? 'ПРАВДА' : 'ЛОЖЬ'}</span>
@@ -565,6 +613,13 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
         </div>
       </div>
 
+      {/* Floating reaction bubble — visible on mobile where mascot sidebar is hidden */}
+      {feedbackEmoji.show && (
+        <div className={`floating-reaction ${isCorrect ? 'reaction-correct' : 'reaction-incorrect'}`}>
+          <span className="reaction-icon">{feedbackEmoji.icon}</span>
+          <span className="reaction-text">{isCorrect ? pickRandom(CORRECT_MESSAGES) : 'Неверно...'}</span>
+        </div>
+      )}
       {/* Slide validation Bottom panel */}
       {currentSlide.type !== 'coding' ? (
         <div className={`lesson-footer-panel ${currentSlide.type === 'theory' ? '' : isAnswered ? (isCorrect ? 'correct' : 'incorrect') : ''}`}>
@@ -1694,6 +1749,94 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
         @keyframes combo-in {
           from { transform: translateX(-50%) scale(0.5); opacity: 0; }
           to { transform: translateX(-50%) scale(1); opacity: 1; }
+        }
+
+        /* Floating reaction bubble — Duolingo-style */
+        .floating-reaction {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px 24px;
+          border-radius: 100px;
+          font-weight: 800;
+          font-size: 15px;
+          z-index: 1200;
+          pointer-events: none;
+          animation: reaction-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), reaction-fade 1.2s ease forwards;
+          backdrop-filter: blur(16px);
+        }
+
+        .reaction-correct {
+          background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(16, 185, 129, 0.08));
+          border: 2px solid rgba(16, 185, 129, 0.4);
+          color: #6ee7b7;
+          box-shadow: 0 8px 40px rgba(16, 185, 129, 0.25);
+        }
+
+        .reaction-incorrect {
+          background: linear-gradient(135deg, rgba(244, 63, 94, 0.25), rgba(244, 63, 94, 0.08));
+          border: 2px solid rgba(244, 63, 94, 0.4);
+          color: #fda4af;
+          box-shadow: 0 8px 40px rgba(244, 63, 94, 0.25);
+        }
+
+        .reaction-icon {
+          font-size: 22px;
+          font-weight: 900;
+        }
+
+        .reaction-text {
+          max-width: 200px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        @keyframes reaction-pop {
+          0% { transform: translate(-50%, -50%) scale(0); }
+          60% { transform: translate(-50%, -50%) scale(1.15); }
+          100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes reaction-fade {
+          0%, 60% { opacity: 1; }
+          100% { opacity: 0; transform: translate(-50%, -65%) scale(0.9); }
+        }
+
+        /* Quiz option micro-animations */
+        .quiz-option.correct {
+          animation: option-correct 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .quiz-option.incorrect {
+          animation: option-shake 0.4s ease;
+        }
+
+        @keyframes option-correct {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.03); }
+          100% { transform: scale(1); }
+        }
+
+        @keyframes option-shake {
+          0%, 100% { transform: translateX(0); }
+          15% { transform: translateX(-6px); }
+          30% { transform: translateX(6px); }
+          45% { transform: translateX(-4px); }
+          60% { transform: translateX(4px); }
+          75% { transform: translateX(-2px); }
+          90% { transform: translateX(2px); }
+        }
+
+        /* Hide floating reaction on desktop (mascot sidebar is visible) */
+        @media (min-width: 961px) {
+          .floating-reaction {
+            display: none;
+          }
         }
       `}</style>
     </div>
