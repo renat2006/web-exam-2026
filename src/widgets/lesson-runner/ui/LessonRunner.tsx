@@ -699,15 +699,15 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
           grid-template-columns: 1fr 300px;
           overflow-y: auto;
           padding: 30px 40px;
-          padding-bottom: 140px; /* Space for sticky bottom checks */
+          padding-bottom: 120px;
           gap: 40px;
         }
 
         @media (max-width: 960px) {
           .lesson-workspace {
             grid-template-columns: 1fr;
-            padding: 20px 16px;
-            padding-bottom: 150px;
+            padding: 16px 12px;
+            padding-bottom: 110px;
           }
           .lesson-side-mascot {
             display: none;
@@ -720,16 +720,29 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
           width: 100%;
           max-width: 780px;
           margin: 0 auto;
-          padding: 32px 24px;
+          padding: 24px 16px;
           box-sizing: border-box;
+        }
+
+        @media (max-width: 600px) {
+          .lesson-slide-body {
+            padding: 12px 4px;
+          }
         }
 
         .slide-title {
           font-size: 22px;
           font-weight: 800;
           color: var(--text-primary);
-          margin-bottom: 24px;
-          line-height: 1.4;
+          margin-bottom: 16px;
+          line-height: 1.3;
+        }
+
+        @media (max-width: 600px) {
+          .slide-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+          }
         }
 
         .anim-slide-in {
@@ -745,7 +758,7 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
         .theory-slide {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 14px;
         }
 
         .section-label {
@@ -754,47 +767,87 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
           letter-spacing: 0.5px;
           font-weight: 800;
           color: var(--color-accent);
-          margin-bottom: 8px;
+          margin-bottom: 6px;
         }
 
         .definition-text {
-          font-size: 15px;
+          font-size: 14px;
           color: var(--text-secondary);
+          line-height: 1.6;
+          word-break: break-word;
+          overflow-wrap: break-word;
+        }
+
+        @media (max-width: 600px) {
+          .theory-slide {
+            gap: 10px;
+          }
+          .definition-text {
+            font-size: 13px;
+          }
+          .section-label {
+            font-size: 10px;
+          }
         }
 
         .comparison-table-container {
           overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
         }
 
         .comparison-table {
           width: 100%;
           border-collapse: collapse;
           text-align: left;
-          font-size: 13px;
+          font-size: 12px;
         }
 
         .comparison-table th {
           border-bottom: 2px solid var(--border-color);
-          padding: 8px 12px;
+          padding: 6px 8px;
           font-weight: 700;
           color: var(--text-primary);
+          white-space: nowrap;
         }
 
         .comparison-table td {
           border-bottom: 1px solid var(--border-color);
-          padding: 8px 12px;
+          padding: 6px 8px;
           color: var(--text-secondary);
+          word-break: break-word;
+        }
+
+        @media (max-width: 600px) {
+          .comparison-table {
+            font-size: 11px;
+          }
+          .comparison-table th, .comparison-table td {
+            padding: 4px 6px;
+          }
         }
 
         .theory-code pre {
           margin: 0;
+          overflow-x: auto;
+          font-size: 12px;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        @media (max-width: 600px) {
+          .theory-code pre {
+            font-size: 11px;
+          }
+          .theory-code.card, .theory-pitfalls.card, .diagram-container.card, .theory-definition.card {
+            padding: 10px 12px !important;
+          }
         }
 
         .theory-pitfalls li {
-          margin-left: 20px;
-          font-size: 14px;
+          margin-left: 16px;
+          font-size: 13px;
           color: var(--text-secondary);
-          margin-top: 6px;
+          margin-top: 4px;
+          word-break: break-word;
         }
 
         .pitfalls-label {
@@ -825,42 +878,47 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
 
         .key-terms-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-          gap: 10px;
+          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+          gap: 8px;
         }
 
         @media (max-width: 600px) {
           .key-terms-grid {
             grid-template-columns: 1fr;
+            gap: 6px;
           }
           .lesson-navbar {
-            padding: 12px 16px;
+            padding: 10px 12px;
           }
           .lesson-slide-body {
-            padding: 16px 12px;
+            padding: 10px 2px;
           }
           .flow-step {
             white-space: normal;
+            padding: 6px 10px;
+          }
+          .flow-step-text {
+            font-size: 11px;
           }
         }
 
         .key-term-card {
-          padding: 14px 16px !important;
+          padding: 10px 12px !important;
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          gap: 2px;
           border-left: 3px solid var(--color-accent) !important;
         }
 
         .key-term-name {
-          font-size: 14px;
+          font-size: 13px;
           font-weight: 800;
           color: var(--text-primary);
           font-family: var(--font-mono);
         }
 
         .key-term-def {
-          font-size: 12px;
+          font-size: 11px;
           color: var(--text-secondary);
           line-height: 1.4;
         }
@@ -868,8 +926,8 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
         /* Mnemonic Block */
         .mnemonic-block {
           display: flex;
-          gap: 16px;
-          padding: 16px 20px;
+          gap: 12px;
+          padding: 12px 14px;
           border-radius: var(--radius-lg);
           background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(245, 158, 11, 0.02) 100%);
           border: 1px solid rgba(245, 158, 11, 0.2);
@@ -897,10 +955,21 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
         }
 
         .mnemonic-text {
-          font-size: 14px;
+          font-size: 13px;
           color: var(--text-primary);
-          line-height: 1.6;
+          line-height: 1.5;
           font-weight: 500;
+          word-break: break-word;
+        }
+
+        @media (max-width: 600px) {
+          .mnemonic-block {
+            gap: 8px;
+            padding: 10px 12px;
+          }
+          .mnemonic-text {
+            font-size: 12px;
+          }
         }
 
         /* Diagram: Flow */
@@ -915,12 +984,13 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
         .flow-step {
           display: flex;
           align-items: center;
-          gap: 8px;
-          padding: 8px 14px;
+          gap: 6px;
+          padding: 6px 10px;
           background: rgba(99, 102, 241, 0.06);
           border: 1px solid rgba(99, 102, 241, 0.15);
           border-radius: var(--radius-md);
           white-space: nowrap;
+          min-width: 0;
         }
 
         .flow-step-num {
@@ -1158,10 +1228,10 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
           bottom: 0;
           background-color: var(--bg-card);
           border-top: 1px solid var(--border-color);
-          padding: 20px 40px;
-          padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+          padding: 16px 40px;
+          padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
           z-index: 90;
-          max-height: 60vh;
+          max-height: 50vh;
           overflow-y: auto;
           box-shadow: 0 -10px 25px -5px rgba(0, 0, 0, 0.5);
           transition: background-color var(--transition-medium);
@@ -1478,20 +1548,31 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
 
         @media (max-width: 768px) {
           .lesson-footer-panel {
-            max-height: 45vh;
+            max-height: 35vh;
             overflow-y: auto;
+            padding: 14px 20px;
+            padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
           }
         }
 
         @media (max-width: 600px) {
           .lesson-footer-panel {
-            padding: 16px;
+            padding: 12px 16px;
+            padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+            max-height: 30vh;
           }
           .footer-actions-row {
             justify-content: stretch;
           }
           .check-btn, .next-btn {
             width: 100%;
+            min-width: unset;
+          }
+          .feedback-indicator {
+            font-size: 13px;
+          }
+          .explanation-paragraph {
+            font-size: 12px;
           }
         }
 
