@@ -50,9 +50,15 @@ self.addEventListener('push', (event) => {
   const title = data.title || 'DevLingo';
   const options = {
     body: data.body || 'Время учиться! Не потеряй серию 🔥',
-    icon: '/icon.svg',
-    badge: '/icon.svg',
+    icon: '/icon-192.png',
+    badge: '/icon-192.png',
     vibrate: [100, 50, 100],
+    tag: data.tag || 'devlingo-push',
+    renotify: true,
+    actions: [
+      { action: 'open', title: '📚 Открыть' },
+      { action: 'dismiss', title: 'Позже' }
+    ],
     data: {
       url: data.url || '/'
     }

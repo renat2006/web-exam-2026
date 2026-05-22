@@ -13,6 +13,12 @@ import { vibrateClick } from '../shared/lib/haptics/vibrate';
 import { Trophy, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { ACHIEVEMENTS } from '../entities/achievement/model/achievements';
+import {
+  initNotifications,
+  requestNotificationPermission,
+  notifyAchievement,
+  scheduleStreakReminder,
+} from '../shared/lib/notifications/notifications';
 
 export const App: React.FC = () => {
   const {
@@ -94,6 +100,18 @@ export const App: React.FC = () => {
     }
   }, [streak]);
 
+  // Initialize notifications on mount
+  useEffect(() => {
+    initNotifications(streak);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Re-schedule reminders when streak changes
+  useEffect(() => {
+    if (notificationsEnabled) {
+      scheduleStreakReminder(streak);
+    }
+  }, [streak, notificationsEnabled]);
+
   const handleInstallApp = async () => {
     if (!deferredPrompt) return;
     vibrateClick(vibrationEnabled);
@@ -108,7 +126,13 @@ export const App: React.FC = () => {
     setGems(prev => prev + 50);
     localStorage.setItem('devlingo_onboarded', 'true');
     setShowOnboarding(false);
-  }, [setXp, setGems]);
+    // Ask for notification permission after onboarding
+    setTimeout(() => {
+      requestNotificationPermission().then(granted => {
+        setNotificationsEnabled(granted);
+      });
+    }, 2000);
+  }, [setXp, setGems, setNotificationsEnabled]);
 
   // Real-time Achievements unlock tracker and Toast announcer
   useEffect(() => {
@@ -156,6 +180,9 @@ export const App: React.FC = () => {
       if (vibrationEnabled && navigator.vibrate) {
         navigator.vibrate([100, 50, 100]);
       }
+
+      // Send notification for achievement
+      notifyAchievement(ach.title);
 
       // Celebrate with confetti
       confetti({

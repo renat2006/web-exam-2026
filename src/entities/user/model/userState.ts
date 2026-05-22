@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import type { Lesson } from '../../curriculum/model/types';
 import { SKILL_NODES } from '../../curriculum/model/questions';
 import { vibrateClick, vibrateError } from '../../../shared/lib/haptics/vibrate';
+import { markPracticeToday } from '../../../shared/lib/notifications/notifications';
 
 export const useUserState = () => {
   // Stats & Progress States
@@ -285,6 +286,9 @@ export const useUserState = () => {
       setXp(prev => prev + xpEarned);
       setDailyXpEarned(prev => prev + xpEarned);
     }
+
+    // Mark that user practiced today (for notifications/heatmap)
+    markPracticeToday();
 
     // Gems: +5 per lesson, +10 for perfect
     const isPerfect = !lostHeartInCurrentLesson.current;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Volume2, VolumeX, Smartphone, Bell, RefreshCw, AlertTriangle, Download } from 'lucide-react';
 import { vibrateClick, vibrateTick, vibrateError } from '../../../shared/lib/haptics/vibrate';
+import { toggleNotifications as toggleNotifLib, scheduleStreakReminder } from '../../../shared/lib/notifications/notifications';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -143,9 +144,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               onClick={() => {
                 if (notificationsEnabled) {
                   setNotificationsEnabled(false);
+                  toggleNotifLib(false);
                   vibrateClick(vibrationEnabled);
                 } else {
                   handleRequestNotification();
+                  toggleNotifLib(true);
+                  scheduleStreakReminder(0);
                 }
               }}
               className={`toggle-switch ${notificationsEnabled ? 'active' : ''}`}
