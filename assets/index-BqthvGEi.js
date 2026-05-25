@@ -3039,7 +3039,7 @@ function fetchUser(name) {
           router.addRoute('/about', () => {});
           router.navigate('/about');
           if (location.pathname !== '/about') throw new Error('location.pathname должно быть "/about", получено: ' + location.pathname);
-        `}]}],_M=e=>({easy:`#22c55e`,medium:`#f59e0b`,hard:`#ef4444`})[e],vM=e=>({easy:`Easy`,medium:`Medium`,hard:`Hard`})[e],yM=e=>({javascript:`JavaScript`,typescript:`TypeScript`,async:`Async/Promise`,patterns:`Patterns`,react:`React`,spa:`SPA`})[e],bM=`modulepreload`,xM=function(e){return`/web-exam-2026/`+e},SM={},CM=function(e,t,n){let r=Promise.resolve();if(t&&t.length>0){let e=document.getElementsByTagName(`link`),i=document.querySelector(`meta[property=csp-nonce]`),a=i?.nonce||i?.getAttribute(`nonce`);function o(e){return Promise.all(e.map(e=>Promise.resolve(e).then(e=>({status:`fulfilled`,value:e}),e=>({status:`rejected`,reason:e}))))}r=o(t.map(t=>{if(t=xM(t,n),t in SM)return;SM[t]=!0;let r=t.endsWith(`.css`),i=r?`[rel="stylesheet"]`:``;if(n)for(let n=e.length-1;n>=0;n--){let i=e[n];if(i.href===t&&(!r||i.rel===`stylesheet`))return}else if(document.querySelector(`link[href="${t}"]${i}`))return;let o=document.createElement(`link`);if(o.rel=r?`stylesheet`:bM,r||(o.as=`script`),o.crossOrigin=``,o.href=t,a&&o.setAttribute(`nonce`,a),document.head.appendChild(o),r)return new Promise((e,n)=>{o.addEventListener(`load`,e),o.addEventListener(`error`,()=>n(Error(`Unable to preload CSS for ${t}`)))})}))}function i(e){let t=new Event(`vite:preloadError`,{cancelable:!0});if(t.payload=e,window.dispatchEvent(t),!t.defaultPrevented)throw e}return r.then(t=>{for(let e of t||[])e.status===`rejected`&&i(e.reason);return e().catch(i)})},wM=v.lazy(()=>CM(()=>import(`./dist-BlRTCfqI.js`),[])),TM=`devlingo_practice_solved`,EM=()=>{try{return new Set(JSON.parse(localStorage.getItem(TM)||`[]`))}catch{return new Set}},DM=e=>{localStorage.setItem(TM,JSON.stringify([...e]))};async function OM(e,t){let n=[];for(let r of t.testCases){let i=performance.now();try{let a=e.replace(/:\s*\w+(\[\])?(\s*\|\s*\w+(\[\])?)*(?=\s*[,)=;{])/g,``).replace(/<[^>]+>/g,``).replace(/:\s*\w+\s*{/g,` {`).replace(/^type\s+\w+.+$/gm,``).replace(/^interface\s+\w[\s\S]*?^}/gm,``),o=t.starterCode.match(/(?:function|class|type|const)\s+(\w+)/)?.[1]||`userFn`,s=`
+        `}]}],_M=e=>({easy:`#22c55e`,medium:`#f59e0b`,hard:`#ef4444`})[e],vM=e=>({easy:`Easy`,medium:`Medium`,hard:`Hard`})[e],yM=e=>({javascript:`JavaScript`,typescript:`TypeScript`,async:`Async/Promise`,patterns:`Patterns`,react:`React`,spa:`SPA`})[e],bM=`modulepreload`,xM=function(e){return`/web-exam-2026/`+e},SM={},CM=function(e,t,n){let r=Promise.resolve();if(t&&t.length>0){let e=document.getElementsByTagName(`link`),i=document.querySelector(`meta[property=csp-nonce]`),a=i?.nonce||i?.getAttribute(`nonce`);function o(e){return Promise.all(e.map(e=>Promise.resolve(e).then(e=>({status:`fulfilled`,value:e}),e=>({status:`rejected`,reason:e}))))}r=o(t.map(t=>{if(t=xM(t,n),t in SM)return;SM[t]=!0;let r=t.endsWith(`.css`),i=r?`[rel="stylesheet"]`:``;if(n)for(let n=e.length-1;n>=0;n--){let i=e[n];if(i.href===t&&(!r||i.rel===`stylesheet`))return}else if(document.querySelector(`link[href="${t}"]${i}`))return;let o=document.createElement(`link`);if(o.rel=r?`stylesheet`:bM,r||(o.as=`script`),o.crossOrigin=``,o.href=t,a&&o.setAttribute(`nonce`,a),document.head.appendChild(o),r)return new Promise((e,n)=>{o.addEventListener(`load`,e),o.addEventListener(`error`,()=>n(Error(`Unable to preload CSS for ${t}`)))})}))}function i(e){let t=new Event(`vite:preloadError`,{cancelable:!0});if(t.payload=e,window.dispatchEvent(t),!t.defaultPrevented)throw e}return r.then(t=>{for(let e of t||[])e.status===`rejected`&&i(e.reason);return e().catch(i)})},wM=v.lazy(()=>CM(()=>import(`./dist-YOLiZQu_.js`),[])),TM=`devlingo_practice_solved`,EM=`devlingo_practice_code_`,DM=()=>{try{return new Set(JSON.parse(localStorage.getItem(TM)||`[]`))}catch{return new Set}},OM=e=>{localStorage.setItem(TM,JSON.stringify([...e]))},kM=e=>{try{return localStorage.getItem(EM+e)}catch{return null}},AM=(e,t)=>{localStorage.setItem(EM+e,t)};async function jM(e,t){let n=[];for(let r of t.testCases){let i=performance.now();try{let a=e.replace(/:\s*\w+(\[\])?(\s*\|\s*\w+(\[\])?)*(?=\s*[,)=;{])/g,``).replace(/<[^>]+>/g,``).replace(/:\s*\w+\s*{/g,` {`).replace(/^type\s+\w+.+$/gm,``).replace(/^interface\s+\w[\s\S]*?^}/gm,``),o=t.starterCode.match(/(?:function|class|type|const)\s+(\w+)/)?.[1]||`userFn`,s=`
         ${a}
         const __exported__ = (typeof ${o} !== 'undefined') ? ${o} : undefined;
         __exported__;
@@ -3047,310 +3047,757 @@ function fetchUser(name) {
         return (async () => {
           ${r.run}
         })();
-      `)(c),n.push({name:r.name,status:`pass`,duration:Math.round(performance.now()-i)})}catch(e){let t=e instanceof Error?e:Error(String(e));n.push({name:r.name,status:`fail`,message:t.message,duration:Math.round(performance.now()-i)})}}return n}var kM=({problems:e,solved:t,selected:n,onSelect:r})=>{let[i,a]=(0,v.useState)(``),[o,s]=(0,v.useState)(`all`),[c,l]=(0,v.useState)(`all`),u=e.filter(e=>!(i&&!e.title.toLowerCase().includes(i.toLowerCase())&&!e.tags.some(e=>e.toLowerCase().includes(i.toLowerCase()))||o!==`all`&&e.difficulty!==o||c!==`all`&&e.category!==c)),d=e.filter(e=>t.has(e.id)).length;return(0,$.jsxs)(`div`,{className:`practice-list`,children:[(0,$.jsxs)(`div`,{className:`practice-list-header`,children:[(0,$.jsxs)(`div`,{className:`practice-progress-bar-wrap`,children:[(0,$.jsxs)(`div`,{className:`practice-progress-label`,children:[(0,$.jsx)(wk,{size:14}),(0,$.jsxs)(`span`,{children:[d,` / `,e.length,` solved`]})]}),(0,$.jsx)(`div`,{className:`practice-progress-track`,children:(0,$.jsx)(`div`,{className:`practice-progress-fill`,style:{width:`${d/e.length*100}%`}})})]}),(0,$.jsxs)(`div`,{className:`practice-search-wrap`,children:[(0,$.jsx)(rw,{size:14,className:`practice-search-icon`}),(0,$.jsx)(`input`,{className:`practice-search-input`,placeholder:`Поиск задач...`,value:i,onChange:e=>a(e.target.value)})]}),(0,$.jsxs)(`div`,{className:`practice-filters`,children:[(0,$.jsxs)(`div`,{className:`practice-filter-group`,children:[(0,$.jsx)(gp,{size:12}),[`all`,`easy`,`medium`,`hard`].map(e=>(0,$.jsx)(`button`,{className:`practice-filter-btn ${o===e?`active`:``}`,onClick:()=>s(e),style:e===`all`?void 0:{color:o===e?_M(e):void 0},children:e===`all`?`Все`:vM(e)},e))]}),(0,$.jsxs)(`select`,{className:`practice-cat-select`,value:c,onChange:e=>l(e.target.value),children:[(0,$.jsx)(`option`,{value:`all`,children:`Все темы`}),[`javascript`,`typescript`,`async`,`patterns`,`react`,`spa`].map(e=>(0,$.jsx)(`option`,{value:e,children:yM(e)},e))]})]})]}),(0,$.jsxs)(`div`,{className:`practice-problem-rows`,children:[u.map(e=>{let i=t.has(e.id);return(0,$.jsxs)(`button`,{className:`practice-problem-row ${n?.id===e.id?`active`:``} ${i?`solved`:``}`,onClick:()=>r(e),children:[(0,$.jsxs)(`span`,{className:`prow-number`,children:[`#`,e.number]}),(0,$.jsx)(`span`,{className:`prow-status`,children:i?(0,$.jsx)(as,{size:14,className:`icon-solved`}):(0,$.jsx)(Vs,{size:14,className:`icon-unsolved`})}),(0,$.jsx)(`span`,{className:`prow-title`,children:e.title}),(0,$.jsx)(`span`,{className:`prow-diff`,style:{color:_M(e.difficulty)},children:vM(e.difficulty)}),(0,$.jsx)(Io,{size:14,className:`prow-arrow`})]},e.id)}),u.length===0&&(0,$.jsx)(`div`,{className:`practice-empty`,children:`Задачи не найдены`})]})]})},AM=({problem:e,solved:t,onSolve:n})=>{let[r,i]=(0,v.useState)(e.starterCode),[a,o]=(0,v.useState)(`idle`),[s,c]=(0,v.useState)([]),[l,u]=(0,v.useState)(0),[d,f]=(0,v.useState)(!1),[p,m]=(0,v.useState)(`problem`),[h,g]=(0,v.useState)(`desc`),_=(0,v.useRef)(0),y=t.has(e.id);(0,v.useEffect)(()=>{i(e.starterCode),o(`idle`),c([]),u(0),f(!1),m(`problem`),_.current=0},[e.id]);let b=(0,v.useCallback)(async()=>{o(`running`),_.current++;try{let t=await OM(r,e);c(t);let i=t.every(e=>e.status===`pass`);o(i?`passed`:`failed`),i&&n(e.id)}catch(e){c([{name:`Runtime error`,status:`error`,message:String(e)}]),o(`failed`)}},[r,e,n]),x=s.filter(e=>e.status===`pass`).length;return(0,$.jsxs)(`div`,{className:`practice-code-panel`,children:[(0,$.jsx)(`div`,{className:`practice-mobile-tabs`,children:[`desc`,`editor`,`tests`].map(e=>(0,$.jsx)(`button`,{className:`pmtab ${h===e?`active`:``}`,onClick:()=>g(e),children:e===`desc`?`📋 Задача`:e===`editor`?`💻 Редактор`:`🧪 Тесты`},e))}),(0,$.jsxs)(`div`,{className:`practice-split`,children:[(0,$.jsxs)(`div`,{className:`practice-desc-pane ${h===`desc`?``:`mobile-hidden`}`,children:[(0,$.jsxs)(`div`,{className:`pdesc-header`,children:[(0,$.jsxs)(`div`,{className:`pdesc-meta`,children:[(0,$.jsxs)(`span`,{className:`pdesc-num`,children:[`#`,e.number]}),(0,$.jsx)(`span`,{className:`pdesc-diff`,style:{color:_M(e.difficulty),background:_M(e.difficulty)+`22`},children:vM(e.difficulty)}),(0,$.jsx)(`span`,{className:`pdesc-cat`,children:yM(e.category)})]}),(0,$.jsx)(`h2`,{className:`pdesc-title`,children:e.title}),(0,$.jsx)(`div`,{className:`pdesc-tags`,children:e.tags.map(e=>(0,$.jsx)(`span`,{className:`pdesc-tag`,children:e},e))})]}),(0,$.jsxs)(`div`,{className:`pdesc-tabs`,children:[(0,$.jsxs)(`button`,{className:`pdesc-tab ${p===`problem`?`active`:``}`,onClick:()=>m(`problem`),children:[(0,$.jsx)(mi,{size:14}),` Описание`]}),(0,$.jsxs)(`button`,{className:`pdesc-tab ${p===`solution`?`active`:``} ${!d&&!y?`locked`:``}`,onClick:()=>{if(!d&&!y&&_.current<3){alert(`Решение откроется после 3 попыток. Попыток: ${_.current}/3`);return}f(!0),m(`solution`)},children:[(0,$.jsx)(Wc,{size:14}),` Решение `,!d&&!y&&_.current<3?`(🔒 ${_.current}/3)`:``]})]}),(0,$.jsx)(`div`,{className:`pdesc-body`,children:p===`problem`?(0,$.jsxs)($.Fragment,{children:[(0,$.jsx)(`p`,{className:`pdesc-description`,children:e.description}),e.examples.length>0&&(0,$.jsxs)(`div`,{className:`pdesc-section`,children:[(0,$.jsx)(`h4`,{className:`pdesc-section-title`,children:`Примеры`}),e.examples.map((e,t)=>(0,$.jsxs)(`div`,{className:`pdesc-example`,children:[(0,$.jsxs)(`div`,{className:`pex-row`,children:[(0,$.jsx)(`span`,{className:`pex-label`,children:`Input:`}),(0,$.jsx)(`code`,{className:`pex-code`,children:e.input})]}),(0,$.jsxs)(`div`,{className:`pex-row`,children:[(0,$.jsx)(`span`,{className:`pex-label`,children:`Output:`}),(0,$.jsx)(`code`,{className:`pex-code`,children:e.output})]}),e.note&&(0,$.jsx)(`div`,{className:`pex-note`,children:e.note})]},t))]}),e.hints.length>0&&(0,$.jsxs)(`div`,{className:`pdesc-section`,children:[(0,$.jsx)(`h4`,{className:`pdesc-section-title`,children:`Подсказки`}),e.hints.slice(0,l).map((e,t)=>(0,$.jsxs)(`div`,{className:`pdesc-hint`,children:[(0,$.jsx)(kg,{size:13,className:`hint-icon`}),(0,$.jsx)(`span`,{children:e})]},t)),l<e.hints.length&&(0,$.jsxs)(`button`,{className:`btn-hint`,onClick:()=>u(e=>e+1),children:[(0,$.jsx)(kg,{size:13}),` Показать подсказку `,l+1,`/`,e.hints.length]}),l>=e.hints.length&&l>0&&(0,$.jsx)(`span`,{className:`hint-done`,children:`Все подсказки показаны`})]})]}):(0,$.jsxs)(`div`,{className:`pdesc-section`,children:[(0,$.jsx)(`h4`,{className:`pdesc-section-title`,children:`Эталонное решение`}),(0,$.jsx)(`pre`,{className:`solution-code`,children:(0,$.jsx)(`code`,{children:e.solution})})]})})]}),(0,$.jsxs)(`div`,{className:`practice-editor-pane ${h===`desc`?`mobile-hidden`:``}`,children:[(0,$.jsxs)(`div`,{className:`peditor-toolbar ${h===`tests`?`mobile-hidden`:``}`,children:[(0,$.jsx)(`span`,{className:`peditor-filename`,children:`solution.ts`}),(0,$.jsxs)(`div`,{className:`peditor-actions`,children:[(0,$.jsxs)(`button`,{className:`peditor-btn`,onClick:()=>i(e.starterCode),title:`Сбросить`,children:[(0,$.jsx)(uC,{size:14}),` Сброс`]}),(0,$.jsxs)(`button`,{className:`peditor-run-btn ${a===`running`?`running`:``} ${a===`passed`?`passed`:``}`,onClick:b,disabled:a===`running`,children:[(0,$.jsx)(Rx,{size:14}),a===`running`?`Запуск...`:`▶ Запустить тесты`]})]})]}),(0,$.jsx)(`div`,{className:`peditor-monaco ${h===`tests`?`mobile-hidden`:``}`,children:(0,$.jsx)(v.Suspense,{fallback:(0,$.jsxs)(`div`,{className:`monaco-loading`,children:[(0,$.jsx)(`div`,{className:`monaco-loading-spinner`}),(0,$.jsx)(`span`,{children:`Загрузка редактора...`})]}),children:(0,$.jsx)(wM,{height:`100%`,language:`typescript`,theme:`vs-dark`,value:r,onChange:e=>i(e||``),options:{fontSize:14,fontFamily:`'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace`,minimap:{enabled:!1},lineNumbers:`on`,roundedSelection:!0,scrollBeyondLastLine:!1,automaticLayout:!0,tabSize:2,wordWrap:`on`,padding:{top:16,bottom:16},cursorBlinking:`smooth`,cursorSmoothCaretAnimation:`on`,smoothScrolling:!0,bracketPairColorization:{enabled:!0},suggest:{showKeywords:!0}}})})}),(0,$.jsxs)(`div`,{className:`ptest-panel ${h===`editor`?`mobile-hidden`:``}`,children:[(0,$.jsxs)(`div`,{className:`ptest-header`,children:[(0,$.jsx)(fO,{size:14}),(0,$.jsx)(`span`,{children:`Результаты тестов`}),a!==`idle`&&(0,$.jsx)(`span`,{className:`ptest-badge ${a}`,children:a===`running`?`⏳ Запуск...`:a===`passed`?`✅ ${x}/${e.testCases.length} passed`:`❌ ${x}/${e.testCases.length} passed`}),y&&(0,$.jsx)(`span`,{className:`ptest-solved-badge`,children:`🏆 Решено!`})]}),(0,$.jsxs)(`div`,{className:`ptest-results`,children:[a===`idle`&&(0,$.jsxs)(`div`,{className:`ptest-idle`,children:[(0,$.jsx)(Rx,{size:20,className:`ptest-idle-icon`}),(0,$.jsx)(`p`,{children:`Нажмите «Запустить тесты» для проверки`})]}),a===`running`&&(0,$.jsxs)(`div`,{className:`ptest-idle`,children:[(0,$.jsx)(`div`,{className:`ptest-spinner`}),(0,$.jsx)(`p`,{children:`Выполнение тестов...`})]}),(a===`passed`||a===`failed`)&&s.map((e,t)=>(0,$.jsxs)(`div`,{className:`ptest-result-row ${e.status}`,children:[(0,$.jsx)(`span`,{className:`ptest-result-icon`,children:e.status===`pass`?`✅`:`❌`}),(0,$.jsxs)(`div`,{className:`ptest-result-info`,children:[(0,$.jsx)(`span`,{className:`ptest-result-name`,children:e.name}),e.message&&(0,$.jsx)(`span`,{className:`ptest-result-msg`,children:e.message})]}),e.duration!==void 0&&(0,$.jsxs)(`span`,{className:`ptest-result-time`,children:[e.duration,`ms`]})]},t)),a===`passed`&&(0,$.jsx)(`div`,{className:`ptest-success-banner`,children:`🎉 Все тесты пройдены! Задача решена.`})]})]})]})]})]})},jM=()=>{let[e,t]=(0,v.useState)(gM[0]),[n,r]=(0,v.useState)(EM),i=(0,v.useCallback)(e=>{r(t=>{let n=new Set(t);return n.add(e),DM(n),n})},[]);return(0,$.jsxs)(`div`,{className:`practice-page`,children:[(0,$.jsx)(kM,{problems:gM,solved:n,selected:e,onSelect:t}),e?(0,$.jsx)(AM,{problem:e,solved:n,onSolve:i},e.id):(0,$.jsxs)(`div`,{className:`practice-placeholder`,children:[(0,$.jsx)(Wc,{size:48,className:`practice-placeholder-icon`}),(0,$.jsx)(`h3`,{children:`Выберите задачу`}),(0,$.jsx)(`p`,{children:`Выберите задачу из списка слева чтобы начать`})]}),(0,$.jsx)(`style`,{children:`
-        .practice-page {
-          display: flex;
-          height: 100%;
-          overflow: hidden;
-          background: var(--bg-primary);
-          font-family: var(--font-primary, 'Inter', sans-serif);
-        }
+      `)(c),n.push({name:r.name,status:`pass`,duration:Math.round(performance.now()-i)})}catch(e){let t=e instanceof Error?e:Error(String(e));n.push({name:r.name,status:`fail`,message:t.message,duration:Math.round(performance.now()-i)})}}return n}var MM=()=>{let[e,t]=(0,v.useState)(null),[n,r]=(0,v.useState)(DM),i=(0,v.useCallback)(e=>{r(t=>{let n=new Set(t);return n.add(e),OM(n),n})},[]);return(0,$.jsxs)(`div`,{className:`pract`,children:[e?(0,$.jsx)(PM,{problem:e,solved:n,onSolve:i,onBack:()=>t(null)},e.id):(0,$.jsx)(NM,{problems:gM,solved:n,onSelect:t}),(0,$.jsx)(`style`,{children:FM})]})},NM=({problems:e,solved:t,onSelect:n})=>{let[r,i]=(0,v.useState)(``),[a,o]=(0,v.useState)(`all`),[s,c]=(0,v.useState)(`all`),l=e.filter(e=>!(r&&!e.title.toLowerCase().includes(r.toLowerCase())&&!e.tags.some(e=>e.toLowerCase().includes(r.toLowerCase()))||a!==`all`&&e.difficulty!==a||s!==`all`&&e.category!==s)),u=e.filter(e=>t.has(e.id)).length,d=Math.round(u/e.length*100);return(0,$.jsxs)(`div`,{className:`pract-list-view`,children:[(0,$.jsxs)(`div`,{className:`pract-hero`,children:[(0,$.jsx)(`div`,{className:`pract-hero-glow`}),(0,$.jsxs)(`div`,{className:`pract-hero-content`,children:[(0,$.jsx)(`div`,{className:`pract-hero-icon-wrap`,children:(0,$.jsx)(fO,{size:28})}),(0,$.jsxs)(`div`,{children:[(0,$.jsx)(`h1`,{className:`pract-hero-title`,children:`Практикум`}),(0,$.jsx)(`p`,{className:`pract-hero-sub`,children:`Решай задачи • Пиши код • Готовься к зачёту`})]})]}),(0,$.jsxs)(`div`,{className:`pract-hero-progress`,children:[(0,$.jsxs)(`div`,{className:`pract-hero-stats`,children:[(0,$.jsxs)(`div`,{className:`pract-stat`,children:[(0,$.jsx)(`span`,{className:`pract-stat-num`,children:u}),(0,$.jsx)(`span`,{className:`pract-stat-label`,children:`решено`})]}),(0,$.jsxs)(`div`,{className:`pract-stat`,children:[(0,$.jsx)(`span`,{className:`pract-stat-num`,children:e.length}),(0,$.jsx)(`span`,{className:`pract-stat-label`,children:`всего`})]}),(0,$.jsxs)(`div`,{className:`pract-stat`,children:[(0,$.jsxs)(`span`,{className:`pract-stat-num`,children:[d,`%`]}),(0,$.jsx)(`span`,{className:`pract-stat-label`,children:`прогресс`})]})]}),(0,$.jsx)(`div`,{className:`pract-progress-track`,children:(0,$.jsx)(`div`,{className:`pract-progress-fill`,style:{width:`${d}%`}})})]})]}),(0,$.jsxs)(`div`,{className:`pract-controls`,children:[(0,$.jsxs)(`div`,{className:`pract-search`,children:[(0,$.jsx)(rw,{size:18,className:`pract-search-icon`}),(0,$.jsx)(`input`,{className:`pract-search-input`,placeholder:`Поиск по названию или тегу...`,value:r,onChange:e=>i(e.target.value)}),r&&(0,$.jsx)(`button`,{className:`pract-search-clear`,onClick:()=>i(``),children:(0,$.jsx)(Dj,{size:16})})]}),(0,$.jsxs)(`div`,{className:`pract-filter-row`,children:[(0,$.jsx)(`div`,{className:`pract-pills`,children:[`all`,`easy`,`medium`,`hard`].map(e=>(0,$.jsx)(`button`,{className:`pract-pill ${a===e?`active`:``}`,onClick:()=>o(e),style:e!==`all`&&a===e?{background:_M(e)+`22`,color:_M(e),borderColor:_M(e)+`55`}:void 0,children:e===`all`?`🔥 Все`:e===`easy`?`🟢 Easy`:e===`medium`?`🟡 Medium`:`🔴 Hard`},e))}),(0,$.jsxs)(`select`,{className:`pract-cat-sel`,value:s,onChange:e=>c(e.target.value),children:[(0,$.jsx)(`option`,{value:`all`,children:`Все темы`}),[`javascript`,`typescript`,`async`,`patterns`,`react`,`spa`].map(e=>(0,$.jsx)(`option`,{value:e,children:yM(e)},e))]})]})]}),(0,$.jsx)(`div`,{className:`pract-card-grid`,children:l.map(e=>{let r=t.has(e.id);return(0,$.jsxs)(`button`,{className:`pract-card ${r?`done`:``}`,onClick:()=>n(e),children:[(0,$.jsxs)(`div`,{className:`pract-card-top`,children:[(0,$.jsxs)(`span`,{className:`pract-card-num`,children:[`#`,e.number]}),(0,$.jsx)(`span`,{className:`pract-card-diff`,style:{color:_M(e.difficulty),background:_M(e.difficulty)+`18`},children:vM(e.difficulty)}),r&&(0,$.jsx)(as,{size:16,className:`pract-card-check`})]}),(0,$.jsx)(`h3`,{className:`pract-card-title`,children:e.title}),(0,$.jsx)(`div`,{className:`pract-card-tags`,children:e.tags.slice(0,3).map(e=>(0,$.jsx)(`span`,{className:`pract-card-tag`,children:e},e))}),(0,$.jsxs)(`div`,{className:`pract-card-bottom`,children:[(0,$.jsx)(`span`,{className:`pract-card-cat`,children:yM(e.category)}),(0,$.jsxs)(`span`,{className:`pract-card-tests`,children:[e.testCases.length,` тестов`]})]}),(0,$.jsx)(Io,{size:18,className:`pract-card-arrow`})]},e.id)})}),l.length===0&&(0,$.jsxs)(`div`,{className:`pract-empty`,children:[(0,$.jsx)(rw,{size:32}),(0,$.jsx)(`p`,{children:`Задачи не найдены`})]})]})},PM=({problem:e,solved:t,onSolve:n,onBack:r})=>{let[i,a]=(0,v.useState)(()=>kM(e.id)||e.starterCode),[o,s]=(0,v.useState)(`idle`),[c,l]=(0,v.useState)([]),[u,d]=(0,v.useState)(0),[f,p]=(0,v.useState)(!1),[m,h]=(0,v.useState)(`desc`),[g,_]=(0,v.useState)(!1),y=(0,v.useRef)(0),b=t.has(e.id),x=(0,v.useRef)(null);(0,v.useEffect)(()=>{let e=()=>_(window.innerWidth<=768);return e(),window.addEventListener(`resize`,e),()=>window.removeEventListener(`resize`,e)},[]),(0,v.useEffect)(()=>{let t=setTimeout(()=>AM(e.id,i),500);return()=>clearTimeout(t)},[i,e.id]);let S=(0,v.useCallback)(async()=>{s(`running`),h(`tests`),y.current++;try{let t=await jM(i,e);l(t);let r=t.every(e=>e.status===`pass`);s(r?`passed`:`failed`),r&&n(e.id)}catch(e){l([{name:`Runtime error`,status:`error`,message:String(e)}]),s(`failed`)}},[i,e,n]),C=()=>{a(e.starterCode),AM(e.id,e.starterCode)},w=c.filter(e=>e.status===`pass`).length,ee=(0,$.jsx)(`div`,{className:`psolve-tabs`,children:[{key:`desc`,icon:(0,$.jsx)(mi,{size:16}),label:`Задача`},{key:`editor`,icon:(0,$.jsx)(Wc,{size:16}),label:`Код`},{key:`tests`,icon:(0,$.jsx)(fO,{size:16}),label:`Тесты${c.length>0?` (${w}/${c.length})`:``}`}].map(e=>(0,$.jsxs)(`button`,{className:`psolve-tab ${m===e.key?`active`:``} ${e.key===`tests`&&o===`passed`?`success`:``} ${e.key===`tests`&&o===`failed`?`fail`:``}`,onClick:()=>h(e.key),children:[e.icon,(0,$.jsx)(`span`,{children:e.label})]},e.key))});return(0,$.jsxs)(`div`,{className:`psolve`,children:[(0,$.jsxs)(`div`,{className:`psolve-topbar`,children:[(0,$.jsxs)(`button`,{className:`psolve-back`,onClick:r,children:[(0,$.jsx)(Fo,{size:20}),(0,$.jsx)(`span`,{children:`Назад`})]}),(0,$.jsxs)(`div`,{className:`psolve-topbar-info`,children:[(0,$.jsxs)(`span`,{className:`psolve-topbar-num`,children:[`#`,e.number]}),(0,$.jsx)(`span`,{className:`psolve-topbar-diff`,style:{color:_M(e.difficulty)},children:vM(e.difficulty)}),b&&(0,$.jsx)(`span`,{className:`psolve-topbar-solved`,children:`✅ Решено`})]}),(0,$.jsxs)(`button`,{className:`psolve-run-fab ${o===`running`?`running`:``} ${o===`passed`?`success`:``}`,onClick:S,disabled:o===`running`,children:[(0,$.jsx)(Rx,{size:16}),(0,$.jsx)(`span`,{children:o===`running`?`Запуск...`:`Тесты`})]})]}),g&&ee,(0,$.jsxs)(`div`,{className:`psolve-body`,children:[(0,$.jsx)(`div`,{className:`psolve-panel psolve-desc ${!g||m===`desc`?`visible`:`hidden`}`,children:(0,$.jsxs)(`div`,{className:`psolve-desc-inner`,children:[(0,$.jsx)(`h2`,{className:`psolve-title`,children:e.title}),(0,$.jsxs)(`div`,{className:`psolve-meta-row`,children:[(0,$.jsx)(`span`,{className:`psolve-diff-badge`,style:{color:_M(e.difficulty),background:_M(e.difficulty)+`18`},children:vM(e.difficulty)}),(0,$.jsx)(`span`,{className:`psolve-cat-badge`,children:yM(e.category)}),e.tags.map(e=>(0,$.jsx)(`span`,{className:`psolve-tag`,children:e},e))]}),(0,$.jsx)(`div`,{className:`psolve-desc-text`,children:e.description}),e.examples.length>0&&(0,$.jsxs)(`div`,{className:`psolve-section`,children:[(0,$.jsx)(`h4`,{className:`psolve-section-title`,children:`💡 Примеры`}),e.examples.map((e,t)=>(0,$.jsxs)(`div`,{className:`psolve-example`,children:[(0,$.jsxs)(`div`,{className:`psolve-ex-row`,children:[(0,$.jsx)(`span`,{className:`psolve-ex-label`,children:`Input`}),(0,$.jsx)(`code`,{children:e.input})]}),(0,$.jsxs)(`div`,{className:`psolve-ex-row`,children:[(0,$.jsx)(`span`,{className:`psolve-ex-label`,children:`Output`}),(0,$.jsx)(`code`,{children:e.output})]}),e.note&&(0,$.jsx)(`div`,{className:`psolve-ex-note`,children:e.note})]},t))]}),(0,$.jsxs)(`div`,{className:`psolve-section`,children:[(0,$.jsx)(`h4`,{className:`psolve-section-title`,children:`🔑 Подсказки`}),e.hints.slice(0,u).map((e,t)=>(0,$.jsxs)(`div`,{className:`psolve-hint`,children:[(0,$.jsx)(kg,{size:15,className:`psolve-hint-icon`}),(0,$.jsx)(`span`,{children:e})]},t)),u<e.hints.length?(0,$.jsxs)(`button`,{className:`psolve-hint-btn`,onClick:()=>d(e=>e+1),children:[(0,$.jsx)(kg,{size:15}),`Показать подсказку `,u+1,` из `,e.hints.length]}):u>0?(0,$.jsx)(`div`,{className:`psolve-hint-done`,children:`✓ Все подсказки показаны`}):null]}),(0,$.jsxs)(`div`,{className:`psolve-section`,children:[(0,$.jsx)(`h4`,{className:`psolve-section-title`,children:`📖 Решение`}),f||b?(0,$.jsx)(`pre`,{className:`psolve-solution-code`,children:(0,$.jsx)(`code`,{children:e.solution})}):(0,$.jsxs)(`button`,{className:`psolve-solution-btn`,onClick:()=>{if(y.current<3){alert(`Решение откроется после 3 попыток запуска тестов.\nПопыток: ${y.current}/3`);return}p(!0)},children:[(0,$.jsx)(Ju,{size:15}),y.current<3?`Нужно ${3-y.current} попыток 🔒`:`Показать решение`]})]})]})}),(0,$.jsxs)(`div`,{className:`psolve-panel psolve-editor ${!g||m===`editor`?`visible`:`hidden`}`,children:[(0,$.jsxs)(`div`,{className:`psolve-editor-toolbar`,children:[(0,$.jsxs)(`span`,{className:`psolve-editor-filename`,children:[(0,$.jsx)(Wc,{size:14}),` solution.ts`]}),(0,$.jsxs)(`div`,{className:`psolve-editor-actions`,children:[(0,$.jsxs)(`button`,{className:`psolve-editor-btn`,onClick:C,children:[(0,$.jsx)(uC,{size:14}),` Сброс`]}),!g&&(0,$.jsxs)(`button`,{className:`psolve-editor-run ${o===`running`?`running`:``} ${o===`passed`?`success`:``}`,onClick:S,disabled:o===`running`,children:[(0,$.jsx)(Rx,{size:14}),o===`running`?`Запуск...`:`▶ Запустить тесты`]})]})]}),(0,$.jsx)(`div`,{className:`psolve-editor-area`,children:g?(0,$.jsx)(`textarea`,{ref:x,className:`psolve-textarea`,value:i,onChange:e=>a(e.target.value),spellCheck:!1,autoCapitalize:`off`,autoCorrect:`off`}):(0,$.jsx)(v.Suspense,{fallback:(0,$.jsxs)(`div`,{className:`psolve-editor-loading`,children:[(0,$.jsx)(`div`,{className:`psolve-spinner`}),(0,$.jsx)(`span`,{children:`Загрузка редактора...`})]}),children:(0,$.jsx)(wM,{height:`100%`,language:`typescript`,theme:`vs-dark`,value:i,onChange:e=>a(e||``),options:{fontSize:14,fontFamily:`'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace`,minimap:{enabled:!1},lineNumbers:`on`,roundedSelection:!0,scrollBeyondLastLine:!1,automaticLayout:!0,tabSize:2,wordWrap:`on`,padding:{top:16,bottom:16},cursorBlinking:`smooth`,cursorSmoothCaretAnimation:`on`,smoothScrolling:!0,bracketPairColorization:{enabled:!0},suggest:{showKeywords:!0}}})})})]}),(0,$.jsxs)(`div`,{className:`psolve-panel psolve-tests ${!g||m===`tests`?`visible`:`hidden`}`,children:[(0,$.jsxs)(`div`,{className:`psolve-tests-header`,children:[(0,$.jsx)(fO,{size:16}),(0,$.jsx)(`span`,{children:`Результаты`}),o!==`idle`&&(0,$.jsx)(`span`,{className:`psolve-tests-badge ${o}`,children:o===`running`?`⏳ Запуск...`:o===`passed`?`✅ ${w}/${e.testCases.length}`:`❌ ${w}/${e.testCases.length}`})]}),(0,$.jsxs)(`div`,{className:`psolve-tests-body`,children:[o===`idle`&&(0,$.jsxs)(`div`,{className:`psolve-tests-empty`,children:[(0,$.jsx)(Rx,{size:28,className:`psolve-tests-empty-icon`}),(0,$.jsx)(`p`,{className:`psolve-tests-empty-title`,children:`Нажми «Тесты» для проверки`}),(0,$.jsx)(`p`,{className:`psolve-tests-empty-sub`,children:`Напиши решение и запусти тесты`})]}),o===`running`&&(0,$.jsxs)(`div`,{className:`psolve-tests-empty`,children:[(0,$.jsx)(`div`,{className:`psolve-spinner`}),(0,$.jsx)(`p`,{className:`psolve-tests-empty-title`,children:`Выполнение тестов...`})]}),(o===`passed`||o===`failed`)&&(0,$.jsxs)($.Fragment,{children:[c.map((e,t)=>(0,$.jsxs)(`div`,{className:`psolve-test-row ${e.status}`,children:[(0,$.jsx)(`span`,{className:`psolve-test-icon`,children:e.status===`pass`?`✅`:`❌`}),(0,$.jsxs)(`div`,{className:`psolve-test-info`,children:[(0,$.jsx)(`span`,{className:`psolve-test-name`,children:e.name}),e.message&&(0,$.jsx)(`span`,{className:`psolve-test-err`,children:e.message})]}),e.duration!==void 0&&(0,$.jsxs)(`span`,{className:`psolve-test-time`,children:[e.duration,`ms`]})]},t)),o===`passed`&&(0,$.jsxs)(`div`,{className:`psolve-success-banner`,children:[(0,$.jsx)(`span`,{className:`psolve-success-emoji`,children:`🎉`}),(0,$.jsx)(`span`,{children:`Все тесты пройдены!`})]})]})]})]})]}),g&&(0,$.jsx)(`button`,{className:`psolve-mobile-fab ${o===`running`?`running`:``} ${o===`passed`?`success`:``}`,onClick:S,disabled:o===`running`,children:(0,$.jsx)(Rx,{size:22})})]})},FM=`
+/* ====== ROOT ====== */
+.pract {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg-primary);
+  font-family: var(--font-primary, 'Inter', system-ui, sans-serif);
+}
 
-        /* ── Problem List ── */
-        .practice-list {
-          width: 320px;
-          min-width: 260px;
-          border-right: 1px solid var(--border-color);
-          display: flex;
-          flex-direction: column;
-          overflow: hidden;
-          background: var(--bg-card);
-        }
+/* ====== LIST VIEW ====== */
+.pract-list-view {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+}
 
-        .practice-list-header {
-          padding: 16px;
-          border-bottom: 1px solid var(--border-color);
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
+/* Hero */
+.pract-hero {
+  position: relative;
+  padding: 32px 32px 24px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.12) 0%, rgba(139,92,246,0.08) 50%, transparent 100%);
+  border-bottom: 1px solid var(--border-color);
+  overflow: hidden;
+}
+.pract-hero-glow {
+  position: absolute;
+  top: -60px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.pract-hero-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+.pract-hero-icon-wrap {
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  box-shadow: 0 4px 20px rgba(99,102,241,0.35);
+}
+.pract-hero-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+.pract-hero-sub {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 4px 0 0;
+}
 
-        .practice-progress-bar-wrap { display: flex; flex-direction: column; gap: 6px; }
-        .practice-progress-label {
-          display: flex; align-items: center; gap: 6px;
-          font-size: 12px; font-weight: 600; color: var(--text-secondary);
-        }
-        .practice-progress-track {
-          height: 4px; background: var(--border-color); border-radius: 99px; overflow: hidden;
-        }
-        .practice-progress-fill {
-          height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6);
-          border-radius: 99px; transition: width 0.4s ease;
-        }
+.pract-hero-progress { position: relative; z-index: 1; }
+.pract-hero-stats {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 10px;
+}
+.pract-stat { display: flex; flex-direction: column; align-items: center; }
+.pract-stat-num {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.pract-stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  margin-top: 2px;
+}
+.pract-progress-track {
+  height: 6px;
+  background: var(--border-color);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.pract-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #a78bfa);
+  border-radius: 99px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        .practice-search-wrap {
-          display: flex; align-items: center; gap: 8px;
-          background: var(--bg-primary); border: 1px solid var(--border-color);
-          border-radius: 8px; padding: 8px 12px;
-        }
-        .practice-search-icon { color: var(--text-muted); flex-shrink: 0; }
-        .practice-search-input {
-          background: none; border: none; outline: none; width: 100%;
-          color: var(--text-primary); font-size: 13px;
-        }
+/* Controls */
+.pract-controls {
+  padding: 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+.pract-search {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px 16px;
+  transition: border-color 0.2s;
+}
+.pract-search:focus-within { border-color: var(--color-accent); }
+.pract-search-icon { color: var(--text-muted); flex-shrink: 0; }
+.pract-search-input {
+  background: none; border: none; outline: none; width: 100%;
+  color: var(--text-primary); font-size: 15px;
+}
+.pract-search-input::placeholder { color: var(--text-muted); }
+.pract-search-clear {
+  background: none; border: none; color: var(--text-muted); cursor: pointer;
+  padding: 4px; display: flex;
+}
 
-        .practice-filters { display: flex; flex-direction: column; gap: 8px; }
-        .practice-filter-group {
-          display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
-        }
-        .practice-filter-btn {
-          padding: 3px 10px; border-radius: 99px; border: 1px solid var(--border-color);
-          background: transparent; color: var(--text-secondary); font-size: 11px; font-weight: 600;
-          cursor: pointer; transition: all 0.15s;
-        }
-        .practice-filter-btn.active {
-          background: rgba(99,102,241,0.15); border-color: var(--color-accent); color: var(--color-accent);
-        }
-        .practice-cat-select {
-          background: var(--bg-primary); border: 1px solid var(--border-color);
-          color: var(--text-secondary); border-radius: 8px; padding: 6px 10px; font-size: 12px;
-          outline: none; cursor: pointer; width: 100%;
-        }
+.pract-filter-row {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.pract-pills { display: flex; gap: 6px; flex-wrap: wrap; flex: 1; }
+.pract-pill {
+  padding: 7px 14px;
+  border-radius: 99px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.pract-pill.active {
+  background: rgba(99,102,241,0.15);
+  border-color: rgba(99,102,241,0.4);
+  color: var(--color-accent);
+}
 
-        .practice-problem-rows {
-          flex: 1; overflow-y: auto; padding: 8px 0;
-        }
-        .practice-problem-row {
-          display: flex; align-items: center; gap: 8px; width: 100%;
-          padding: 10px 16px; background: none; border: none; text-align: left;
-          cursor: pointer; transition: background 0.15s; color: var(--text-primary);
-        }
-        .practice-problem-row:hover { background: var(--bg-card-hover); }
-        .practice-problem-row.active { background: rgba(99,102,241,0.12); border-left: 3px solid var(--color-accent); }
-        .practice-problem-row.solved .prow-title { color: var(--text-secondary); }
+.pract-cat-sel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  min-width: 120px;
+}
 
-        .prow-number { font-size: 11px; color: var(--text-muted); width: 28px; flex-shrink: 0; }
-        .prow-status { flex-shrink: 0; }
-        .icon-solved { color: #22c55e; }
-        .icon-unsolved { color: var(--text-muted); }
-        .prow-title { flex: 1; font-size: 13px; font-weight: 500; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-        .prow-diff { font-size: 11px; font-weight: 700; flex-shrink: 0; }
-        .prow-arrow { color: var(--text-muted); flex-shrink: 0; }
-        .practice-empty { padding: 32px; text-align: center; color: var(--text-muted); font-size: 13px; }
+/* Card grid */
+.pract-card-grid {
+  padding: 20px 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+}
 
-        /* ── Code Panel ── */
-        .practice-code-panel {
-          flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0;
-        }
+.pract-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 18px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+  overflow: hidden;
+}
+.pract-card:hover {
+  border-color: rgba(99,102,241,0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+.pract-card.done {
+  border-color: rgba(34,197,94,0.25);
+}
+.pract-card.done::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(34,197,94,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
 
-        .practice-mobile-tabs {
-          display: none;
-          padding: 8px 12px; gap: 6px; background: var(--bg-card);
-          border-bottom: 1px solid var(--border-color);
-        }
-        .pmtab {
-          flex: 1; padding: 8px; border-radius: 8px; border: 1px solid var(--border-color);
-          background: transparent; color: var(--text-secondary); font-size: 12px; font-weight: 600;
-          cursor: pointer; transition: all 0.15s;
-        }
-        .pmtab.active { background: rgba(99,102,241,0.15); color: var(--color-accent); border-color: var(--color-accent); }
+.pract-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.pract-card-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.pract-card-diff {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 99px;
+}
+.pract-card-check { color: #22c55e; margin-left: auto; }
+.pract-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 10px;
+  line-height: 1.35;
+}
+.pract-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.pract-card-tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: rgba(99,102,241,0.08);
+  color: #818cf8;
+  font-weight: 600;
+}
+.pract-card-bottom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+.pract-card-cat {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.pract-card-tests {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+.pract-card-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.pract-card:hover .pract-card-arrow { opacity: 1; }
 
-        .practice-split {
-          flex: 1; display: flex; overflow: hidden; min-height: 0;
-        }
+.pract-empty {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 64px 20px; color: var(--text-muted); gap: 12px;
+}
 
-        /* ── Description Pane ── */
-        .practice-desc-pane {
-          width: 380px; min-width: 300px; display: flex; flex-direction: column;
-          border-right: 1px solid var(--border-color); overflow: hidden;
-        }
+/* ====== SOLVE VIEW ====== */
+.psolve {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
 
-        .pdesc-header {
-          padding: 20px 20px 0; border-bottom: 1px solid var(--border-color); padding-bottom: 16px;
-        }
-        .pdesc-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-        .pdesc-num { font-size: 12px; color: var(--text-muted); font-weight: 700; }
-        .pdesc-diff {
-          font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 99px;
-        }
-        .pdesc-cat {
-          font-size: 11px; color: var(--text-muted); background: var(--bg-primary);
-          padding: 2px 8px; border-radius: 99px; border: 1px solid var(--border-color);
-        }
-        .pdesc-title { font-size: 16px; font-weight: 700; color: var(--text-primary); margin: 0 0 10px; }
-        .pdesc-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-        .pdesc-tag {
-          font-size: 10px; padding: 2px 7px; border-radius: 99px;
-          background: rgba(99,102,241,0.1); color: #818cf8; font-weight: 600;
-        }
+.psolve-topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+  min-height: 48px;
+}
+.psolve-back {
+  display: flex; align-items: center; gap: 4px;
+  background: none; border: none; color: var(--text-secondary);
+  cursor: pointer; font-size: 14px; font-weight: 600;
+  padding: 6px 10px; border-radius: 8px;
+  transition: all 0.15s;
+}
+.psolve-back:hover { color: var(--text-primary); background: var(--bg-card-hover); }
+.psolve-topbar-info {
+  display: flex; align-items: center; gap: 8px; flex: 1;
+}
+.psolve-topbar-num { font-size: 13px; color: var(--text-muted); font-weight: 700; }
+.psolve-topbar-diff { font-size: 12px; font-weight: 700; }
+.psolve-topbar-solved { font-size: 12px; font-weight: 600; }
 
-        .pdesc-tabs {
-          display: flex; border-bottom: 1px solid var(--border-color);
-          padding: 0 20px; gap: 0; flex-shrink: 0;
-        }
-        .pdesc-tab {
-          display: flex; align-items: center; gap: 6px; padding: 10px 0; margin-right: 20px;
-          background: none; border: none; color: var(--text-muted); font-size: 13px; font-weight: 600;
-          cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s;
-        }
-        .pdesc-tab.active { color: var(--color-accent); border-bottom-color: var(--color-accent); }
-        .pdesc-tab.locked { opacity: 0.5; }
+.psolve-run-fab {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #6366f1, #7c3aed);
+  border: none; border-radius: 10px;
+  color: white; font-size: 13px; font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(99,102,241,0.35);
+  transition: all 0.2s;
+}
+.psolve-run-fab:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99,102,241,0.45); }
+.psolve-run-fab.running { background: #555; box-shadow: none; cursor: wait; }
+.psolve-run-fab.success { background: linear-gradient(135deg, #16a34a, #22c55e); box-shadow: 0 4px 14px rgba(34,197,94,0.35); }
+.psolve-run-fab:disabled { opacity: 0.7; }
 
-        .pdesc-body { flex: 1; overflow-y: auto; padding: 20px; }
-        .pdesc-description { font-size: 14px; line-height: 1.7; color: var(--text-secondary); white-space: pre-wrap; }
-        .pdesc-section { margin-top: 20px; }
-        .pdesc-section-title { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 700; margin-bottom: 10px; }
+/* Mobile tabs */
+.psolve-tabs {
+  display: none;
+  padding: 8px 12px;
+  gap: 6px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+.psolve-tab {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 8px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.psolve-tab.active { background: rgba(99,102,241,0.12); color: var(--color-accent); border-color: rgba(99,102,241,0.4); }
+.psolve-tab.success { background: rgba(34,197,94,0.1); color: #22c55e; border-color: rgba(34,197,94,0.4); }
+.psolve-tab.fail { background: rgba(239,68,68,0.08); color: #ef4444; border-color: rgba(239,68,68,0.3); }
 
-        .pdesc-example {
-          background: var(--bg-primary); border: 1px solid var(--border-color);
-          border-radius: 8px; padding: 12px; margin-bottom: 8px;
-        }
-        .pex-row { display: flex; gap: 8px; align-items: baseline; margin-bottom: 4px; font-size: 13px; }
-        .pex-label { font-weight: 700; color: var(--text-muted); width: 50px; flex-shrink: 0; }
-        .pex-code { font-family: monospace; color: var(--text-primary); font-size: 12px; }
-        .pex-note { font-size: 11px; color: var(--text-muted); margin-top: 4px; font-style: italic; }
+/* Body: 3 panels side by side on desktop */
+.psolve-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  min-height: 0;
+}
+.psolve-panel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.psolve-panel.hidden { display: none; }
+.psolve-panel.visible { display: flex; }
 
-        .pdesc-hint {
-          display: flex; align-items: flex-start; gap: 8px; padding: 8px 12px;
-          background: rgba(99,102,241,0.08); border-radius: 8px; margin-bottom: 6px;
-          font-size: 13px; color: var(--text-secondary); line-height: 1.5;
-        }
-        .hint-icon { color: #f59e0b; flex-shrink: 0; margin-top: 2px; }
-        .btn-hint {
-          display: flex; align-items: center; gap: 6px; padding: 8px 14px;
-          background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3);
-          border-radius: 8px; color: #f59e0b; font-size: 12px; font-weight: 600;
-          cursor: pointer; transition: all 0.15s; width: 100%; justify-content: center;
-        }
-        .btn-hint:hover { background: rgba(245,158,11,0.2); }
-        .hint-done { font-size: 12px; color: var(--text-muted); }
+/* Description panel */
+.psolve-desc {
+  width: 380px;
+  min-width: 280px;
+  border-right: 1px solid var(--border-color);
+  overflow: hidden;
+}
+.psolve-desc-inner {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  -webkit-overflow-scrolling: touch;
+}
+.psolve-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 12px;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+}
+.psolve-meta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.psolve-diff-badge {
+  font-size: 12px; font-weight: 700;
+  padding: 3px 12px; border-radius: 99px;
+}
+.psolve-cat-badge {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--bg-primary);
+  padding: 3px 10px;
+  border-radius: 99px;
+  border: 1px solid var(--border-color);
+  font-weight: 600;
+}
+.psolve-tag {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: rgba(99,102,241,0.08);
+  color: #818cf8;
+  font-weight: 600;
+}
+.psolve-desc-text {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
 
-        .solution-code {
-          background: #0d1117; border: 1px solid var(--border-color); border-radius: 8px;
-          padding: 16px; overflow-x: auto; font-size: 13px; line-height: 1.6;
-          color: #e6edf3; font-family: 'JetBrains Mono', 'Fira Code', monospace; white-space: pre;
-        }
+.psolve-section { margin-top: 24px; }
+.psolve-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
 
-        /* ── Editor Pane ── */
-        .practice-editor-pane {
-          flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0;
-        }
+.psolve-example {
+  background: rgba(99,102,241,0.04);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 8px;
+}
+.psolve-ex-row {
+  display: flex; gap: 10px; align-items: baseline; margin-bottom: 6px;
+  font-size: 13px;
+}
+.psolve-ex-label {
+  font-weight: 700; color: var(--text-muted);
+  min-width: 50px; flex-shrink: 0;
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.psolve-ex-row code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: var(--text-primary);
+  font-size: 12px;
+  word-break: break-word;
+}
+.psolve-ex-note { font-size: 12px; color: var(--text-muted); margin-top: 4px; font-style: italic; }
 
-        .peditor-toolbar {
-          display: flex; align-items: center; justify-content: space-between;
-          padding: 10px 16px; background: #1e1e2e; border-bottom: 1px solid #30303a;
-          flex-shrink: 0;
-        }
-        .peditor-filename { font-size: 12px; color: #888; font-family: monospace; }
-        .peditor-actions { display: flex; gap: 8px; }
-        .peditor-btn {
-          display: flex; align-items: center; gap: 6px; padding: 6px 12px;
-          background: transparent; border: 1px solid #444; border-radius: 6px;
-          color: #aaa; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.15s;
-        }
-        .peditor-btn:hover { background: rgba(255,255,255,0.05); color: #fff; }
-        .peditor-run-btn {
-          display: flex; align-items: center; gap: 6px; padding: 6px 16px;
-          background: #6366f1; border: none; border-radius: 6px;
-          color: white; font-size: 12px; font-weight: 700; cursor: pointer;
-          transition: all 0.15s; box-shadow: 0 0 12px rgba(99,102,241,0.3);
-        }
-        .peditor-run-btn:hover:not(:disabled) { background: #818cf8; transform: translateY(-1px); }
-        .peditor-run-btn.running { background: #555; box-shadow: none; cursor: wait; }
-        .peditor-run-btn.passed { background: #16a34a; box-shadow: 0 0 12px rgba(22,163,74,0.3); }
-        .peditor-run-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.psolve-hint {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 14px;
+  background: rgba(245,158,11,0.06);
+  border: 1px solid rgba(245,158,11,0.15);
+  border-radius: 10px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.psolve-hint-icon { color: #f59e0b; flex-shrink: 0; margin-top: 2px; }
+.psolve-hint-btn {
+  display: flex; align-items: center; gap: 8px; justify-content: center;
+  padding: 10px 16px;
+  background: rgba(245,158,11,0.08);
+  border: 1px solid rgba(245,158,11,0.2);
+  border-radius: 10px;
+  color: #f59e0b;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.15s;
+}
+.psolve-hint-btn:hover { background: rgba(245,158,11,0.15); }
+.psolve-hint-done { font-size: 12px; color: var(--text-muted); text-align: center; padding: 6px; }
 
-        .peditor-monaco {
-          flex: 1; min-height: 0; overflow: hidden;
-        }
+.psolve-solution-code {
+  background: #0d1117;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 18px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.65;
+  color: #e6edf3;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  white-space: pre;
+  margin: 0;
+}
+.psolve-solution-btn {
+  display: flex; align-items: center; gap: 8px; justify-content: center;
+  padding: 10px 16px;
+  background: rgba(99,102,241,0.06);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.15s;
+}
+.psolve-solution-btn:hover { background: rgba(99,102,241,0.12); color: var(--text-secondary); }
 
-        .monaco-loading {
-          display: flex; flex-direction: column; align-items: center; justify-content: center;
-          height: 100%; gap: 16px; background: #1e1e2e; color: #888; font-size: 14px;
-        }
-        .monaco-loading-spinner {
-          width: 32px; height: 32px; border: 3px solid #333;
-          border-top-color: #6366f1; border-radius: 50%; animation: spin 0.8s linear infinite;
-        }
+/* Editor panel */
+.psolve-editor {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.psolve-editor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: #1a1b2e;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+.psolve-editor-filename {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; color: #666; font-family: monospace;
+}
+.psolve-editor-actions { display: flex; gap: 8px; }
+.psolve-editor-btn {
+  display: flex; align-items: center; gap: 5px;
+  padding: 6px 12px;
+  background: transparent; border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  color: #888; font-size: 12px; font-weight: 600; cursor: pointer;
+  transition: all 0.15s;
+}
+.psolve-editor-btn:hover { background: rgba(255,255,255,0.06); color: #ccc; }
+.psolve-editor-run {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 18px;
+  background: linear-gradient(135deg, #6366f1, #7c3aed);
+  border: none; border-radius: 8px;
+  color: white; font-size: 12px; font-weight: 700; cursor: pointer;
+  box-shadow: 0 2px 12px rgba(99,102,241,0.3);
+  transition: all 0.2s;
+}
+.psolve-editor-run:hover:not(:disabled) { transform: translateY(-1px); }
+.psolve-editor-run.running { background: #555; box-shadow: none; }
+.psolve-editor-run.success { background: linear-gradient(135deg, #16a34a, #22c55e); }
+.psolve-editor-run:disabled { opacity: 0.7; }
 
-        /* ── Test Results ── */
-        .ptest-panel {
-          height: 200px; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; flex-shrink: 0;
-        }
-        .ptest-header {
-          display: flex; align-items: center; gap: 8px; padding: 10px 16px;
-          background: var(--bg-card); border-bottom: 1px solid var(--border-color);
-          font-size: 13px; font-weight: 600; color: var(--text-secondary); flex-shrink: 0;
-        }
-        .ptest-badge {
-          margin-left: auto; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 99px;
-        }
-        .ptest-badge.passed { background: rgba(34,197,94,0.15); color: #22c55e; }
-        .ptest-badge.failed { background: rgba(239,68,68,0.15); color: #ef4444; }
-        .ptest-badge.running { background: rgba(245,158,11,0.15); color: #f59e0b; }
-        .ptest-solved-badge { font-size: 12px; font-weight: 700; color: #f59e0b; }
+.psolve-editor-area { flex: 1; min-height: 0; overflow: hidden; background: #1e1e2e; }
 
-        .ptest-results { flex: 1; overflow-y: auto; padding: 8px 0; }
+.psolve-textarea {
+  width: 100%; height: 100%;
+  background: #1a1b2e;
+  color: #e6edf3;
+  border: none;
+  padding: 18px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+  -webkit-text-size-adjust: none;
+  tab-size: 2;
+}
+.psolve-textarea::placeholder { color: #555; }
 
-        .ptest-idle {
-          display: flex; flex-direction: column; align-items: center; justify-content: center;
-          height: 100%; gap: 8px; color: var(--text-muted); font-size: 13px;
-        }
-        .ptest-idle-icon { color: var(--text-muted); opacity: 0.5; }
-        .ptest-spinner {
-          width: 24px; height: 24px; border: 2px solid var(--border-color);
-          border-top-color: var(--color-accent); border-radius: 50%; animation: spin 0.7s linear infinite;
-        }
+.psolve-editor-loading {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  height: 100%; gap: 14px; background: #1e1e2e; color: #666; font-size: 13px;
+}
 
-        .ptest-result-row {
-          display: flex; align-items: flex-start; gap: 10px; padding: 8px 16px;
-          border-bottom: 1px solid var(--border-color);
-        }
-        .ptest-result-row.pass { background: rgba(34,197,94,0.04); }
-        .ptest-result-row.fail, .ptest-result-row.error { background: rgba(239,68,68,0.04); }
-        .ptest-result-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-        .ptest-result-info { flex: 1; min-width: 0; }
-        .ptest-result-name { font-size: 13px; font-weight: 500; color: var(--text-primary); display: block; }
-        .ptest-result-msg { font-size: 12px; color: #ef4444; font-family: monospace; display: block; margin-top: 2px; word-break: break-word; }
-        .ptest-result-time { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }
+/* Tests panel */
+.psolve-tests {
+  border-top: 1px solid var(--border-color);
+  min-height: 160px;
+  max-height: 220px;
+  flex-shrink: 0;
+}
+.psolve-tests-header {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+.psolve-tests-badge {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 99px;
+}
+.psolve-tests-badge.passed { background: rgba(34,197,94,0.12); color: #22c55e; }
+.psolve-tests-badge.failed { background: rgba(239,68,68,0.12); color: #ef4444; }
+.psolve-tests-badge.running { background: rgba(245,158,11,0.12); color: #f59e0b; }
 
-        .ptest-success-banner {
-          margin: 8px 16px; padding: 10px 16px; background: rgba(34,197,94,0.1);
-          border: 1px solid rgba(34,197,94,0.3); border-radius: 8px;
-          color: #22c55e; font-size: 14px; font-weight: 700; text-align: center;
-        }
+.psolve-tests-body { flex: 1; overflow-y: auto; }
 
-        /* ── Placeholder ── */
-        .practice-placeholder {
-          flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
-          gap: 12px; color: var(--text-muted);
-        }
-        .practice-placeholder-icon { opacity: 0.3; }
-        .practice-placeholder h3 { font-size: 18px; font-weight: 700; color: var(--text-secondary); margin: 0; }
-        .practice-placeholder p { font-size: 14px; margin: 0; }
+.psolve-tests-empty {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  height: 100%; gap: 8px; padding: 24px; text-align: center;
+}
+.psolve-tests-empty-icon { color: var(--text-muted); opacity: 0.35; }
+.psolve-tests-empty-title { font-size: 14px; font-weight: 600; color: var(--text-secondary); margin: 0; }
+.psolve-tests-empty-sub { font-size: 12px; color: var(--text-muted); margin: 0; }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
+.psolve-test-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.15s;
+}
+.psolve-test-row.pass { background: rgba(34,197,94,0.03); }
+.psolve-test-row.fail, .psolve-test-row.error { background: rgba(239,68,68,0.03); }
+.psolve-test-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.psolve-test-info { flex: 1; min-width: 0; }
+.psolve-test-name { font-size: 14px; font-weight: 500; color: var(--text-primary); display: block; }
+.psolve-test-err {
+  font-size: 12px; color: #ef4444; font-family: monospace;
+  display: block; margin-top: 4px; word-break: break-word; line-height: 1.5;
+}
+.psolve-test-time { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }
 
-        /* ── Mobile ── */
-        @media (max-width: 768px) {
-          .practice-page { flex-direction: column; }
-          .practice-list {
-            width: 100%; height: 220px; border-right: none; border-bottom: 1px solid var(--border-color);
-          }
-          .practice-list-header { padding: 10px 12px; gap: 8px; }
-          .practice-mobile-tabs { display: flex; }
-          .practice-split { flex-direction: column; }
-          .practice-desc-pane { width: 100%; height: 100%; border-right: none; }
-          .mobile-hidden { display: none !important; }
-          .ptest-panel { height: 180px; }
-        }
+.psolve-success-banner {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  margin: 12px 16px; padding: 14px;
+  background: linear-gradient(135deg, rgba(34,197,94,0.1) 0%, rgba(34,197,94,0.06) 100%);
+  border: 1px solid rgba(34,197,94,0.25);
+  border-radius: 12px;
+  color: #22c55e;
+  font-size: 15px;
+  font-weight: 700;
+}
+.psolve-success-emoji { font-size: 22px; }
 
-        @media (min-width: 769px) {
-          .practice-mobile-tabs { display: none !important; }
-          .mobile-hidden { display: flex !important; }
-        }
-      `})]})},MM=[`{`,`}`,`(`,`)`,`[`,`]`,`;`,`=`,`<`,`>`,`"`,`'`,"`",`/`,`const`,`let`,`function`,`console.log`],NM=e=>e.includes(`Promise.race`)?`Использование встроенного Promise.race категорически запрещено по условию задачи. Реализуйте собственную логику обхода массива промисов и управления новым промисом.`:e.includes(`is not defined`)?`Ошибка обращения к необъявленной переменной или функции. Проверьте правильность написания имен (например, регистр букв) и убедитесь, что вы объявили переменную через let или const перед использованием.`:e.includes(`is not a function`)?`Попытка вызвать значение, которое не является функцией. Проверьте, правильно ли возвращается функция из makeCounter или совпадает ли имя вызываемой функции.`:e.includes(`Cannot read properties of`)||e.includes(`cannot read property`)||e.includes(`is null`)||e.includes(`is undefined`)?`Ошибка обращения к свойству или методу неопределенного значения (null или undefined). Проверьте инициализацию переменных, а также убедитесь, что closest("button") действительно нашел кнопку, перед тем как читать ее dataset.`:e.includes(`Unexpected token`)||e.includes(`Unexpected identifier`)||e.includes(`SyntaxError`)?"Синтаксическая ошибка. Убедитесь, что все открытые круглые `(`, квадратные `[` и фигурные `{` скобки имеют парные закрывающие скобки, и проверьте правильность написания ключевых слов и расстановку запятых.":e.includes(`Unexpected end of input`)?`Код обрывается неожиданно. Чаще всего это означает, что вы забыли закрыть какую-то круглую, квадратную или фигурную скобку в конце решения.`:`Проверьте логику работы кода, структуру возвращаемых данных и соответствие сигнатуры функций требованиям задания.`,PM=(e,t,n)=>{let r=e.includes(`makeCounter`)?`makeCounter`:e.includes(`btn-container`)||e.includes(`result`)?`delegation`:e.includes(`race`)?`race`:e.includes(`swap`)?`swap`:``,i=[];if(r===`makeCounter`?i=[{name:`Функция makeCounter объявлена и доступна`,checkFailure:e=>e.includes(`makeCounter должна быть функцией`)},{name:`makeCounter() возвращает функцию-счетчик`,checkFailure:e=>e.includes(`должна возвращать функцию-счетчик`)},{name:`Счетчик по умолчанию увеличивает значение: 1, 2...`,checkFailure:e=>e.includes(`Счетчик по умолчанию должен`)},{name:`Поддерживается начальное значение (например, 10 -> 11, 12)`,checkFailure:e=>e.includes(`Счетчик с начальным значением 10`)},{name:`Поддерживаются отрицательные значения (например, -5 -> -4)`,checkFailure:e=>e.includes(`Счетчик с отрицательным значением -5`)}]:r===`delegation`?i=[{name:`Клик по вложенному span на кнопке №1 выводит "1"`,checkFailure:e=>e.includes(`При клике на span внутри`)},{name:`Клик по кнопке №3 выводит "3"`,checkFailure:e=>e.includes(`При клике на третью кнопку`)},{name:`Клик по самому контейнеру игнорируется (делегирование)`,checkFailure:e=>e.includes(`Клик по фону контейнера`)}]:r===`race`?i=[{name:`Функция race объявлена и доступна`,checkFailure:e=>e.includes(`race должна быть функцией`)},{name:`Запрещено использование встроенного Promise.race`,checkFailure:e=>e.includes(`категорически запрещено`)},{name:`Возвращается самый быстрый успешно выполненный промис`,checkFailure:e=>e.includes(`Должен выиграть быстрый промис`)},{name:`Первый отклоненный промис отклоняет общий результат`,checkFailure:e=>e.includes(`Промис должен был отклониться`)||e.includes(`отклониться с ошибкой`)},{name:`Обычные значения (не промисы) обрабатываются мгновенно`,checkFailure:e=>e.includes(`Обычные значения должны`)}]:r===`swap`&&(i=[{name:`Функция swap объявлена и доступна`,checkFailure:e=>e.includes(`swap должна быть функцией`)},{name:`swap(42, "hello") возвращает кортеж ["hello", 42]`,checkFailure:e=>e.includes(`swap(42, 'hello')`)||e.includes(`swap(42, "hello")`)},{name:`Структура сложных объектов сохраняется при swap`,checkFailure:e=>e.includes(`swap не сохранил структуру`)}]),i.length===0)return[];if(n===null&&t.length===0)return i.map((e,t)=>({id:String(t),name:e.name,status:`pending`}));if(n===!0)return i.map((e,t)=>({id:String(t),name:e.name,status:`passed`}));let a=t.find(e=>e.includes(`Ошибка компиляции/выполнения`)||e.includes(`Ошибка при запуске`)||e.includes(`Ошибка выполнения тестов`));if(a)return i.map((e,t)=>({id:String(t),name:e.name,status:t===0?`failed`:`pending`,errorMsg:a}));let o=-1,s=``;for(let e=0;e<i.length;e++){let n=t.find(t=>i[e].checkFailure(t));if(n){o=e,s=n;break}}if(o===-1&&t.length>0){let e=t.find(e=>e.includes(`не`)||e.includes(`ошибка`)||e.includes(`Ошибка`)||e.includes(`должна`)||e.includes(`должен`));e?(o=i.findIndex(t=>t.checkFailure(e)),o===-1&&(o=0),s=e):(o=0,s=t[t.length-1])}return i.map((e,t)=>{let n=`passed`;return t===o?n=`failed`:t>o&&(n=`pending`),{id:String(t),name:e.name,status:n,errorMsg:t===o?s:void 0}})},FM=({starterCode:e,testSuite:t,domSetup:n,hints:r,onSuccess:i,onFailure:a,vibrationEnabled:o,referenceSolution:s,explanation:c})=>{let[l,u]=(0,v.useState)(e),[d,f]=(0,v.useState)([]),[p,m]=(0,v.useState)(null),[h,g]=(0,v.useState)(0),[_,y]=(0,v.useState)(!1),[b,x]=(0,v.useState)(`tests`),[C,te]=(0,v.useState)(!1),ne=(0,v.useRef)(null),T=(0,v.useRef)(null),E=(0,v.useRef)(null);(0,v.useEffect)(()=>{u(e),f([]),m(null),y(!1),g(0)},[e]);let re=e=>{S(o);let t=T.current;if(!t)return;let n=t.selectionStart,r=t.selectionEnd,i=[`const`,`let`,`function`].includes(e)?`${e} `:e;u(l.substring(0,n)+i+l.substring(r)),setTimeout(()=>{t.focus(),t.selectionStart=t.selectionEnd=n+i.length},0)};return(0,$.jsxs)(`div`,{className:`sandbox-layout`,children:[n&&(0,$.jsxs)(`div`,{className:`sandbox-dom-preview card`,children:[(0,$.jsx)(`p`,{className:`preview-title`,children:`Интерактивный DOM-контейнер`}),(0,$.jsx)(`div`,{ref:ne,dangerouslySetInnerHTML:{__html:n}})]}),(0,$.jsxs)(`div`,{className:`editor-grid`,children:[(0,$.jsxs)(`div`,{className:`editor-container card`,children:[(0,$.jsxs)(`div`,{className:`editor-header`,children:[(0,$.jsx)(`span`,{children:`Редактор JavaScript/TypeScript`}),(0,$.jsx)(`div`,{className:`editor-actions`,children:(0,$.jsx)(`button`,{onClick:()=>{S(o),u(e),f([]),m(null)},className:`editor-action-btn`,title:`Сбросить код`,children:(0,$.jsx)(uC,{size:16})})})]}),(0,$.jsx)(`div`,{className:`editor-helper-bar`,children:MM.map(e=>(0,$.jsx)(`button`,{type:`button`,onClick:()=>re(e),className:`helper-key-btn`,children:e},e))}),(0,$.jsxs)(`div`,{className:`editor-input-wrapper`,children:[(0,$.jsx)(`pre`,{ref:E,className:`editor-highlight-layer`,"aria-hidden":`true`,children:(0,$.jsx)(`code`,{dangerouslySetInnerHTML:{__html:(e=>e.replace(/&/g,`&amp;`).replace(/</g,`&lt;`).replace(/>/g,`&gt;`).replace(/("[^"]*"|'[^']*'|`[^`]*`)/g,`<span class="hl-string">$1</span>`).replace(/(\/\/.*)/gm,`<span class="hl-comment">$1</span>`).replace(/\b(const|let|var|function|return|if|else|for|while|new|class|import|export|from|async|await|try|catch|throw|typeof|instanceof|in|of|switch|case|break|default|this|null|undefined|true|false)\b/g,`<span class="hl-keyword">$1</span>`).replace(/\b(\d+\.?\d*)\b/g,`<span class="hl-number">$1</span>`).replace(/\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*(?=\()/g,`<span class="hl-function">$1</span>`))(l)+`
-`}})}),(0,$.jsx)(`textarea`,{ref:T,value:l,onChange:e=>u(e.target.value),onKeyDown:e=>{if(e.key===`Tab`){e.preventDefault();let t=e.currentTarget,n=t.selectionStart,r=t.selectionEnd;u(l.substring(0,n)+`  `+l.substring(r)),setTimeout(()=>{t.selectionStart=t.selectionEnd=n+2},0)}},onScroll:e=>{E.current&&(E.current.scrollTop=e.currentTarget.scrollTop,E.current.scrollLeft=e.currentTarget.scrollLeft)},className:`editor-textarea`,placeholder:`Напишите решение...`,spellCheck:`false`})]})]}),(0,$.jsxs)(`div`,{className:`console-container card`,children:[(0,$.jsxs)(`div`,{className:`console-header-tabs`,children:[(0,$.jsxs)(`button`,{type:`button`,onClick:()=>{S(o),x(`tests`)},className:`console-tab-btn ${b===`tests`?`active`:``}`,children:[(0,$.jsx)(fO,{size:14}),(0,$.jsx)(`span`,{children:`Результаты автотестов`}),p!==null&&(0,$.jsx)(`span`,{className:`tab-indicator-count ${p?`success`:`failure`}`,children:p?`✓`:`✗`})]}),(0,$.jsxs)(`button`,{type:`button`,onClick:()=>{S(o),x(`console`)},className:`console-tab-btn ${b===`console`?`active`:``}`,children:[(0,$.jsx)(fO,{size:14}),(0,$.jsx)(`span`,{children:`Логи console.log`}),d.filter(e=>!e.includes(`Запуск тестов`)&&!e.includes(`Успешно`)&&!e.includes(`Все тесты`)).length>0&&(0,$.jsx)(`span`,{className:`tab-indicator-dot`})]}),s&&(0,$.jsxs)(`button`,{type:`button`,onClick:()=>{S(o),x(`solution`)},className:`console-tab-btn ${b===`solution`?`active`:``}`,children:[(0,$.jsx)(kg,{size:14}),(0,$.jsx)(`span`,{children:`Разбор решения`})]})]}),(0,$.jsx)(`div`,{className:`console-body-content`,children:b===`tests`?(0,$.jsx)(`div`,{className:`test-results-checklist`,children:(()=>{let t=PM(e,d,p);return t.length===0?(0,$.jsx)(`span`,{className:`console-placeholder`,children:`Запустите тесты для отображения результатов...`}):(0,$.jsx)(`div`,{className:`test-cases-list`,children:t.map(e=>(0,$.jsxs)(`div`,{className:`test-case-row ${e.status}`,children:[(0,$.jsxs)(`div`,{className:`test-case-header-row`,children:[(0,$.jsxs)(`span`,{className:`test-status-icon-wrapper`,children:[e.status===`passed`&&(0,$.jsx)(os,{size:16,className:`text-success glow-success`}),e.status===`failed`&&(0,$.jsx)(Bs,{size:16,className:`text-error glow-error`}),e.status===`pending`&&(0,$.jsx)(Vs,{size:16,className:`text-muted`})]}),(0,$.jsx)(`span`,{className:`test-case-name`,children:e.name})]}),e.errorMsg&&(0,$.jsxs)(`div`,{className:`test-case-error-details`,children:[(0,$.jsx)(yk,{size:14,className:`text-error`,style:{marginTop:`2px`}}),(0,$.jsxs)(`div`,{className:`error-diagnostic-text`,children:[(0,$.jsx)(`p`,{className:`error-diag-title`,children:`Диагностика ошибки:`}),(0,$.jsx)(`p`,{className:`error-diag-body`,children:e.errorMsg}),(0,$.jsx)(`p`,{className:`error-tip-title`,style:{marginTop:`8px`,fontSize:`10px`,textTransform:`uppercase`,letterSpacing:`0.5px`,color:`var(--color-warning)`,fontWeight:800},children:`Совет по исправлению:`}),(0,$.jsx)(`p`,{className:`error-tip-body`,style:{fontSize:`12px`,color:`var(--text-secondary)`,lineHeight:1.4,marginTop:`2px`},children:NM(e.errorMsg)})]})]})]},e.id))})})()}):b===`console`?(0,$.jsx)(`div`,{className:`console-logs`,children:d.length===0?(0,$.jsx)(`span`,{className:`console-placeholder`,children:`Здесь появится вывод console.log после запуска...`}):d.map((e,t)=>(0,$.jsx)(`div`,{className:`console-log-line ${e.includes(`❌`)||e.includes(`Ошибка`)||e.includes(`потерял`)?`error`:e.includes(`Все тесты`)||e.includes(`Успешно`)?`success`:``}`,children:e},t))}):(0,$.jsxs)(`div`,{className:`solution-tab-content`,children:[(0,$.jsxs)(`div`,{className:`solution-explanation-card`,children:[(0,$.jsx)(`h4`,{className:`solution-subtitle`,children:`Разбор логики`}),(0,$.jsx)(`p`,{className:`solution-explanation-text`,children:c})]}),(0,$.jsxs)(`div`,{className:`solution-code-container`,children:[(0,$.jsxs)(`div`,{className:`solution-code-header`,children:[(0,$.jsx)(`span`,{children:`Эталонный код`}),(0,$.jsxs)(`button`,{onClick:()=>{s&&(navigator.clipboard.writeText(s),te(!0),S(o),setTimeout(()=>te(!1),2e3))},className:`copy-btn-compact`,title:`Копировать код`,children:[C?(0,$.jsx)(R,{size:14,className:`text-success`}):(0,$.jsx)(gl,{size:14}),(0,$.jsx)(`span`,{children:C?`Скопировано!`:`Копировать`})]})]}),(0,$.jsx)(`pre`,{className:`solution-pre`,children:(0,$.jsx)(`code`,{children:s})})]})]})})]})]}),(0,$.jsxs)(`div`,{className:`sandbox-actions-bar`,children:[r.length>0&&(0,$.jsxs)(`div`,{className:`hint-section`,children:[(0,$.jsxs)(`button`,{onClick:()=>{S(o),y(!0),_&&g(e=>(e+1)%r.length)},className:`btn-secondary hint-trigger-btn`,children:[(0,$.jsx)(kg,{size:16,className:`hint-bulb`}),(0,$.jsx)(`span`,{children:_?`Следующая подсказка`:`Показать подсказку`})]}),_&&(0,$.jsx)(`div`,{className:`hint-box-container bounce`,children:(0,$.jsxs)(`p`,{children:[`💡 `,r[h]]})})]}),(0,$.jsxs)(`button`,{onClick:async()=>{f([`Запуск тестов...`]),m(null),S(o),n&&ne.current&&(ne.current.innerHTML=n);try{let e=l,n=[],r=await Function(`userCode`,`console`,`window`,t)(e,{log:(...e)=>{n.push(e.map(e=>typeof e==`object`?JSON.stringify(e):String(e)).join(` `))},error:(...e)=>{n.push(`⚠️ `+e.join(` `))}},window);f([...n,...r?.logs||[]]),x(`tests`),r?.success?(m(!0),w(o),i()):(m(!1),ee(o),a())}catch(e){f(t=>[...t,`❌ Ошибка компиляции/выполнения: ${e.message}`]),m(!1),x(`tests`),ee(o),a()}},className:`btn-primary run-tests-btn`,children:[(0,$.jsx)(Rx,{size:16,fill:`currentColor`}),(0,$.jsx)(`span`,{children:`Запустить тесты`})]})]}),(0,$.jsx)(`style`,{children:`
+/* Spinner */
+.psolve-spinner {
+  width: 28px; height: 28px;
+  border: 3px solid rgba(255,255,255,0.1);
+  border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: psolve-spin 0.7s linear infinite;
+}
+@keyframes psolve-spin { to { transform: rotate(360deg); } }
+
+/* Mobile FAB */
+.psolve-mobile-fab {
+  position: fixed;
+  right: 20px;
+  bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  width: 56px; height: 56px;
+  background: linear-gradient(135deg, #6366f1, #7c3aed);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(99,102,241,0.45);
+  z-index: 50;
+  transition: all 0.2s;
+}
+.psolve-mobile-fab:active { transform: scale(0.92); }
+.psolve-mobile-fab.running { background: #555; box-shadow: none; }
+.psolve-mobile-fab.success { background: linear-gradient(135deg, #16a34a, #22c55e); box-shadow: 0 6px 24px rgba(34,197,94,0.45); }
+
+/* ====== MOBILE ====== */
+@media (max-width: 768px) {
+  .pract-hero {
+    padding: 20px 16px 16px;
+  }
+  .pract-hero-title { font-size: 22px; }
+  .pract-hero-stats { gap: 16px; }
+  .pract-stat-num { font-size: 20px; }
+  .pract-controls { padding: 12px 16px; }
+  .pract-pills { gap: 4px; }
+  .pract-pill { padding: 6px 10px; font-size: 12px; }
+  .pract-card-grid {
+    padding: 12px 16px;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .pract-card { padding: 16px; }
+  .pract-card-title { font-size: 15px; }
+
+  /* Solve view: full screen panels */
+  .psolve-topbar { padding: 8px 12px; }
+  .psolve-run-fab { display: none; }
+  .psolve-tabs { display: flex; }
+
+  .psolve-body { flex-direction: column; }
+
+  .psolve-desc {
+    width: 100%;
+    flex: 1;
+    border-right: none;
+    min-width: 0;
+  }
+  .psolve-desc-inner { padding: 16px; }
+  .psolve-title { font-size: 18px; }
+  .psolve-desc-text { font-size: 14px; line-height: 1.65; }
+
+  .psolve-editor {
+    flex: 1;
+    min-height: 300px;
+  }
+  .psolve-editor-toolbar { padding: 8px 12px; }
+  .psolve-textarea { font-size: 14px; padding: 14px; }
+
+  .psolve-tests {
+    flex: 1;
+    max-height: none;
+    min-height: 0;
+    border-top: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .pract-hero-title { font-size: 20px; }
+  .pract-hero-sub { font-size: 12px; }
+  .pract-hero-icon-wrap { width: 44px; height: 44px; border-radius: 12px; }
+  .pract-card-grid { padding: 10px 12px; }
+  .pract-card { padding: 14px; border-radius: 12px; }
+  .pract-card-title { font-size: 14px; }
+}
+
+/* ====== DESKTOP ====== */
+@media (min-width: 769px) {
+  .psolve-tabs { display: none !important; }
+
+  .psolve-body {
+    flex-direction: row;
+  }
+
+  .psolve-desc { display: flex; }
+
+  .psolve-editor {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .psolve-tests {
+    border-top: 1px solid var(--border-color);
+  }
+
+  .psolve-panel.hidden {
+    display: flex;
+  }
+}
+`,IM=[`{`,`}`,`(`,`)`,`[`,`]`,`;`,`=`,`<`,`>`,`"`,`'`,"`",`/`,`const`,`let`,`function`,`console.log`],LM=e=>e.includes(`Promise.race`)?`Использование встроенного Promise.race категорически запрещено по условию задачи. Реализуйте собственную логику обхода массива промисов и управления новым промисом.`:e.includes(`is not defined`)?`Ошибка обращения к необъявленной переменной или функции. Проверьте правильность написания имен (например, регистр букв) и убедитесь, что вы объявили переменную через let или const перед использованием.`:e.includes(`is not a function`)?`Попытка вызвать значение, которое не является функцией. Проверьте, правильно ли возвращается функция из makeCounter или совпадает ли имя вызываемой функции.`:e.includes(`Cannot read properties of`)||e.includes(`cannot read property`)||e.includes(`is null`)||e.includes(`is undefined`)?`Ошибка обращения к свойству или методу неопределенного значения (null или undefined). Проверьте инициализацию переменных, а также убедитесь, что closest("button") действительно нашел кнопку, перед тем как читать ее dataset.`:e.includes(`Unexpected token`)||e.includes(`Unexpected identifier`)||e.includes(`SyntaxError`)?"Синтаксическая ошибка. Убедитесь, что все открытые круглые `(`, квадратные `[` и фигурные `{` скобки имеют парные закрывающие скобки, и проверьте правильность написания ключевых слов и расстановку запятых.":e.includes(`Unexpected end of input`)?`Код обрывается неожиданно. Чаще всего это означает, что вы забыли закрыть какую-то круглую, квадратную или фигурную скобку в конце решения.`:`Проверьте логику работы кода, структуру возвращаемых данных и соответствие сигнатуры функций требованиям задания.`,RM=(e,t,n)=>{let r=e.includes(`makeCounter`)?`makeCounter`:e.includes(`btn-container`)||e.includes(`result`)?`delegation`:e.includes(`race`)?`race`:e.includes(`swap`)?`swap`:``,i=[];if(r===`makeCounter`?i=[{name:`Функция makeCounter объявлена и доступна`,checkFailure:e=>e.includes(`makeCounter должна быть функцией`)},{name:`makeCounter() возвращает функцию-счетчик`,checkFailure:e=>e.includes(`должна возвращать функцию-счетчик`)},{name:`Счетчик по умолчанию увеличивает значение: 1, 2...`,checkFailure:e=>e.includes(`Счетчик по умолчанию должен`)},{name:`Поддерживается начальное значение (например, 10 -> 11, 12)`,checkFailure:e=>e.includes(`Счетчик с начальным значением 10`)},{name:`Поддерживаются отрицательные значения (например, -5 -> -4)`,checkFailure:e=>e.includes(`Счетчик с отрицательным значением -5`)}]:r===`delegation`?i=[{name:`Клик по вложенному span на кнопке №1 выводит "1"`,checkFailure:e=>e.includes(`При клике на span внутри`)},{name:`Клик по кнопке №3 выводит "3"`,checkFailure:e=>e.includes(`При клике на третью кнопку`)},{name:`Клик по самому контейнеру игнорируется (делегирование)`,checkFailure:e=>e.includes(`Клик по фону контейнера`)}]:r===`race`?i=[{name:`Функция race объявлена и доступна`,checkFailure:e=>e.includes(`race должна быть функцией`)},{name:`Запрещено использование встроенного Promise.race`,checkFailure:e=>e.includes(`категорически запрещено`)},{name:`Возвращается самый быстрый успешно выполненный промис`,checkFailure:e=>e.includes(`Должен выиграть быстрый промис`)},{name:`Первый отклоненный промис отклоняет общий результат`,checkFailure:e=>e.includes(`Промис должен был отклониться`)||e.includes(`отклониться с ошибкой`)},{name:`Обычные значения (не промисы) обрабатываются мгновенно`,checkFailure:e=>e.includes(`Обычные значения должны`)}]:r===`swap`&&(i=[{name:`Функция swap объявлена и доступна`,checkFailure:e=>e.includes(`swap должна быть функцией`)},{name:`swap(42, "hello") возвращает кортеж ["hello", 42]`,checkFailure:e=>e.includes(`swap(42, 'hello')`)||e.includes(`swap(42, "hello")`)},{name:`Структура сложных объектов сохраняется при swap`,checkFailure:e=>e.includes(`swap не сохранил структуру`)}]),i.length===0)return[];if(n===null&&t.length===0)return i.map((e,t)=>({id:String(t),name:e.name,status:`pending`}));if(n===!0)return i.map((e,t)=>({id:String(t),name:e.name,status:`passed`}));let a=t.find(e=>e.includes(`Ошибка компиляции/выполнения`)||e.includes(`Ошибка при запуске`)||e.includes(`Ошибка выполнения тестов`));if(a)return i.map((e,t)=>({id:String(t),name:e.name,status:t===0?`failed`:`pending`,errorMsg:a}));let o=-1,s=``;for(let e=0;e<i.length;e++){let n=t.find(t=>i[e].checkFailure(t));if(n){o=e,s=n;break}}if(o===-1&&t.length>0){let e=t.find(e=>e.includes(`не`)||e.includes(`ошибка`)||e.includes(`Ошибка`)||e.includes(`должна`)||e.includes(`должен`));e?(o=i.findIndex(t=>t.checkFailure(e)),o===-1&&(o=0),s=e):(o=0,s=t[t.length-1])}return i.map((e,t)=>{let n=`passed`;return t===o?n=`failed`:t>o&&(n=`pending`),{id:String(t),name:e.name,status:n,errorMsg:t===o?s:void 0}})},zM=({starterCode:e,testSuite:t,domSetup:n,hints:r,onSuccess:i,onFailure:a,vibrationEnabled:o,referenceSolution:s,explanation:c})=>{let[l,u]=(0,v.useState)(e),[d,f]=(0,v.useState)([]),[p,m]=(0,v.useState)(null),[h,g]=(0,v.useState)(0),[_,y]=(0,v.useState)(!1),[b,x]=(0,v.useState)(`tests`),[C,te]=(0,v.useState)(!1),ne=(0,v.useRef)(null),T=(0,v.useRef)(null),E=(0,v.useRef)(null);(0,v.useEffect)(()=>{u(e),f([]),m(null),y(!1),g(0)},[e]);let re=e=>{S(o);let t=T.current;if(!t)return;let n=t.selectionStart,r=t.selectionEnd,i=[`const`,`let`,`function`].includes(e)?`${e} `:e;u(l.substring(0,n)+i+l.substring(r)),setTimeout(()=>{t.focus(),t.selectionStart=t.selectionEnd=n+i.length},0)};return(0,$.jsxs)(`div`,{className:`sandbox-layout`,children:[n&&(0,$.jsxs)(`div`,{className:`sandbox-dom-preview card`,children:[(0,$.jsx)(`p`,{className:`preview-title`,children:`Интерактивный DOM-контейнер`}),(0,$.jsx)(`div`,{ref:ne,dangerouslySetInnerHTML:{__html:n}})]}),(0,$.jsxs)(`div`,{className:`editor-grid`,children:[(0,$.jsxs)(`div`,{className:`editor-container card`,children:[(0,$.jsxs)(`div`,{className:`editor-header`,children:[(0,$.jsx)(`span`,{children:`Редактор JavaScript/TypeScript`}),(0,$.jsx)(`div`,{className:`editor-actions`,children:(0,$.jsx)(`button`,{onClick:()=>{S(o),u(e),f([]),m(null)},className:`editor-action-btn`,title:`Сбросить код`,children:(0,$.jsx)(uC,{size:16})})})]}),(0,$.jsx)(`div`,{className:`editor-helper-bar`,children:IM.map(e=>(0,$.jsx)(`button`,{type:`button`,onClick:()=>re(e),className:`helper-key-btn`,children:e},e))}),(0,$.jsxs)(`div`,{className:`editor-input-wrapper`,children:[(0,$.jsx)(`pre`,{ref:E,className:`editor-highlight-layer`,"aria-hidden":`true`,children:(0,$.jsx)(`code`,{dangerouslySetInnerHTML:{__html:(e=>e.replace(/&/g,`&amp;`).replace(/</g,`&lt;`).replace(/>/g,`&gt;`).replace(/("[^"]*"|'[^']*'|`[^`]*`)/g,`<span class="hl-string">$1</span>`).replace(/(\/\/.*)/gm,`<span class="hl-comment">$1</span>`).replace(/\b(const|let|var|function|return|if|else|for|while|new|class|import|export|from|async|await|try|catch|throw|typeof|instanceof|in|of|switch|case|break|default|this|null|undefined|true|false)\b/g,`<span class="hl-keyword">$1</span>`).replace(/\b(\d+\.?\d*)\b/g,`<span class="hl-number">$1</span>`).replace(/\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*(?=\()/g,`<span class="hl-function">$1</span>`))(l)+`
+`}})}),(0,$.jsx)(`textarea`,{ref:T,value:l,onChange:e=>u(e.target.value),onKeyDown:e=>{if(e.key===`Tab`){e.preventDefault();let t=e.currentTarget,n=t.selectionStart,r=t.selectionEnd;u(l.substring(0,n)+`  `+l.substring(r)),setTimeout(()=>{t.selectionStart=t.selectionEnd=n+2},0)}},onScroll:e=>{E.current&&(E.current.scrollTop=e.currentTarget.scrollTop,E.current.scrollLeft=e.currentTarget.scrollLeft)},className:`editor-textarea`,placeholder:`Напишите решение...`,spellCheck:`false`})]})]}),(0,$.jsxs)(`div`,{className:`console-container card`,children:[(0,$.jsxs)(`div`,{className:`console-header-tabs`,children:[(0,$.jsxs)(`button`,{type:`button`,onClick:()=>{S(o),x(`tests`)},className:`console-tab-btn ${b===`tests`?`active`:``}`,children:[(0,$.jsx)(fO,{size:14}),(0,$.jsx)(`span`,{children:`Результаты автотестов`}),p!==null&&(0,$.jsx)(`span`,{className:`tab-indicator-count ${p?`success`:`failure`}`,children:p?`✓`:`✗`})]}),(0,$.jsxs)(`button`,{type:`button`,onClick:()=>{S(o),x(`console`)},className:`console-tab-btn ${b===`console`?`active`:``}`,children:[(0,$.jsx)(fO,{size:14}),(0,$.jsx)(`span`,{children:`Логи console.log`}),d.filter(e=>!e.includes(`Запуск тестов`)&&!e.includes(`Успешно`)&&!e.includes(`Все тесты`)).length>0&&(0,$.jsx)(`span`,{className:`tab-indicator-dot`})]}),s&&(0,$.jsxs)(`button`,{type:`button`,onClick:()=>{S(o),x(`solution`)},className:`console-tab-btn ${b===`solution`?`active`:``}`,children:[(0,$.jsx)(kg,{size:14}),(0,$.jsx)(`span`,{children:`Разбор решения`})]})]}),(0,$.jsx)(`div`,{className:`console-body-content`,children:b===`tests`?(0,$.jsx)(`div`,{className:`test-results-checklist`,children:(()=>{let t=RM(e,d,p);return t.length===0?(0,$.jsx)(`span`,{className:`console-placeholder`,children:`Запустите тесты для отображения результатов...`}):(0,$.jsx)(`div`,{className:`test-cases-list`,children:t.map(e=>(0,$.jsxs)(`div`,{className:`test-case-row ${e.status}`,children:[(0,$.jsxs)(`div`,{className:`test-case-header-row`,children:[(0,$.jsxs)(`span`,{className:`test-status-icon-wrapper`,children:[e.status===`passed`&&(0,$.jsx)(os,{size:16,className:`text-success glow-success`}),e.status===`failed`&&(0,$.jsx)(Bs,{size:16,className:`text-error glow-error`}),e.status===`pending`&&(0,$.jsx)(Vs,{size:16,className:`text-muted`})]}),(0,$.jsx)(`span`,{className:`test-case-name`,children:e.name})]}),e.errorMsg&&(0,$.jsxs)(`div`,{className:`test-case-error-details`,children:[(0,$.jsx)(yk,{size:14,className:`text-error`,style:{marginTop:`2px`}}),(0,$.jsxs)(`div`,{className:`error-diagnostic-text`,children:[(0,$.jsx)(`p`,{className:`error-diag-title`,children:`Диагностика ошибки:`}),(0,$.jsx)(`p`,{className:`error-diag-body`,children:e.errorMsg}),(0,$.jsx)(`p`,{className:`error-tip-title`,style:{marginTop:`8px`,fontSize:`10px`,textTransform:`uppercase`,letterSpacing:`0.5px`,color:`var(--color-warning)`,fontWeight:800},children:`Совет по исправлению:`}),(0,$.jsx)(`p`,{className:`error-tip-body`,style:{fontSize:`12px`,color:`var(--text-secondary)`,lineHeight:1.4,marginTop:`2px`},children:LM(e.errorMsg)})]})]})]},e.id))})})()}):b===`console`?(0,$.jsx)(`div`,{className:`console-logs`,children:d.length===0?(0,$.jsx)(`span`,{className:`console-placeholder`,children:`Здесь появится вывод console.log после запуска...`}):d.map((e,t)=>(0,$.jsx)(`div`,{className:`console-log-line ${e.includes(`❌`)||e.includes(`Ошибка`)||e.includes(`потерял`)?`error`:e.includes(`Все тесты`)||e.includes(`Успешно`)?`success`:``}`,children:e},t))}):(0,$.jsxs)(`div`,{className:`solution-tab-content`,children:[(0,$.jsxs)(`div`,{className:`solution-explanation-card`,children:[(0,$.jsx)(`h4`,{className:`solution-subtitle`,children:`Разбор логики`}),(0,$.jsx)(`p`,{className:`solution-explanation-text`,children:c})]}),(0,$.jsxs)(`div`,{className:`solution-code-container`,children:[(0,$.jsxs)(`div`,{className:`solution-code-header`,children:[(0,$.jsx)(`span`,{children:`Эталонный код`}),(0,$.jsxs)(`button`,{onClick:()=>{s&&(navigator.clipboard.writeText(s),te(!0),S(o),setTimeout(()=>te(!1),2e3))},className:`copy-btn-compact`,title:`Копировать код`,children:[C?(0,$.jsx)(R,{size:14,className:`text-success`}):(0,$.jsx)(gl,{size:14}),(0,$.jsx)(`span`,{children:C?`Скопировано!`:`Копировать`})]})]}),(0,$.jsx)(`pre`,{className:`solution-pre`,children:(0,$.jsx)(`code`,{children:s})})]})]})})]})]}),(0,$.jsxs)(`div`,{className:`sandbox-actions-bar`,children:[r.length>0&&(0,$.jsxs)(`div`,{className:`hint-section`,children:[(0,$.jsxs)(`button`,{onClick:()=>{S(o),y(!0),_&&g(e=>(e+1)%r.length)},className:`btn-secondary hint-trigger-btn`,children:[(0,$.jsx)(kg,{size:16,className:`hint-bulb`}),(0,$.jsx)(`span`,{children:_?`Следующая подсказка`:`Показать подсказку`})]}),_&&(0,$.jsx)(`div`,{className:`hint-box-container bounce`,children:(0,$.jsxs)(`p`,{children:[`💡 `,r[h]]})})]}),(0,$.jsxs)(`button`,{onClick:async()=>{f([`Запуск тестов...`]),m(null),S(o),n&&ne.current&&(ne.current.innerHTML=n);try{let e=l,n=[],r=await Function(`userCode`,`console`,`window`,t)(e,{log:(...e)=>{n.push(e.map(e=>typeof e==`object`?JSON.stringify(e):String(e)).join(` `))},error:(...e)=>{n.push(`⚠️ `+e.join(` `))}},window);f([...n,...r?.logs||[]]),x(`tests`),r?.success?(m(!0),w(o),i()):(m(!1),ee(o),a())}catch(e){f(t=>[...t,`❌ Ошибка компиляции/выполнения: ${e.message}`]),m(!1),x(`tests`),ee(o),a()}},className:`btn-primary run-tests-btn`,children:[(0,$.jsx)(Rx,{size:16,fill:`currentColor`}),(0,$.jsx)(`span`,{children:`Запустить тесты`})]})]}),(0,$.jsx)(`style`,{children:`
         .sandbox-layout {
           display: flex;
           flex-direction: column;
@@ -3837,9 +4284,9 @@ function fetchUser(name) {
           padding: 14px 28px !important;
           flex-shrink: 0;
         }
-      `})]})},IM=new Set(`const.let.var.function.return.if.else.for.while.do.switch.case.break.continue.new.this.class.extends.super.import.export.from.default.async.await.try.catch.finally.throw.typeof.instanceof.in.of.yield.static.get.set.constructor.interface.type.enum.implements.public.private.protected.readonly.abstract.declare.module.namespace`.split(`.`)),LM=new Set(`true.false.null.undefined.NaN.Infinity.console.window.document.Promise.Array.Object.String.Number.Boolean.Math.Date.Error.TypeError.ReferenceError.Map.Set.JSON.void.never.any.unknown.string.number.boolean.symbol.bigint`.split(`.`));function RM(e){let t=[],n=0;for(;n<e.length;){if(e[n]===`/`&&e[n+1]===`/`){let r=e.indexOf(`
-`,n),i=r===-1?e.slice(n):e.slice(n,r);t.push({type:`comment`,value:i}),n+=i.length;continue}if(e[n]===`/`&&e[n+1]===`*`){let r=e.indexOf(`*/`,n+2),i=r===-1?e.slice(n):e.slice(n,r+2);t.push({type:`comment`,value:i}),n+=i.length;continue}if(e[n]===`"`||e[n]===`'`||e[n]==="`"){let r=e[n],i=n+1;for(;i<e.length&&e[i]!==r;)e[i]===`\\`&&i++,i++;let a=e.slice(n,i+1);t.push({type:`string`,value:a}),n=i+1;continue}if(/[0-9]/.test(e[n])&&(n===0||!/[a-zA-Z_$]/.test(e[n-1]))){let r=n;for(;r<e.length&&/[0-9a-fA-FxXoObB._n]/.test(e[r]);)r++;t.push({type:`number`,value:e.slice(n,r)}),n=r;continue}if(e[n]===`<`&&(e[n+1]===`/`||/[a-zA-Z!]/.test(e[n+1]||``))){let r=e.slice(n).match(/^<\/?[a-zA-Z][a-zA-Z0-9-]*(?:\s[^>]*)?\/?>/);if(r){t.push({type:`tag`,value:r[0]}),n+=r[0].length;continue}}if(/[a-zA-Z_$]/.test(e[n])){let r=n;for(;r<e.length&&/[a-zA-Z0-9_$]/.test(e[r]);)r++;let i=e.slice(n,r);IM.has(i)?t.push({type:`keyword`,value:i}):LM.has(i)?t.push({type:`type`,value:i}):e[r]===`(`?t.push({type:`function`,value:i}):n>0&&e[n-1]===`.`?t.push({type:`property`,value:i}):t.push({type:`plain`,value:i}),n=r;continue}if(/[=+\-*/<>!&|?:%^~]/.test(e[n])){let r=n;for(;r<e.length&&/[=+\-*/<>!&|?:%^~]/.test(e[r]);)r++;t.push({type:`operator`,value:e.slice(n,r)}),n=r;continue}if(/[{}()\[\];,.]/.test(e[n])){t.push({type:`punctuation`,value:e[n]}),n++;continue}t.push({type:`plain`,value:e[n]}),n++}return t}var zM={keyword:`#c792ea`,string:`#c3e88d`,comment:`#546e7a`,number:`#f78c6c`,operator:`#89ddff`,function:`#82aaff`,property:`#f07178`,tag:`#f07178`,attr:`#ffcb6b`,punctuation:`#89ddff`,type:`#ffcb6b`,plain:`#eeffff`},BM=({code:e})=>{let t=RM(e.trim()),n=e.trim().split(`
-`).length;return(0,$.jsxs)(`div`,{className:`code-block-wrapper`,children:[(0,$.jsxs)(`div`,{className:`code-block-header`,children:[(0,$.jsxs)(`div`,{className:`code-block-dots`,children:[(0,$.jsx)(`span`,{className:`dot dot-red`}),(0,$.jsx)(`span`,{className:`dot dot-yellow`}),(0,$.jsx)(`span`,{className:`dot dot-green`})]}),(0,$.jsx)(`span`,{className:`code-block-lang`,children:`JavaScript`})]}),(0,$.jsxs)(`div`,{className:`code-block-body`,children:[(0,$.jsx)(`div`,{className:`code-line-numbers`,children:Array.from({length:n},(e,t)=>(0,$.jsx)(`span`,{children:t+1},t))}),(0,$.jsx)(`pre`,{className:`code-block-pre`,children:(0,$.jsx)(`code`,{children:t.map((e,t)=>(0,$.jsx)(`span`,{style:{color:zM[e.type]},children:e.value},t))})})]}),(0,$.jsx)(`style`,{children:`
+      `})]})},BM=new Set(`const.let.var.function.return.if.else.for.while.do.switch.case.break.continue.new.this.class.extends.super.import.export.from.default.async.await.try.catch.finally.throw.typeof.instanceof.in.of.yield.static.get.set.constructor.interface.type.enum.implements.public.private.protected.readonly.abstract.declare.module.namespace`.split(`.`)),VM=new Set(`true.false.null.undefined.NaN.Infinity.console.window.document.Promise.Array.Object.String.Number.Boolean.Math.Date.Error.TypeError.ReferenceError.Map.Set.JSON.void.never.any.unknown.string.number.boolean.symbol.bigint`.split(`.`));function HM(e){let t=[],n=0;for(;n<e.length;){if(e[n]===`/`&&e[n+1]===`/`){let r=e.indexOf(`
+`,n),i=r===-1?e.slice(n):e.slice(n,r);t.push({type:`comment`,value:i}),n+=i.length;continue}if(e[n]===`/`&&e[n+1]===`*`){let r=e.indexOf(`*/`,n+2),i=r===-1?e.slice(n):e.slice(n,r+2);t.push({type:`comment`,value:i}),n+=i.length;continue}if(e[n]===`"`||e[n]===`'`||e[n]==="`"){let r=e[n],i=n+1;for(;i<e.length&&e[i]!==r;)e[i]===`\\`&&i++,i++;let a=e.slice(n,i+1);t.push({type:`string`,value:a}),n=i+1;continue}if(/[0-9]/.test(e[n])&&(n===0||!/[a-zA-Z_$]/.test(e[n-1]))){let r=n;for(;r<e.length&&/[0-9a-fA-FxXoObB._n]/.test(e[r]);)r++;t.push({type:`number`,value:e.slice(n,r)}),n=r;continue}if(e[n]===`<`&&(e[n+1]===`/`||/[a-zA-Z!]/.test(e[n+1]||``))){let r=e.slice(n).match(/^<\/?[a-zA-Z][a-zA-Z0-9-]*(?:\s[^>]*)?\/?>/);if(r){t.push({type:`tag`,value:r[0]}),n+=r[0].length;continue}}if(/[a-zA-Z_$]/.test(e[n])){let r=n;for(;r<e.length&&/[a-zA-Z0-9_$]/.test(e[r]);)r++;let i=e.slice(n,r);BM.has(i)?t.push({type:`keyword`,value:i}):VM.has(i)?t.push({type:`type`,value:i}):e[r]===`(`?t.push({type:`function`,value:i}):n>0&&e[n-1]===`.`?t.push({type:`property`,value:i}):t.push({type:`plain`,value:i}),n=r;continue}if(/[=+\-*/<>!&|?:%^~]/.test(e[n])){let r=n;for(;r<e.length&&/[=+\-*/<>!&|?:%^~]/.test(e[r]);)r++;t.push({type:`operator`,value:e.slice(n,r)}),n=r;continue}if(/[{}()\[\];,.]/.test(e[n])){t.push({type:`punctuation`,value:e[n]}),n++;continue}t.push({type:`plain`,value:e[n]}),n++}return t}var UM={keyword:`#c792ea`,string:`#c3e88d`,comment:`#546e7a`,number:`#f78c6c`,operator:`#89ddff`,function:`#82aaff`,property:`#f07178`,tag:`#f07178`,attr:`#ffcb6b`,punctuation:`#89ddff`,type:`#ffcb6b`,plain:`#eeffff`},WM=({code:e})=>{let t=HM(e.trim()),n=e.trim().split(`
+`).length;return(0,$.jsxs)(`div`,{className:`code-block-wrapper`,children:[(0,$.jsxs)(`div`,{className:`code-block-header`,children:[(0,$.jsxs)(`div`,{className:`code-block-dots`,children:[(0,$.jsx)(`span`,{className:`dot dot-red`}),(0,$.jsx)(`span`,{className:`dot dot-yellow`}),(0,$.jsx)(`span`,{className:`dot dot-green`})]}),(0,$.jsx)(`span`,{className:`code-block-lang`,children:`JavaScript`})]}),(0,$.jsxs)(`div`,{className:`code-block-body`,children:[(0,$.jsx)(`div`,{className:`code-line-numbers`,children:Array.from({length:n},(e,t)=>(0,$.jsx)(`span`,{children:t+1},t))}),(0,$.jsx)(`pre`,{className:`code-block-pre`,children:(0,$.jsx)(`code`,{children:t.map((e,t)=>(0,$.jsx)(`span`,{style:{color:UM[e.type]},children:e.value},t))})})]}),(0,$.jsx)(`style`,{children:`
         .code-block-wrapper {
           border-radius: 10px;
           overflow: hidden;
@@ -3952,7 +4399,7 @@ function fetchUser(name) {
             height: 8px;
           }
         }
-      `})]})},VM=({state:e,speechText:t})=>{let n=()=>{switch(e){case`success`:return{left:(0,$.jsx)(`path`,{d:`M12 24 L18 18 L24 24`,stroke:`#10b981`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`}),right:(0,$.jsx)(`path`,{d:`M36 24 L42 18 L48 24`,stroke:`#10b981`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`})};case`error`:return{left:(0,$.jsx)(`path`,{d:`M12 22 L24 26`,stroke:`#f43f5e`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`}),right:(0,$.jsx)(`path`,{d:`M36 26 L48 22`,stroke:`#f43f5e`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`})};case`thinking`:return{left:(0,$.jsx)(`circle`,{cx:`18`,cy:`24`,r:`3`,fill:`#818cf8`,className:`thinking-eye`}),right:(0,$.jsx)(`circle`,{cx:`42`,cy:`24`,r:`3`,fill:`#818cf8`,className:`thinking-eye`})};case`cheering`:return{left:(0,$.jsx)(`path`,{d:`M14 20 C 14 16, 22 16, 22 20`,stroke:`#818cf8`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`}),right:(0,$.jsx)(`path`,{d:`M38 20 C 38 16, 46 16, 46 20`,stroke:`#818cf8`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`})};default:return{left:(0,$.jsx)(`ellipse`,{cx:`18`,cy:`24`,rx:`4`,ry:`6`,fill:`#94a3b8`,className:`blinking-eye`}),right:(0,$.jsx)(`ellipse`,{cx:`42`,cy:`24`,rx:`4`,ry:`6`,fill:`#94a3b8`,className:`blinking-eye`})}}},r=()=>{switch(e){case`success`:case`cheering`:return(0,$.jsx)(`path`,{d:`M22 36 Q 30 44, 38 36`,stroke:`#10b981`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`});case`error`:return(0,$.jsx)(`path`,{d:`M22 40 Q 30 34, 38 40`,stroke:`#f43f5e`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`});case`thinking`:return(0,$.jsx)(`line`,{x1:`24`,y1:`36`,x2:`36`,y2:`36`,stroke:`#818cf8`,strokeWidth:`4`,strokeLinecap:`round`});default:return(0,$.jsx)(`path`,{d:`M24 36 Q 30 39, 36 36`,stroke:`#94a3b8`,strokeWidth:`3`,strokeLinecap:`round`,fill:`none`})}},i=()=>{switch(e){case`success`:return`rgba(16, 185, 129, 0.5)`;case`error`:return`rgba(244, 63, 94, 0.5)`;case`thinking`:return`rgba(129, 140, 248, 0.5)`;case`cheering`:return`rgba(129, 140, 248, 0.5)`;default:return`rgba(148, 163, 184, 0.2)`}},a=n();return(0,$.jsxs)(`div`,{className:`mascot-container ${e}`,children:[t&&(0,$.jsxs)(`div`,{className:`speech-bubble ${e}`,children:[(0,$.jsx)(`p`,{children:t}),(0,$.jsx)(`div`,{className:`speech-arrow`})]}),(0,$.jsxs)(`div`,{className:`mascot-robot`,children:[(0,$.jsxs)(`div`,{className:`mascot-antenna`,children:[(0,$.jsx)(`div`,{className:`antenna-ball`,style:{boxShadow:`0 0 12px ${i()}`}}),(0,$.jsx)(`div`,{className:`antenna-line`})]}),(0,$.jsx)(`div`,{className:`mascot-head`,style:{boxShadow:`inset 0 0 15px rgba(0,0,0,0.5), 0 0 20px ${i()}`},children:(0,$.jsxs)(`svg`,{viewBox:`0 0 60 48`,className:`face-screen`,children:[a.left,a.right,r()]})}),(0,$.jsx)(`div`,{className:`mascot-neck`}),(0,$.jsx)(`div`,{className:`mascot-body`,children:(0,$.jsx)(`div`,{className:`body-screen`,style:{borderColor:i()},children:(0,$.jsx)(`div`,{className:`screen-wave`})})})]}),(0,$.jsx)(`style`,{children:`
+      `})]})},GM=({state:e,speechText:t})=>{let n=()=>{switch(e){case`success`:return{left:(0,$.jsx)(`path`,{d:`M12 24 L18 18 L24 24`,stroke:`#10b981`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`}),right:(0,$.jsx)(`path`,{d:`M36 24 L42 18 L48 24`,stroke:`#10b981`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`})};case`error`:return{left:(0,$.jsx)(`path`,{d:`M12 22 L24 26`,stroke:`#f43f5e`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`}),right:(0,$.jsx)(`path`,{d:`M36 26 L48 22`,stroke:`#f43f5e`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`})};case`thinking`:return{left:(0,$.jsx)(`circle`,{cx:`18`,cy:`24`,r:`3`,fill:`#818cf8`,className:`thinking-eye`}),right:(0,$.jsx)(`circle`,{cx:`42`,cy:`24`,r:`3`,fill:`#818cf8`,className:`thinking-eye`})};case`cheering`:return{left:(0,$.jsx)(`path`,{d:`M14 20 C 14 16, 22 16, 22 20`,stroke:`#818cf8`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`}),right:(0,$.jsx)(`path`,{d:`M38 20 C 38 16, 46 16, 46 20`,stroke:`#818cf8`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`})};default:return{left:(0,$.jsx)(`ellipse`,{cx:`18`,cy:`24`,rx:`4`,ry:`6`,fill:`#94a3b8`,className:`blinking-eye`}),right:(0,$.jsx)(`ellipse`,{cx:`42`,cy:`24`,rx:`4`,ry:`6`,fill:`#94a3b8`,className:`blinking-eye`})}}},r=()=>{switch(e){case`success`:case`cheering`:return(0,$.jsx)(`path`,{d:`M22 36 Q 30 44, 38 36`,stroke:`#10b981`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`});case`error`:return(0,$.jsx)(`path`,{d:`M22 40 Q 30 34, 38 40`,stroke:`#f43f5e`,strokeWidth:`4`,strokeLinecap:`round`,fill:`none`});case`thinking`:return(0,$.jsx)(`line`,{x1:`24`,y1:`36`,x2:`36`,y2:`36`,stroke:`#818cf8`,strokeWidth:`4`,strokeLinecap:`round`});default:return(0,$.jsx)(`path`,{d:`M24 36 Q 30 39, 36 36`,stroke:`#94a3b8`,strokeWidth:`3`,strokeLinecap:`round`,fill:`none`})}},i=()=>{switch(e){case`success`:return`rgba(16, 185, 129, 0.5)`;case`error`:return`rgba(244, 63, 94, 0.5)`;case`thinking`:return`rgba(129, 140, 248, 0.5)`;case`cheering`:return`rgba(129, 140, 248, 0.5)`;default:return`rgba(148, 163, 184, 0.2)`}},a=n();return(0,$.jsxs)(`div`,{className:`mascot-container ${e}`,children:[t&&(0,$.jsxs)(`div`,{className:`speech-bubble ${e}`,children:[(0,$.jsx)(`p`,{children:t}),(0,$.jsx)(`div`,{className:`speech-arrow`})]}),(0,$.jsxs)(`div`,{className:`mascot-robot`,children:[(0,$.jsxs)(`div`,{className:`mascot-antenna`,children:[(0,$.jsx)(`div`,{className:`antenna-ball`,style:{boxShadow:`0 0 12px ${i()}`}}),(0,$.jsx)(`div`,{className:`antenna-line`})]}),(0,$.jsx)(`div`,{className:`mascot-head`,style:{boxShadow:`inset 0 0 15px rgba(0,0,0,0.5), 0 0 20px ${i()}`},children:(0,$.jsxs)(`svg`,{viewBox:`0 0 60 48`,className:`face-screen`,children:[a.left,a.right,r()]})}),(0,$.jsx)(`div`,{className:`mascot-neck`}),(0,$.jsx)(`div`,{className:`mascot-body`,children:(0,$.jsx)(`div`,{className:`body-screen`,style:{borderColor:i()},children:(0,$.jsx)(`div`,{className:`screen-wave`})})})]}),(0,$.jsx)(`style`,{children:`
         .mascot-container {
           display: flex;
           align-items: center;
@@ -4171,7 +4618,7 @@ function fetchUser(name) {
             border-bottom: none;
           }
         }
-      `})]})},HM=(e,t)=>{if(t)try{let t=window.AudioContext||window.webkitAudioContext;if(!t)return;let n=new t;if(e===`correct`){let e=n.createOscillator(),t=n.createGain();e.connect(t),t.connect(n.destination),e.type=`sine`;let r=n.currentTime;e.frequency.setValueAtTime(523.25,r),e.frequency.setValueAtTime(659.25,r+.1),e.frequency.setValueAtTime(783.99,r+.2),t.gain.setValueAtTime(.15,r),t.gain.exponentialRampToValueAtTime(.01,r+.4),e.start(r),e.stop(r+.4)}else if(e===`incorrect`){let e=n.createOscillator(),t=n.createGain();e.connect(t),t.connect(n.destination),e.type=`sawtooth`;let r=n.currentTime;e.frequency.setValueAtTime(180,r),e.frequency.linearRampToValueAtTime(100,r+.3),t.gain.setValueAtTime(.2,r),t.gain.exponentialRampToValueAtTime(.01,r+.3),e.start(r),e.stop(r+.3)}else if(e===`complete`){let e=n.createOscillator(),t=n.createGain();e.connect(t),t.connect(n.destination),e.type=`sine`;let r=n.currentTime;e.frequency.setValueAtTime(523.25,r),e.frequency.setValueAtTime(587.33,r+.08),e.frequency.setValueAtTime(659.25,r+.16),e.frequency.setValueAtTime(783.99,r+.24),e.frequency.setValueAtTime(1046.5,r+.32),t.gain.setValueAtTime(.2,r),t.gain.exponentialRampToValueAtTime(.01,r+.6),e.start(r),e.stop(r+.6)}else if(e===`tap`){let e=n.createOscillator(),t=n.createGain();e.connect(t),t.connect(n.destination),e.type=`sine`;let r=n.currentTime;e.frequency.setValueAtTime(800,r),t.gain.setValueAtTime(.06,r),t.gain.exponentialRampToValueAtTime(.001,r+.08),e.start(r),e.stop(r+.08)}}catch(e){console.error(`AudioContext synthesis error:`,e)}},UM=({lesson:e,onClose:t,onComplete:n,onLoseHeart:r,hearts:i,soundEnabled:a,vibrationEnabled:o,onMasterSlide:s,isReviewMode:c=!1})=>{let[l,u]=(0,v.useState)(0),[d,f]=(0,v.useState)(null),[p,m]=(0,v.useState)(null),[h,g]=(0,v.useState)([]),[_,y]=(0,v.useState)(null),[b,x]=(0,v.useState)(!1),[C,ne]=(0,v.useState)(!1),[T,E]=(0,v.useState)(`idle`),[re,ie]=(0,v.useState)(`Привет! Готовы потренироваться? Изучите теорию и нажмите кнопку внизу.`),[ae,oe]=(0,v.useState)(0),[se,ce]=(0,v.useState)(null),[D,O]=(0,v.useState)(!1),[le,ue]=(0,v.useState)({icon:``,show:!1}),de=[`Отлично! Абсолютно верно!`,`Так держать! Правильный ответ!`,`Великолепно! Вы на верном пути!`,`Верно! Продолжайте в том же духе!`,`Точно в цель! Молодец!`,`Супер! Всё правильно!`,`Браво! Отличный ответ!`],fe=[`Не совсем... Посмотрите объяснение.`,`Ой, мимо! Ничего, разберёмся.`,`Почти! Но не в этот раз.`,`Неверно. Вот как правильно:`,`Не угадали! Но это полезная ошибка.`],k=e=>e[Math.floor(Math.random()*e.length)],A=e.slides[l],pe=l/e.slides.length*100,me=()=>{switch(A.type){case`theory`:return{label:`Теоретический раздел`,icon:(0,$.jsx)(mi,{size:13}),className:`slide-indicator-theory`};case`multiple-choice`:return{label:`Практическое задание: Выбор ответа`,icon:(0,$.jsx)(Ns,{size:13}),className:`slide-indicator-practice`};case`true-false`:return{label:`Практическое задание: Верно или Ложь`,icon:(0,$.jsx)(Ns,{size:13}),className:`slide-indicator-practice`};case`order`:return{label:`Практическое задание: Упорядочивание`,icon:(0,$.jsx)(qg,{size:13}),className:`slide-indicator-practice`};case`coding`:return{label:`Практическое задание: Написание кода`,icon:(0,$.jsx)(Kc,{size:13}),className:`slide-indicator-practice`};case`find-the-bug`:return{label:`Практическое задание: Найди баг`,icon:(0,$.jsx)(Ns,{size:13}),className:`slide-indicator-practice`};default:return{label:`Практическое задание`,icon:(0,$.jsx)(Kc,{size:13}),className:`slide-indicator-practice`}}};(0,v.useEffect)(()=>{f(null),m(null),y(null),x(!1),ne(!1),A.type===`theory`?(E(`idle`),ie(`Внимательно прочитайте теорию. Особое внимание уделите подводным камням — на зачетах часто ловят именно на них!`),x(!0),ne(!0)):A.type===`multiple-choice`?(E(`thinking`),ie(`Выберите один правильный вариант ответа.`)):A.type===`true-false`?(E(`thinking`),ie(`Правда это или ложь? Подумайте над формулировкой.`)):A.type===`order`?(E(`thinking`),ie(`Кликните по элементам ниже, чтобы расположить их в правильном порядке.`),g([])):A.type===`coding`?(E(`thinking`),ie(`Время лайвкодинга! Прочтите описание, напишите код и нажмите "Запустить тесты" для проверки.`)):A.type===`find-the-bug`&&(E(`thinking`),ie(`Найди баг! Изучи код с ошибкой и выбери правильное исправление.`))},[l,e]),(0,v.useEffect)(()=>{if(se){let e=setTimeout(()=>ce(null),1500);return()=>clearTimeout(e)}},[se]),(0,v.useEffect)(()=>{if(le.show){let e=setTimeout(()=>ue(e=>({...e,show:!1})),1200);return()=>clearTimeout(e)}},[le.show]),(0,v.useEffect)(()=>{if(D){let e=setTimeout(()=>O(!1),1500);return()=>clearTimeout(e)}},[D]);let he=e=>{b||(S(o),h.includes(e)?g(t=>t.filter(t=>t!==e)):g(t=>[...t,e]))},ge=()=>{if(b&&A.type!==`coding`)return;let e=!1,t=``;if(A.type===`multiple-choice`){if(d===null)return;e=d===A.correctIndex,t=A.explanation}else if(A.type===`true-false`){if(p===null)return;e=p===A.correctValue,t=A.explanation}else if(A.type===`order`){if(h.length!==A.items.length){alert(`Пожалуйста, выберите все элементы, чтобы упорядочить их.`);return}e=h.every((e,t)=>e===A.correctOrder[t]),t=A.explanation}else if(A.type===`find-the-bug`){if(d===null)return;e=d===A.correctIndex,t=A.explanation}if(x(!0),ne(e),e){E(`success`),ie(k(de)),HM(`correct`,a),w(o),ue({icon:`✓`,show:!0}),dM({particleCount:25,spread:45,startVelocity:20,gravity:.8,scalar:.7,origin:{y:.6},colors:[`#10b981`,`#34d399`,`#6ee7b7`],disableForReducedMotion:!0});let e=ae+1;oe(e),e===3?ce(`Combo x3!`):e===5?ce(`На огне!`):e===7?ce(`Невероятно!`):e>7&&e%3==0&&ce(`Combo x${e}!`),Math.random()<.15&&O(!0)}else E(`error`),ie(`${k(fe)} ${t}`),HM(`incorrect`,a),ee(o),ue({icon:`✗`,show:!0}),r(),oe(0)},_e=()=>{if(s&&C&&s(l),l+1<e.slides.length)u(e=>e+1);else{HM(`complete`,a),te(o),dM({particleCount:80,spread:60,origin:{y:.8}});let t=ae>=7?3:ae>=5?2:ae>=3?1.5:1;n(Math.round((e.xpReward||30)*t))}};return(0,$.jsxs)(`div`,{className:`lesson-fullscreen`,children:[(0,$.jsxs)(`div`,{className:`lesson-navbar`,children:[(0,$.jsx)(`button`,{onClick:t,className:`close-lesson-btn`,title:`Выйти из урока`,children:(0,$.jsx)(Dj,{size:20})}),(0,$.jsxs)(`div`,{className:`lesson-progress-container`,children:[(0,$.jsx)(`div`,{className:`progress-bar-container`,children:(0,$.jsx)(`div`,{className:`progress-bar-fill`,style:{width:`${pe}%`}})}),(0,$.jsxs)(`span`,{className:`progress-label`,children:[l+1,` / `,e.slides.length]})]}),c?(0,$.jsxs)(`div`,{className:`lesson-review-badge`,children:[(0,$.jsx)(HS,{size:14}),(0,$.jsx)(`span`,{children:`Режим повторения`})]}):(0,$.jsxs)(`div`,{className:`lesson-hearts`,children:[(0,$.jsx)(`span`,{className:`heart-count`,children:i}),(0,$.jsx)(`span`,{className:`heart-icon`,children:`❤️`})]})]}),se&&(0,$.jsxs)(`div`,{className:`combo-popup`,children:[(0,$.jsx)(kj,{size:16}),(0,$.jsx)(`span`,{children:se})]}),D&&(0,$.jsx)(`div`,{className:`bonus-xp-popup`,children:(0,$.jsx)(`span`,{children:`Бонус! Двойной XP`})}),(0,$.jsxs)(`div`,{className:`lesson-workspace`,children:[(0,$.jsxs)(`div`,{className:`lesson-slide-body`,children:[(()=>{let e=me();return(0,$.jsxs)(`div`,{className:`slide-type-indicator ${e.className}`,children:[e.icon,(0,$.jsx)(`span`,{children:e.label})]})})(),A.type===`theory`&&(0,$.jsxs)(`div`,{className:`theory-slide anim-slide-in`,children:[(0,$.jsx)(`h2`,{className:`slide-title`,children:A.title}),A.definition&&(0,$.jsxs)(`div`,{className:`theory-definition card`,children:[(0,$.jsx)(`p`,{className:`section-label`,children:`Определение`}),(0,$.jsx)(`p`,{className:`definition-text`,children:A.definition})]}),A.content&&(0,$.jsx)(`div`,{className:`theory-definition card`,children:(0,$.jsx)(`pre`,{className:`definition-text content-text`,children:A.content})}),A.keyTerms&&A.keyTerms.length>0&&(0,$.jsxs)(`div`,{className:`key-terms-container`,children:[(0,$.jsx)(`p`,{className:`section-label`,children:`Ключевые понятия`}),(0,$.jsx)(`div`,{className:`key-terms-grid`,children:A.keyTerms.map((e,t)=>(0,$.jsxs)(`div`,{className:`key-term-card card`,children:[(0,$.jsx)(`span`,{className:`key-term-name`,children:e.term}),(0,$.jsx)(`span`,{className:`key-term-def`,children:e.definition})]},t))})]}),A.mnemonic&&(0,$.jsxs)(`div`,{className:`mnemonic-block`,children:[(0,$.jsx)(`div`,{className:`mnemonic-icon-wrapper`,children:(0,$.jsx)(kg,{size:20})}),(0,$.jsxs)(`div`,{className:`mnemonic-content`,children:[(0,$.jsx)(`span`,{className:`mnemonic-label`,children:`Запомни`}),(0,$.jsx)(`p`,{className:`mnemonic-text`,children:A.mnemonic})]})]}),A.diagram&&(0,$.jsxs)(`div`,{className:`diagram-container card`,children:[A.diagram.title&&(0,$.jsx)(`p`,{className:`section-label`,children:A.diagram.title}),A.diagram.type===`flow`&&(0,$.jsx)(`div`,{className:`diagram-flow`,children:A.diagram.items.map((e,t)=>(0,$.jsxs)(v.Fragment,{children:[(0,$.jsxs)(`div`,{className:`flow-step`,children:[(0,$.jsx)(`span`,{className:`flow-step-num`,children:t+1}),(0,$.jsx)(`span`,{className:`flow-step-text`,children:e})]}),t<A.diagram.items.length-1&&(0,$.jsx)(`div`,{className:`flow-arrow`,children:(0,$.jsx)(Io,{size:16})})]},t))}),A.diagram.type===`layers`&&(0,$.jsx)(`div`,{className:`diagram-layers`,children:A.diagram.items.map((e,t)=>(0,$.jsxs)(`div`,{className:`layer-row`,style:{opacity:1-t*.1},children:[(0,$.jsx)(`span`,{className:`layer-index`,children:t+1}),(0,$.jsx)(`span`,{className:`layer-text`,children:e})]},t))}),A.diagram.type===`comparison`&&(0,$.jsxs)(`div`,{className:`diagram-comparison`,children:[(0,$.jsxs)(`div`,{className:`comparison-col col-before`,children:[(0,$.jsx)(`span`,{className:`col-header`,children:`До`}),A.diagram.items.map((e,t)=>(0,$.jsx)(`div`,{className:`comp-line`,children:e},t))]}),(0,$.jsxs)(`div`,{className:`comparison-col col-after`,children:[(0,$.jsx)(`span`,{className:`col-header`,children:`После`}),(A.diagram.secondColumn||[]).map((e,t)=>(0,$.jsx)(`div`,{className:`comp-line`,children:e},t))]})]})]}),A.comparison&&(0,$.jsxs)(`div`,{className:`comparison-table-container card`,children:[(0,$.jsx)(`p`,{className:`section-label`,children:A.comparison.title}),(0,$.jsxs)(`table`,{className:`comparison-table`,children:[(0,$.jsx)(`thead`,{children:(0,$.jsx)(`tr`,{children:A.comparison.headers.map((e,t)=>(0,$.jsx)(`th`,{children:e},t))})}),(0,$.jsx)(`tbody`,{children:A.comparison.rows.map((e,t)=>(0,$.jsx)(`tr`,{children:e.map((e,t)=>(0,$.jsx)(`td`,{children:e},t))},t))})]})]}),A.codeSnippet&&(0,$.jsxs)(`div`,{className:`theory-code-section`,children:[(0,$.jsxs)(`p`,{className:`section-label`,children:[(0,$.jsx)(Kc,{size:13}),(0,$.jsx)(`span`,{children:`Пример кода`})]}),(0,$.jsx)(BM,{code:A.codeSnippet})]}),A.pitfalls&&A.pitfalls.length>0&&(0,$.jsxs)(`div`,{className:`theory-pitfalls card`,children:[(0,$.jsxs)(`p`,{className:`section-label pitfalls-label`,children:[(0,$.jsx)(yk,{size:14}),(0,$.jsx)(`span`,{children:`Подводные камни и типичные грабли`})]}),(0,$.jsx)(`ul`,{children:A.pitfalls.map((e,t)=>(0,$.jsx)(`li`,{children:e},t))})]})]}),A.type===`multiple-choice`&&(0,$.jsxs)(`div`,{className:`quiz-slide anim-slide-in`,children:[(0,$.jsx)(`h2`,{className:`slide-title`,children:A.question}),A.codeSnippet&&(0,$.jsx)(`div`,{className:`theory-code card`,style:{marginBottom:`1rem`},children:(0,$.jsx)(`pre`,{className:`code-block`,children:(0,$.jsx)(`code`,{children:A.codeSnippet})})}),(0,$.jsx)(`div`,{className:`quiz-options-list`,children:A.options.map((e,t)=>{let n=d===t,r=``;return n&&(r=`selected`),b&&(r=t===A.correctIndex?`correct`:n?`incorrect`:`disabled`),(0,$.jsx)(`button`,{disabled:b,onClick:()=>{f(t),S(o),HM(`tap`,a)},className:`quiz-option ${r}`,children:(0,$.jsx)(`span`,{children:e})},t)})})]}),A.type===`find-the-bug`&&(0,$.jsxs)(`div`,{className:`quiz-slide anim-slide-in`,children:[(0,$.jsx)(`div`,{style:{marginBottom:`0.75rem`},children:(0,$.jsx)(`span`,{style:{background:`rgba(239,68,68,0.15)`,color:`#ef4444`,borderRadius:`6px`,padding:`3px 10px`,fontSize:`0.75rem`,fontWeight:700,letterSpacing:`0.05em`},children:`🐛 НАЙДИ БАГ`})}),(0,$.jsx)(`h2`,{className:`slide-title`,children:A.title}),(0,$.jsx)(`p`,{style:{color:`var(--text-secondary)`,marginBottom:`0.75rem`,fontSize:`0.9rem`},children:A.description}),A.hints&&A.hints.length>0&&(0,$.jsx)(`div`,{style:{marginBottom:`0.75rem`},children:A.hints.map((e,t)=>(0,$.jsxs)(`div`,{style:{display:`flex`,gap:`8px`,alignItems:`flex-start`,color:`var(--text-secondary)`,fontSize:`0.82rem`,marginBottom:`4px`},children:[(0,$.jsx)(`span`,{style:{color:`var(--accent-primary)`,fontWeight:700},children:`💡`}),(0,$.jsx)(`span`,{children:e})]},t))}),(0,$.jsxs)(`div`,{className:`theory-code card`,style:{marginBottom:`1rem`,borderLeft:`3px solid #ef4444`},children:[(0,$.jsx)(`div`,{style:{fontSize:`0.75rem`,color:`#ef4444`,fontWeight:700,marginBottom:`6px`,letterSpacing:`0.05em`},children:`❌ КОД С ОШИБКОЙ`}),(0,$.jsx)(`pre`,{className:`code-block`,children:(0,$.jsx)(`code`,{children:A.buggyCode})})]}),(0,$.jsx)(`p`,{style:{color:`var(--text-secondary)`,fontSize:`0.85rem`,marginBottom:`0.5rem`,fontWeight:600},children:`Что нужно исправить?`}),(0,$.jsx)(`div`,{className:`quiz-options-list`,children:A.options.map((e,t)=>{let n=d===t,r=``;return n&&(r=`selected`),b&&(r=t===A.correctIndex?`correct`:n?`incorrect`:`disabled`),(0,$.jsx)(`button`,{disabled:b,onClick:()=>{f(t),S(o),HM(`tap`,a)},className:`quiz-option ${r}`,children:(0,$.jsx)(`span`,{children:e})},t)})}),b&&(0,$.jsxs)(`div`,{className:`theory-code card`,style:{marginTop:`1rem`,borderLeft:`3px solid #22c55e`},children:[(0,$.jsx)(`div`,{style:{fontSize:`0.75rem`,color:`#22c55e`,fontWeight:700,marginBottom:`6px`,letterSpacing:`0.05em`},children:`✅ ПРАВИЛЬНОЕ ИСПРАВЛЕНИЕ`}),(0,$.jsx)(`pre`,{className:`code-block`,children:(0,$.jsx)(`code`,{children:A.fixedCode})})]})]}),A.type===`true-false`&&(0,$.jsxs)(`div`,{className:`true-false-slide anim-slide-in`,children:[(0,$.jsx)(`h2`,{className:`slide-title`,children:A.question}),(0,$.jsx)(`div`,{className:`tf-options`,children:[!0,!1].map(e=>{let t=p===e,n=``;return t&&(n=`selected`),b&&(n=e===A.correctValue?`correct`:t?`incorrect`:`disabled`),(0,$.jsx)(`button`,{disabled:b,onClick:()=>{m(e),S(o),HM(`tap`,a)},className:`quiz-option tf-btn ${n}`,children:(0,$.jsx)(`span`,{children:e?`ПРАВДА`:`ЛОЖЬ`})},e?`true`:`false`)})})]}),A.type===`order`&&(0,$.jsxs)(`div`,{className:`order-slide anim-slide-in`,children:[(0,$.jsx)(`h2`,{className:`slide-title`,children:A.question}),(0,$.jsxs)(`div`,{className:`ordered-basket card`,children:[(0,$.jsx)(`p`,{className:`basket-label`,children:`Ваша последовательность:`}),h.length===0?(0,$.jsx)(`span`,{className:`basket-empty-text`,children:`Нажмите на карточки внизу, чтобы упорядочить их...`}):(0,$.jsx)(`div`,{className:`basket-items`,children:h.map((e,t)=>{let n=A.items.find(t=>t.id===e);return(0,$.jsxs)(`div`,{className:`basket-item card`,children:[(0,$.jsx)(`span`,{className:`item-number`,children:t+1}),(0,$.jsx)(`span`,{children:n?.text})]},e)})})]}),(0,$.jsx)(`div`,{className:`order-pool`,children:A.items.map(e=>(0,$.jsx)(`button`,{disabled:b,onClick:()=>he(e.id),className:`order-pool-card card-interactive card ${h.includes(e.id)?`placed`:``}`,children:e.text},e.id))})]}),A.type===`coding`&&(0,$.jsxs)(`div`,{className:`coding-slide anim-slide-in`,children:[(0,$.jsxs)(`div`,{className:`coding-intro`,children:[(0,$.jsx)(`h2`,{className:`slide-title`,children:A.title}),(0,$.jsx)(`p`,{className:`coding-description`,children:A.description})]}),(0,$.jsx)(FM,{starterCode:A.starterCode,testSuite:A.testSuite,domSetup:A.domSetup,hints:A.hints,onSuccess:()=>{y(!0),x(!0),ne(!0),E(`success`),ie(`Потрясающе! Ваш код прошел все автоматические тесты! Прекрасная работа.`),HM(`correct`,a),w(o);let e=ae+1;oe(e),e===3?ce(`Combo x3!`):e===5?ce(`На огне!`):e===7?ce(`Невероятно!`):e>7&&e%3==0&&ce(`Combo x${e}!`),Math.random()<.15&&O(!0)},onFailure:()=>{y(!1),x(!1),E(`error`),ie(`Тесты упали. Проверьте сообщения об ошибках в консоли и исправьте код.`),HM(`incorrect`,a),ee(o),r(),oe(0)},vibrationEnabled:o,referenceSolution:A.referenceSolution,explanation:A.explanation})]})]}),(0,$.jsx)(`div`,{className:`lesson-side-mascot`,children:(0,$.jsx)(VM,{state:T,speechText:re})})]}),le.show&&(0,$.jsxs)(`div`,{className:`floating-reaction ${C?`reaction-correct`:`reaction-incorrect`}`,children:[(0,$.jsx)(`span`,{className:`reaction-icon`,children:le.icon}),(0,$.jsx)(`span`,{className:`reaction-text`,children:C?k(de):`Неверно...`})]}),A.type===`coding`?(0,$.jsx)(`div`,{className:`coding-footer-spacer`,children:_&&(0,$.jsxs)(`div`,{className:`coding-slide-success-panel`,children:[(0,$.jsxs)(`div`,{className:`feedback-headline text-success`,children:[(0,$.jsx)(as,{size:20}),(0,$.jsx)(`span`,{children:`Задание выполнено успешно!`})]}),(0,$.jsxs)(`button`,{onClick:_e,className:`btn-primary coding-continue-btn`,children:[(0,$.jsx)(`span`,{children:`Продолжить`}),(0,$.jsx)($t,{size:18})]})]})}):(0,$.jsx)(`div`,{className:`lesson-footer-panel ${A.type===`theory`?``:b?C?`correct`:`incorrect`:``}`,children:(0,$.jsxs)(`div`,{className:`footer-panel-content-vertical`,children:[b&&A.type!==`theory`&&(0,$.jsxs)(`div`,{className:`feedback-strip`,children:[(0,$.jsxs)(`div`,{className:`feedback-indicator ${C?`text-success`:`text-error`}`,children:[C?(0,$.jsx)(as,{size:18}):(0,$.jsx)(Bs,{size:18}),(0,$.jsx)(`span`,{children:C?`Верно`:`Неверно`})]}),`explanation`in A&&A.explanation&&(0,$.jsx)(`p`,{className:`feedback-explanation`,children:A.explanation.split(/(`[^`]+`)/g).map((e,t)=>e.startsWith("`")&&e.endsWith("`")?(0,$.jsx)(`code`,{className:`inline-code`,children:e.slice(1,-1)},t):e)})]}),(0,$.jsx)(`div`,{className:`footer-actions-row`,children:b?(0,$.jsxs)(`button`,{onClick:_e,className:`btn-primary next-btn`,children:[(0,$.jsx)(`span`,{children:`Продолжить`}),(0,$.jsx)($t,{size:18})]}):(0,$.jsx)(`button`,{disabled:A.type===`multiple-choice`&&d===null||A.type===`true-false`&&p===null||A.type===`order`&&h.length!==A.items.length,onClick:ge,className:`btn-primary check-btn`,children:(0,$.jsx)(`span`,{children:`Проверить`})})})]})}),(0,$.jsx)(`style`,{children:`
+      `})]})},KM=(e,t)=>{if(t)try{let t=window.AudioContext||window.webkitAudioContext;if(!t)return;let n=new t;if(e===`correct`){let e=n.createOscillator(),t=n.createGain();e.connect(t),t.connect(n.destination),e.type=`sine`;let r=n.currentTime;e.frequency.setValueAtTime(523.25,r),e.frequency.setValueAtTime(659.25,r+.1),e.frequency.setValueAtTime(783.99,r+.2),t.gain.setValueAtTime(.15,r),t.gain.exponentialRampToValueAtTime(.01,r+.4),e.start(r),e.stop(r+.4)}else if(e===`incorrect`){let e=n.createOscillator(),t=n.createGain();e.connect(t),t.connect(n.destination),e.type=`sawtooth`;let r=n.currentTime;e.frequency.setValueAtTime(180,r),e.frequency.linearRampToValueAtTime(100,r+.3),t.gain.setValueAtTime(.2,r),t.gain.exponentialRampToValueAtTime(.01,r+.3),e.start(r),e.stop(r+.3)}else if(e===`complete`){let e=n.createOscillator(),t=n.createGain();e.connect(t),t.connect(n.destination),e.type=`sine`;let r=n.currentTime;e.frequency.setValueAtTime(523.25,r),e.frequency.setValueAtTime(587.33,r+.08),e.frequency.setValueAtTime(659.25,r+.16),e.frequency.setValueAtTime(783.99,r+.24),e.frequency.setValueAtTime(1046.5,r+.32),t.gain.setValueAtTime(.2,r),t.gain.exponentialRampToValueAtTime(.01,r+.6),e.start(r),e.stop(r+.6)}else if(e===`tap`){let e=n.createOscillator(),t=n.createGain();e.connect(t),t.connect(n.destination),e.type=`sine`;let r=n.currentTime;e.frequency.setValueAtTime(800,r),t.gain.setValueAtTime(.06,r),t.gain.exponentialRampToValueAtTime(.001,r+.08),e.start(r),e.stop(r+.08)}}catch(e){console.error(`AudioContext synthesis error:`,e)}},qM=({lesson:e,onClose:t,onComplete:n,onLoseHeart:r,hearts:i,soundEnabled:a,vibrationEnabled:o,onMasterSlide:s,isReviewMode:c=!1})=>{let[l,u]=(0,v.useState)(0),[d,f]=(0,v.useState)(null),[p,m]=(0,v.useState)(null),[h,g]=(0,v.useState)([]),[_,y]=(0,v.useState)(null),[b,x]=(0,v.useState)(!1),[C,ne]=(0,v.useState)(!1),[T,E]=(0,v.useState)(`idle`),[re,ie]=(0,v.useState)(`Привет! Готовы потренироваться? Изучите теорию и нажмите кнопку внизу.`),[ae,oe]=(0,v.useState)(0),[se,ce]=(0,v.useState)(null),[D,O]=(0,v.useState)(!1),[le,ue]=(0,v.useState)({icon:``,show:!1}),de=[`Отлично! Абсолютно верно!`,`Так держать! Правильный ответ!`,`Великолепно! Вы на верном пути!`,`Верно! Продолжайте в том же духе!`,`Точно в цель! Молодец!`,`Супер! Всё правильно!`,`Браво! Отличный ответ!`],fe=[`Не совсем... Посмотрите объяснение.`,`Ой, мимо! Ничего, разберёмся.`,`Почти! Но не в этот раз.`,`Неверно. Вот как правильно:`,`Не угадали! Но это полезная ошибка.`],k=e=>e[Math.floor(Math.random()*e.length)],A=e.slides[l],pe=l/e.slides.length*100,me=()=>{switch(A.type){case`theory`:return{label:`Теоретический раздел`,icon:(0,$.jsx)(mi,{size:13}),className:`slide-indicator-theory`};case`multiple-choice`:return{label:`Практическое задание: Выбор ответа`,icon:(0,$.jsx)(Ns,{size:13}),className:`slide-indicator-practice`};case`true-false`:return{label:`Практическое задание: Верно или Ложь`,icon:(0,$.jsx)(Ns,{size:13}),className:`slide-indicator-practice`};case`order`:return{label:`Практическое задание: Упорядочивание`,icon:(0,$.jsx)(qg,{size:13}),className:`slide-indicator-practice`};case`coding`:return{label:`Практическое задание: Написание кода`,icon:(0,$.jsx)(Kc,{size:13}),className:`slide-indicator-practice`};case`find-the-bug`:return{label:`Практическое задание: Найди баг`,icon:(0,$.jsx)(Ns,{size:13}),className:`slide-indicator-practice`};default:return{label:`Практическое задание`,icon:(0,$.jsx)(Kc,{size:13}),className:`slide-indicator-practice`}}};(0,v.useEffect)(()=>{f(null),m(null),y(null),x(!1),ne(!1),A.type===`theory`?(E(`idle`),ie(`Внимательно прочитайте теорию. Особое внимание уделите подводным камням — на зачетах часто ловят именно на них!`),x(!0),ne(!0)):A.type===`multiple-choice`?(E(`thinking`),ie(`Выберите один правильный вариант ответа.`)):A.type===`true-false`?(E(`thinking`),ie(`Правда это или ложь? Подумайте над формулировкой.`)):A.type===`order`?(E(`thinking`),ie(`Кликните по элементам ниже, чтобы расположить их в правильном порядке.`),g([])):A.type===`coding`?(E(`thinking`),ie(`Время лайвкодинга! Прочтите описание, напишите код и нажмите "Запустить тесты" для проверки.`)):A.type===`find-the-bug`&&(E(`thinking`),ie(`Найди баг! Изучи код с ошибкой и выбери правильное исправление.`))},[l,e]),(0,v.useEffect)(()=>{if(se){let e=setTimeout(()=>ce(null),1500);return()=>clearTimeout(e)}},[se]),(0,v.useEffect)(()=>{if(le.show){let e=setTimeout(()=>ue(e=>({...e,show:!1})),1200);return()=>clearTimeout(e)}},[le.show]),(0,v.useEffect)(()=>{if(D){let e=setTimeout(()=>O(!1),1500);return()=>clearTimeout(e)}},[D]);let he=e=>{b||(S(o),h.includes(e)?g(t=>t.filter(t=>t!==e)):g(t=>[...t,e]))},ge=()=>{if(b&&A.type!==`coding`)return;let e=!1,t=``;if(A.type===`multiple-choice`){if(d===null)return;e=d===A.correctIndex,t=A.explanation}else if(A.type===`true-false`){if(p===null)return;e=p===A.correctValue,t=A.explanation}else if(A.type===`order`){if(h.length!==A.items.length){alert(`Пожалуйста, выберите все элементы, чтобы упорядочить их.`);return}e=h.every((e,t)=>e===A.correctOrder[t]),t=A.explanation}else if(A.type===`find-the-bug`){if(d===null)return;e=d===A.correctIndex,t=A.explanation}if(x(!0),ne(e),e){E(`success`),ie(k(de)),KM(`correct`,a),w(o),ue({icon:`✓`,show:!0}),dM({particleCount:25,spread:45,startVelocity:20,gravity:.8,scalar:.7,origin:{y:.6},colors:[`#10b981`,`#34d399`,`#6ee7b7`],disableForReducedMotion:!0});let e=ae+1;oe(e),e===3?ce(`Combo x3!`):e===5?ce(`На огне!`):e===7?ce(`Невероятно!`):e>7&&e%3==0&&ce(`Combo x${e}!`),Math.random()<.15&&O(!0)}else E(`error`),ie(`${k(fe)} ${t}`),KM(`incorrect`,a),ee(o),ue({icon:`✗`,show:!0}),r(),oe(0)},_e=()=>{if(s&&C&&s(l),l+1<e.slides.length)u(e=>e+1);else{KM(`complete`,a),te(o),dM({particleCount:80,spread:60,origin:{y:.8}});let t=ae>=7?3:ae>=5?2:ae>=3?1.5:1;n(Math.round((e.xpReward||30)*t))}};return(0,$.jsxs)(`div`,{className:`lesson-fullscreen`,children:[(0,$.jsxs)(`div`,{className:`lesson-navbar`,children:[(0,$.jsx)(`button`,{onClick:t,className:`close-lesson-btn`,title:`Выйти из урока`,children:(0,$.jsx)(Dj,{size:20})}),(0,$.jsxs)(`div`,{className:`lesson-progress-container`,children:[(0,$.jsx)(`div`,{className:`progress-bar-container`,children:(0,$.jsx)(`div`,{className:`progress-bar-fill`,style:{width:`${pe}%`}})}),(0,$.jsxs)(`span`,{className:`progress-label`,children:[l+1,` / `,e.slides.length]})]}),c?(0,$.jsxs)(`div`,{className:`lesson-review-badge`,children:[(0,$.jsx)(HS,{size:14}),(0,$.jsx)(`span`,{children:`Режим повторения`})]}):(0,$.jsxs)(`div`,{className:`lesson-hearts`,children:[(0,$.jsx)(`span`,{className:`heart-count`,children:i}),(0,$.jsx)(`span`,{className:`heart-icon`,children:`❤️`})]})]}),se&&(0,$.jsxs)(`div`,{className:`combo-popup`,children:[(0,$.jsx)(kj,{size:16}),(0,$.jsx)(`span`,{children:se})]}),D&&(0,$.jsx)(`div`,{className:`bonus-xp-popup`,children:(0,$.jsx)(`span`,{children:`Бонус! Двойной XP`})}),(0,$.jsxs)(`div`,{className:`lesson-workspace`,children:[(0,$.jsxs)(`div`,{className:`lesson-slide-body`,children:[(()=>{let e=me();return(0,$.jsxs)(`div`,{className:`slide-type-indicator ${e.className}`,children:[e.icon,(0,$.jsx)(`span`,{children:e.label})]})})(),A.type===`theory`&&(0,$.jsxs)(`div`,{className:`theory-slide anim-slide-in`,children:[(0,$.jsx)(`h2`,{className:`slide-title`,children:A.title}),A.definition&&(0,$.jsxs)(`div`,{className:`theory-definition card`,children:[(0,$.jsx)(`p`,{className:`section-label`,children:`Определение`}),(0,$.jsx)(`p`,{className:`definition-text`,children:A.definition})]}),A.content&&(0,$.jsx)(`div`,{className:`theory-definition card`,children:(0,$.jsx)(`pre`,{className:`definition-text content-text`,children:A.content})}),A.keyTerms&&A.keyTerms.length>0&&(0,$.jsxs)(`div`,{className:`key-terms-container`,children:[(0,$.jsx)(`p`,{className:`section-label`,children:`Ключевые понятия`}),(0,$.jsx)(`div`,{className:`key-terms-grid`,children:A.keyTerms.map((e,t)=>(0,$.jsxs)(`div`,{className:`key-term-card card`,children:[(0,$.jsx)(`span`,{className:`key-term-name`,children:e.term}),(0,$.jsx)(`span`,{className:`key-term-def`,children:e.definition})]},t))})]}),A.mnemonic&&(0,$.jsxs)(`div`,{className:`mnemonic-block`,children:[(0,$.jsx)(`div`,{className:`mnemonic-icon-wrapper`,children:(0,$.jsx)(kg,{size:20})}),(0,$.jsxs)(`div`,{className:`mnemonic-content`,children:[(0,$.jsx)(`span`,{className:`mnemonic-label`,children:`Запомни`}),(0,$.jsx)(`p`,{className:`mnemonic-text`,children:A.mnemonic})]})]}),A.diagram&&(0,$.jsxs)(`div`,{className:`diagram-container card`,children:[A.diagram.title&&(0,$.jsx)(`p`,{className:`section-label`,children:A.diagram.title}),A.diagram.type===`flow`&&(0,$.jsx)(`div`,{className:`diagram-flow`,children:A.diagram.items.map((e,t)=>(0,$.jsxs)(v.Fragment,{children:[(0,$.jsxs)(`div`,{className:`flow-step`,children:[(0,$.jsx)(`span`,{className:`flow-step-num`,children:t+1}),(0,$.jsx)(`span`,{className:`flow-step-text`,children:e})]}),t<A.diagram.items.length-1&&(0,$.jsx)(`div`,{className:`flow-arrow`,children:(0,$.jsx)(Io,{size:16})})]},t))}),A.diagram.type===`layers`&&(0,$.jsx)(`div`,{className:`diagram-layers`,children:A.diagram.items.map((e,t)=>(0,$.jsxs)(`div`,{className:`layer-row`,style:{opacity:1-t*.1},children:[(0,$.jsx)(`span`,{className:`layer-index`,children:t+1}),(0,$.jsx)(`span`,{className:`layer-text`,children:e})]},t))}),A.diagram.type===`comparison`&&(0,$.jsxs)(`div`,{className:`diagram-comparison`,children:[(0,$.jsxs)(`div`,{className:`comparison-col col-before`,children:[(0,$.jsx)(`span`,{className:`col-header`,children:`До`}),A.diagram.items.map((e,t)=>(0,$.jsx)(`div`,{className:`comp-line`,children:e},t))]}),(0,$.jsxs)(`div`,{className:`comparison-col col-after`,children:[(0,$.jsx)(`span`,{className:`col-header`,children:`После`}),(A.diagram.secondColumn||[]).map((e,t)=>(0,$.jsx)(`div`,{className:`comp-line`,children:e},t))]})]})]}),A.comparison&&(0,$.jsxs)(`div`,{className:`comparison-table-container card`,children:[(0,$.jsx)(`p`,{className:`section-label`,children:A.comparison.title}),(0,$.jsxs)(`table`,{className:`comparison-table`,children:[(0,$.jsx)(`thead`,{children:(0,$.jsx)(`tr`,{children:A.comparison.headers.map((e,t)=>(0,$.jsx)(`th`,{children:e},t))})}),(0,$.jsx)(`tbody`,{children:A.comparison.rows.map((e,t)=>(0,$.jsx)(`tr`,{children:e.map((e,t)=>(0,$.jsx)(`td`,{children:e},t))},t))})]})]}),A.codeSnippet&&(0,$.jsxs)(`div`,{className:`theory-code-section`,children:[(0,$.jsxs)(`p`,{className:`section-label`,children:[(0,$.jsx)(Kc,{size:13}),(0,$.jsx)(`span`,{children:`Пример кода`})]}),(0,$.jsx)(WM,{code:A.codeSnippet})]}),A.pitfalls&&A.pitfalls.length>0&&(0,$.jsxs)(`div`,{className:`theory-pitfalls card`,children:[(0,$.jsxs)(`p`,{className:`section-label pitfalls-label`,children:[(0,$.jsx)(yk,{size:14}),(0,$.jsx)(`span`,{children:`Подводные камни и типичные грабли`})]}),(0,$.jsx)(`ul`,{children:A.pitfalls.map((e,t)=>(0,$.jsx)(`li`,{children:e},t))})]})]}),A.type===`multiple-choice`&&(0,$.jsxs)(`div`,{className:`quiz-slide anim-slide-in`,children:[(0,$.jsx)(`h2`,{className:`slide-title`,children:A.question}),A.codeSnippet&&(0,$.jsx)(`div`,{className:`theory-code card`,style:{marginBottom:`1rem`},children:(0,$.jsx)(`pre`,{className:`code-block`,children:(0,$.jsx)(`code`,{children:A.codeSnippet})})}),(0,$.jsx)(`div`,{className:`quiz-options-list`,children:A.options.map((e,t)=>{let n=d===t,r=``;return n&&(r=`selected`),b&&(r=t===A.correctIndex?`correct`:n?`incorrect`:`disabled`),(0,$.jsx)(`button`,{disabled:b,onClick:()=>{f(t),S(o),KM(`tap`,a)},className:`quiz-option ${r}`,children:(0,$.jsx)(`span`,{children:e})},t)})})]}),A.type===`find-the-bug`&&(0,$.jsxs)(`div`,{className:`quiz-slide anim-slide-in`,children:[(0,$.jsx)(`div`,{style:{marginBottom:`0.75rem`},children:(0,$.jsx)(`span`,{style:{background:`rgba(239,68,68,0.15)`,color:`#ef4444`,borderRadius:`6px`,padding:`3px 10px`,fontSize:`0.75rem`,fontWeight:700,letterSpacing:`0.05em`},children:`🐛 НАЙДИ БАГ`})}),(0,$.jsx)(`h2`,{className:`slide-title`,children:A.title}),(0,$.jsx)(`p`,{style:{color:`var(--text-secondary)`,marginBottom:`0.75rem`,fontSize:`0.9rem`},children:A.description}),A.hints&&A.hints.length>0&&(0,$.jsx)(`div`,{style:{marginBottom:`0.75rem`},children:A.hints.map((e,t)=>(0,$.jsxs)(`div`,{style:{display:`flex`,gap:`8px`,alignItems:`flex-start`,color:`var(--text-secondary)`,fontSize:`0.82rem`,marginBottom:`4px`},children:[(0,$.jsx)(`span`,{style:{color:`var(--accent-primary)`,fontWeight:700},children:`💡`}),(0,$.jsx)(`span`,{children:e})]},t))}),(0,$.jsxs)(`div`,{className:`theory-code card`,style:{marginBottom:`1rem`,borderLeft:`3px solid #ef4444`},children:[(0,$.jsx)(`div`,{style:{fontSize:`0.75rem`,color:`#ef4444`,fontWeight:700,marginBottom:`6px`,letterSpacing:`0.05em`},children:`❌ КОД С ОШИБКОЙ`}),(0,$.jsx)(`pre`,{className:`code-block`,children:(0,$.jsx)(`code`,{children:A.buggyCode})})]}),(0,$.jsx)(`p`,{style:{color:`var(--text-secondary)`,fontSize:`0.85rem`,marginBottom:`0.5rem`,fontWeight:600},children:`Что нужно исправить?`}),(0,$.jsx)(`div`,{className:`quiz-options-list`,children:A.options.map((e,t)=>{let n=d===t,r=``;return n&&(r=`selected`),b&&(r=t===A.correctIndex?`correct`:n?`incorrect`:`disabled`),(0,$.jsx)(`button`,{disabled:b,onClick:()=>{f(t),S(o),KM(`tap`,a)},className:`quiz-option ${r}`,children:(0,$.jsx)(`span`,{children:e})},t)})}),b&&(0,$.jsxs)(`div`,{className:`theory-code card`,style:{marginTop:`1rem`,borderLeft:`3px solid #22c55e`},children:[(0,$.jsx)(`div`,{style:{fontSize:`0.75rem`,color:`#22c55e`,fontWeight:700,marginBottom:`6px`,letterSpacing:`0.05em`},children:`✅ ПРАВИЛЬНОЕ ИСПРАВЛЕНИЕ`}),(0,$.jsx)(`pre`,{className:`code-block`,children:(0,$.jsx)(`code`,{children:A.fixedCode})})]})]}),A.type===`true-false`&&(0,$.jsxs)(`div`,{className:`true-false-slide anim-slide-in`,children:[(0,$.jsx)(`h2`,{className:`slide-title`,children:A.question}),(0,$.jsx)(`div`,{className:`tf-options`,children:[!0,!1].map(e=>{let t=p===e,n=``;return t&&(n=`selected`),b&&(n=e===A.correctValue?`correct`:t?`incorrect`:`disabled`),(0,$.jsx)(`button`,{disabled:b,onClick:()=>{m(e),S(o),KM(`tap`,a)},className:`quiz-option tf-btn ${n}`,children:(0,$.jsx)(`span`,{children:e?`ПРАВДА`:`ЛОЖЬ`})},e?`true`:`false`)})})]}),A.type===`order`&&(0,$.jsxs)(`div`,{className:`order-slide anim-slide-in`,children:[(0,$.jsx)(`h2`,{className:`slide-title`,children:A.question}),(0,$.jsxs)(`div`,{className:`ordered-basket card`,children:[(0,$.jsx)(`p`,{className:`basket-label`,children:`Ваша последовательность:`}),h.length===0?(0,$.jsx)(`span`,{className:`basket-empty-text`,children:`Нажмите на карточки внизу, чтобы упорядочить их...`}):(0,$.jsx)(`div`,{className:`basket-items`,children:h.map((e,t)=>{let n=A.items.find(t=>t.id===e);return(0,$.jsxs)(`div`,{className:`basket-item card`,children:[(0,$.jsx)(`span`,{className:`item-number`,children:t+1}),(0,$.jsx)(`span`,{children:n?.text})]},e)})})]}),(0,$.jsx)(`div`,{className:`order-pool`,children:A.items.map(e=>(0,$.jsx)(`button`,{disabled:b,onClick:()=>he(e.id),className:`order-pool-card card-interactive card ${h.includes(e.id)?`placed`:``}`,children:e.text},e.id))})]}),A.type===`coding`&&(0,$.jsxs)(`div`,{className:`coding-slide anim-slide-in`,children:[(0,$.jsxs)(`div`,{className:`coding-intro`,children:[(0,$.jsx)(`h2`,{className:`slide-title`,children:A.title}),(0,$.jsx)(`p`,{className:`coding-description`,children:A.description})]}),(0,$.jsx)(zM,{starterCode:A.starterCode,testSuite:A.testSuite,domSetup:A.domSetup,hints:A.hints,onSuccess:()=>{y(!0),x(!0),ne(!0),E(`success`),ie(`Потрясающе! Ваш код прошел все автоматические тесты! Прекрасная работа.`),KM(`correct`,a),w(o);let e=ae+1;oe(e),e===3?ce(`Combo x3!`):e===5?ce(`На огне!`):e===7?ce(`Невероятно!`):e>7&&e%3==0&&ce(`Combo x${e}!`),Math.random()<.15&&O(!0)},onFailure:()=>{y(!1),x(!1),E(`error`),ie(`Тесты упали. Проверьте сообщения об ошибках в консоли и исправьте код.`),KM(`incorrect`,a),ee(o),r(),oe(0)},vibrationEnabled:o,referenceSolution:A.referenceSolution,explanation:A.explanation})]})]}),(0,$.jsx)(`div`,{className:`lesson-side-mascot`,children:(0,$.jsx)(GM,{state:T,speechText:re})})]}),le.show&&(0,$.jsxs)(`div`,{className:`floating-reaction ${C?`reaction-correct`:`reaction-incorrect`}`,children:[(0,$.jsx)(`span`,{className:`reaction-icon`,children:le.icon}),(0,$.jsx)(`span`,{className:`reaction-text`,children:C?k(de):`Неверно...`})]}),A.type===`coding`?(0,$.jsx)(`div`,{className:`coding-footer-spacer`,children:_&&(0,$.jsxs)(`div`,{className:`coding-slide-success-panel`,children:[(0,$.jsxs)(`div`,{className:`feedback-headline text-success`,children:[(0,$.jsx)(as,{size:20}),(0,$.jsx)(`span`,{children:`Задание выполнено успешно!`})]}),(0,$.jsxs)(`button`,{onClick:_e,className:`btn-primary coding-continue-btn`,children:[(0,$.jsx)(`span`,{children:`Продолжить`}),(0,$.jsx)($t,{size:18})]})]})}):(0,$.jsx)(`div`,{className:`lesson-footer-panel ${A.type===`theory`?``:b?C?`correct`:`incorrect`:``}`,children:(0,$.jsxs)(`div`,{className:`footer-panel-content-vertical`,children:[b&&A.type!==`theory`&&(0,$.jsxs)(`div`,{className:`feedback-strip`,children:[(0,$.jsxs)(`div`,{className:`feedback-indicator ${C?`text-success`:`text-error`}`,children:[C?(0,$.jsx)(as,{size:18}):(0,$.jsx)(Bs,{size:18}),(0,$.jsx)(`span`,{children:C?`Верно`:`Неверно`})]}),`explanation`in A&&A.explanation&&(0,$.jsx)(`p`,{className:`feedback-explanation`,children:A.explanation.split(/(`[^`]+`)/g).map((e,t)=>e.startsWith("`")&&e.endsWith("`")?(0,$.jsx)(`code`,{className:`inline-code`,children:e.slice(1,-1)},t):e)})]}),(0,$.jsx)(`div`,{className:`footer-actions-row`,children:b?(0,$.jsxs)(`button`,{onClick:_e,className:`btn-primary next-btn`,children:[(0,$.jsx)(`span`,{children:`Продолжить`}),(0,$.jsx)($t,{size:18})]}):(0,$.jsx)(`button`,{disabled:A.type===`multiple-choice`&&d===null||A.type===`true-false`&&p===null||A.type===`order`&&h.length!==A.items.length,onClick:ge,className:`btn-primary check-btn`,children:(0,$.jsx)(`span`,{children:`Проверить`})})})]})}),(0,$.jsx)(`style`,{children:`
         .lesson-fullscreen {
           position: fixed;
           left: 0;
@@ -5339,7 +5786,7 @@ function fetchUser(name) {
             display: none;
           }
         }
-      `})]})},WM=({isOpen:e,onClose:t,soundEnabled:n,setSoundEnabled:r,vibrationEnabled:i,setVibrationEnabled:a,notificationsEnabled:o,setNotificationsEnabled:s,deferredPrompt:c,onInstallApp:l})=>{let[u,d]=(0,v.useState)(!1),[f,p]=(0,v.useState)(!1);if((0,v.useEffect)(()=>{typeof navigator<`u`&&`vibrate`in navigator&&d(!0)},[]),!e)return null;let m=async()=>{if(!(`Notification`in window)){alert(`Уведомления не поддерживаются вашим браузером`);return}if(Notification.permission===`granted`){s(!0),S(i),alert(`Уведомления уже включены!`);return}try{await Notification.requestPermission()===`granted`?(s(!0),C(i),new Notification(`DevLingo`,{body:`Уведомления успешно настроены! Готовьтесь к зачету ежедневно.`})):alert(`Разрешение на отправку уведомлений отклонено.`)}catch(e){console.error(`Error requesting notifications`,e)}};return(0,$.jsxs)(`div`,{className:`modal-overlay`,onClick:t,children:[(0,$.jsxs)(`div`,{className:`modal-container card anim-slide-in`,onClick:e=>e.stopPropagation(),children:[(0,$.jsxs)(`div`,{className:`modal-header`,children:[(0,$.jsx)(`h3`,{children:`Настройки DevLingo`}),(0,$.jsx)(`button`,{onClick:t,className:`modal-close-btn`,title:`Закрыть`,children:(0,$.jsx)(Dj,{size:20})})]}),(0,$.jsxs)(`div`,{className:`modal-body`,children:[(0,$.jsxs)(`div`,{className:`setting-row`,children:[(0,$.jsxs)(`div`,{className:`setting-info`,children:[(0,$.jsxs)(`div`,{className:`setting-title-with-icon`,children:[n?(0,$.jsx)(LA,{size:20,className:`icon-accent`}):(0,$.jsx)(zA,{size:20,className:`icon-muted`}),(0,$.jsx)(`h4`,{children:`Звуковые эффекты`})]}),(0,$.jsx)(`p`,{children:`Озвучивание ответов, завершения уровней и ошибок с помощью синтеза Web Audio API`})]}),(0,$.jsx)(`button`,{onClick:()=>{let e=!n;r(e),e&&S(i)},className:`toggle-switch ${n?`active`:``}`,children:(0,$.jsx)(`div`,{className:`switch-handle`})})]}),(0,$.jsxs)(`div`,{className:`setting-row`,children:[(0,$.jsxs)(`div`,{className:`setting-info`,children:[(0,$.jsxs)(`div`,{className:`setting-title-with-icon`,children:[(0,$.jsx)(mT,{size:20,className:i?`icon-success`:`icon-muted`}),(0,$.jsx)(`h4`,{children:`Виброотклик (Android)`})]}),(0,$.jsx)(`p`,{children:`Вибрация телефона при правильных и неправильных ответах, кликах и ошибках`})]}),(0,$.jsx)(`button`,{disabled:!u,onClick:()=>{if(u){let e=!i;a(e),e&&navigator.vibrate([15])}},className:`toggle-switch ${i?`active`:``} ${u?``:`disabled`}`,children:(0,$.jsx)(`div`,{className:`switch-handle`})})]}),(0,$.jsxs)(`div`,{className:`setting-row`,children:[(0,$.jsxs)(`div`,{className:`setting-info`,children:[(0,$.jsxs)(`div`,{className:`setting-title-with-icon`,children:[(0,$.jsx)(Dr,{size:20,className:o?`icon-warning`:`icon-muted`}),(0,$.jsx)(`h4`,{children:`Напоминания о зачете`})]}),(0,$.jsx)(`p`,{children:`Системные Push-уведомления для напоминания о регулярной подготовке`})]}),(0,$.jsx)(`button`,{onClick:()=>{o?(s(!1),D(!1),S(i)):(m(),D(!0),k(0))},className:`toggle-switch ${o?`active`:``}`,children:(0,$.jsx)(`div`,{className:`switch-handle`})})]}),c&&(0,$.jsxs)($.Fragment,{children:[(0,$.jsx)(`div`,{className:`divider`}),(0,$.jsxs)(`div`,{className:`setting-row`,children:[(0,$.jsxs)(`div`,{className:`setting-info`,children:[(0,$.jsxs)(`div`,{className:`setting-title-with-icon`,children:[(0,$.jsx)(gu,{size:20,className:`icon-accent`}),(0,$.jsx)(`h4`,{children:`Установить на телефон`})]}),(0,$.jsx)(`p`,{children:`Добавить DevLingo на рабочий стол для быстрого оффлайн-запуска`})]}),(0,$.jsx)(`button`,{onClick:l,className:`btn-primary btn-sm`,style:{padding:`10px 20px`,fontSize:`13px`,whiteSpace:`nowrap`,height:`40px`},children:`Установить`})]})]}),(0,$.jsx)(`div`,{className:`divider`}),(0,$.jsx)(`div`,{className:`reset-section`,children:f?(0,$.jsxs)(`div`,{className:`confirm-reset-box card`,children:[(0,$.jsxs)(`div`,{className:`confirm-header`,children:[(0,$.jsx)(yk,{size:20,className:`icon-error`}),(0,$.jsx)(`h5`,{children:`Вы уверены?`})]}),(0,$.jsx)(`p`,{children:`Все ваши очки опыта (XP), сердца, достижения и пройденные уроки будут навсегда удалены.`}),(0,$.jsxs)(`div`,{className:`confirm-actions`,children:[(0,$.jsx)(`button`,{onClick:()=>{S(i),p(!1)},className:`btn-secondary btn-sm`,children:`Отмена`}),(0,$.jsx)(`button`,{onClick:()=>{ee(i),localStorage.clear(),alert(`Прогресс сброшен. Страница будет перезагружена.`),window.location.reload()},className:`btn-danger btn-sm`,children:`Да, сбросить`})]})]}):(0,$.jsxs)(`button`,{onClick:()=>{S(i),p(!0)},className:`btn-reset-danger`,children:[(0,$.jsx)(HS,{size:16}),(0,$.jsx)(`span`,{children:`Сбросить весь прогресс`})]})})]})]}),(0,$.jsx)(`style`,{children:`
+      `})]})},JM=({isOpen:e,onClose:t,soundEnabled:n,setSoundEnabled:r,vibrationEnabled:i,setVibrationEnabled:a,notificationsEnabled:o,setNotificationsEnabled:s,deferredPrompt:c,onInstallApp:l})=>{let[u,d]=(0,v.useState)(!1),[f,p]=(0,v.useState)(!1);if((0,v.useEffect)(()=>{typeof navigator<`u`&&`vibrate`in navigator&&d(!0)},[]),!e)return null;let m=async()=>{if(!(`Notification`in window)){alert(`Уведомления не поддерживаются вашим браузером`);return}if(Notification.permission===`granted`){s(!0),S(i),alert(`Уведомления уже включены!`);return}try{await Notification.requestPermission()===`granted`?(s(!0),C(i),new Notification(`DevLingo`,{body:`Уведомления успешно настроены! Готовьтесь к зачету ежедневно.`})):alert(`Разрешение на отправку уведомлений отклонено.`)}catch(e){console.error(`Error requesting notifications`,e)}};return(0,$.jsxs)(`div`,{className:`modal-overlay`,onClick:t,children:[(0,$.jsxs)(`div`,{className:`modal-container card anim-slide-in`,onClick:e=>e.stopPropagation(),children:[(0,$.jsxs)(`div`,{className:`modal-header`,children:[(0,$.jsx)(`h3`,{children:`Настройки DevLingo`}),(0,$.jsx)(`button`,{onClick:t,className:`modal-close-btn`,title:`Закрыть`,children:(0,$.jsx)(Dj,{size:20})})]}),(0,$.jsxs)(`div`,{className:`modal-body`,children:[(0,$.jsxs)(`div`,{className:`setting-row`,children:[(0,$.jsxs)(`div`,{className:`setting-info`,children:[(0,$.jsxs)(`div`,{className:`setting-title-with-icon`,children:[n?(0,$.jsx)(LA,{size:20,className:`icon-accent`}):(0,$.jsx)(zA,{size:20,className:`icon-muted`}),(0,$.jsx)(`h4`,{children:`Звуковые эффекты`})]}),(0,$.jsx)(`p`,{children:`Озвучивание ответов, завершения уровней и ошибок с помощью синтеза Web Audio API`})]}),(0,$.jsx)(`button`,{onClick:()=>{let e=!n;r(e),e&&S(i)},className:`toggle-switch ${n?`active`:``}`,children:(0,$.jsx)(`div`,{className:`switch-handle`})})]}),(0,$.jsxs)(`div`,{className:`setting-row`,children:[(0,$.jsxs)(`div`,{className:`setting-info`,children:[(0,$.jsxs)(`div`,{className:`setting-title-with-icon`,children:[(0,$.jsx)(mT,{size:20,className:i?`icon-success`:`icon-muted`}),(0,$.jsx)(`h4`,{children:`Виброотклик (Android)`})]}),(0,$.jsx)(`p`,{children:`Вибрация телефона при правильных и неправильных ответах, кликах и ошибках`})]}),(0,$.jsx)(`button`,{disabled:!u,onClick:()=>{if(u){let e=!i;a(e),e&&navigator.vibrate([15])}},className:`toggle-switch ${i?`active`:``} ${u?``:`disabled`}`,children:(0,$.jsx)(`div`,{className:`switch-handle`})})]}),(0,$.jsxs)(`div`,{className:`setting-row`,children:[(0,$.jsxs)(`div`,{className:`setting-info`,children:[(0,$.jsxs)(`div`,{className:`setting-title-with-icon`,children:[(0,$.jsx)(Dr,{size:20,className:o?`icon-warning`:`icon-muted`}),(0,$.jsx)(`h4`,{children:`Напоминания о зачете`})]}),(0,$.jsx)(`p`,{children:`Системные Push-уведомления для напоминания о регулярной подготовке`})]}),(0,$.jsx)(`button`,{onClick:()=>{o?(s(!1),D(!1),S(i)):(m(),D(!0),k(0))},className:`toggle-switch ${o?`active`:``}`,children:(0,$.jsx)(`div`,{className:`switch-handle`})})]}),c&&(0,$.jsxs)($.Fragment,{children:[(0,$.jsx)(`div`,{className:`divider`}),(0,$.jsxs)(`div`,{className:`setting-row`,children:[(0,$.jsxs)(`div`,{className:`setting-info`,children:[(0,$.jsxs)(`div`,{className:`setting-title-with-icon`,children:[(0,$.jsx)(gu,{size:20,className:`icon-accent`}),(0,$.jsx)(`h4`,{children:`Установить на телефон`})]}),(0,$.jsx)(`p`,{children:`Добавить DevLingo на рабочий стол для быстрого оффлайн-запуска`})]}),(0,$.jsx)(`button`,{onClick:l,className:`btn-primary btn-sm`,style:{padding:`10px 20px`,fontSize:`13px`,whiteSpace:`nowrap`,height:`40px`},children:`Установить`})]})]}),(0,$.jsx)(`div`,{className:`divider`}),(0,$.jsx)(`div`,{className:`reset-section`,children:f?(0,$.jsxs)(`div`,{className:`confirm-reset-box card`,children:[(0,$.jsxs)(`div`,{className:`confirm-header`,children:[(0,$.jsx)(yk,{size:20,className:`icon-error`}),(0,$.jsx)(`h5`,{children:`Вы уверены?`})]}),(0,$.jsx)(`p`,{children:`Все ваши очки опыта (XP), сердца, достижения и пройденные уроки будут навсегда удалены.`}),(0,$.jsxs)(`div`,{className:`confirm-actions`,children:[(0,$.jsx)(`button`,{onClick:()=>{S(i),p(!1)},className:`btn-secondary btn-sm`,children:`Отмена`}),(0,$.jsx)(`button`,{onClick:()=>{ee(i),localStorage.clear(),alert(`Прогресс сброшен. Страница будет перезагружена.`),window.location.reload()},className:`btn-danger btn-sm`,children:`Да, сбросить`})]})]}):(0,$.jsxs)(`button`,{onClick:()=>{S(i),p(!0)},className:`btn-reset-danger`,children:[(0,$.jsx)(HS,{size:16}),(0,$.jsx)(`span`,{children:`Сбросить весь прогресс`})]})})]})]}),(0,$.jsx)(`style`,{children:`
         .modal-overlay {
           position: fixed;
           top: 0;
@@ -5579,7 +6026,7 @@ function fetchUser(name) {
             font-size: 18px;
           }
         }
-      `})]})},GM=[{icon:rC,title:`Добро пожаловать в DevLingo!`,subtitle:`Тренажёр для подготовки к зачёту по Web-разработке`,color:`#6366f1`},{icon:kj,title:`Как это работает`,subtitle:`Проходите уроки, зарабатывайте XP, поддерживайте серию дней`,color:`#f59e0b`,pills:[{icon:mi,label:`Теория с мнемониками`},{icon:Kc,label:`Практика с кодом`},{icon:xn,label:`Достижения и уровни`}]},{icon:Ap,title:`Ваш стартовый бонус!`,subtitle:`За регистрацию вы получаете:`,color:`#10b981`,bonuses:[`+50 XP`,`+50 гемов`,`1 Streak Freeze`]}],KM=({onComplete:e})=>{let[t,n]=(0,v.useState)(0),[r,i]=(0,v.useState)(0),a=GM[t],o=t===GM.length-1,s=a.icon;return(0,$.jsxs)($.Fragment,{children:[(0,$.jsx)(`style`,{children:`
+      `})]})},YM=[{icon:rC,title:`Добро пожаловать в DevLingo!`,subtitle:`Тренажёр для подготовки к зачёту по Web-разработке`,color:`#6366f1`},{icon:kj,title:`Как это работает`,subtitle:`Проходите уроки, зарабатывайте XP, поддерживайте серию дней`,color:`#f59e0b`,pills:[{icon:mi,label:`Теория с мнемониками`},{icon:Kc,label:`Практика с кодом`},{icon:xn,label:`Достижения и уровни`}]},{icon:Ap,title:`Ваш стартовый бонус!`,subtitle:`За регистрацию вы получаете:`,color:`#10b981`,bonuses:[`+50 XP`,`+50 гемов`,`1 Streak Freeze`]}],XM=({onComplete:e})=>{let[t,n]=(0,v.useState)(0),[r,i]=(0,v.useState)(0),a=YM[t],o=t===YM.length-1,s=a.icon;return(0,$.jsxs)($.Fragment,{children:[(0,$.jsx)(`style`,{children:`
         @keyframes ob-fade-up {
           from { opacity: 0; transform: translateY(24px); }
           to { opacity: 1; transform: translateY(0); }
@@ -5661,4 +6108,4 @@ function fetchUser(name) {
           width: 8px; height: 8px; border-radius: 50%;
           transition: all 0.3s ease;
         }
-      `}),(0,$.jsxs)(`div`,{className:`ob-overlay`,children:[(0,$.jsxs)(`div`,{className:`ob-card`,children:[(0,$.jsx)(`div`,{className:`ob-icon-ring`,style:{background:`${a.color}15`,border:`2px solid ${a.color}40`},children:(0,$.jsx)(s,{size:36,color:a.color})}),(0,$.jsx)(`h1`,{className:`ob-title`,children:a.title}),(0,$.jsx)(`p`,{className:`ob-subtitle`,children:a.subtitle}),a.pills&&(0,$.jsx)(`div`,{className:`ob-pills`,children:a.pills.map(e=>(0,$.jsxs)(`div`,{className:`ob-pill`,children:[(0,$.jsx)(e.icon,{size:16,color:a.color}),e.label]},e.label))}),a.bonuses&&(0,$.jsx)(`div`,{className:`ob-bonuses`,children:a.bonuses.map(e=>(0,$.jsxs)(`div`,{className:`ob-bonus`,children:[(0,$.jsx)(ET,{size:14}),e]},e))}),(0,$.jsxs)(`button`,{className:`ob-btn`,onClick:()=>{if(o){e();return}i(e=>e+1),n(e=>e+1)},children:[o?`Начать обучение`:`Далее`,(0,$.jsx)(Io,{size:18})]})]},r),(0,$.jsx)(`div`,{className:`ob-dots`,children:GM.map((e,n)=>(0,$.jsx)(`div`,{className:`ob-dot`,style:{background:n===t?a.color:`rgba(255,255,255,0.15)`,transform:n===t?`scale(1.3)`:`scale(1)`}},n))})]})]})};(0,y.createRoot)(document.getElementById(`root`)).render((0,$.jsx)(v.StrictMode,{children:(0,$.jsx)(()=>{let{xp:e,setXp:t,streak:n,hearts:r,completedSkills:i,soundEnabled:a,setSoundEnabled:o,vibrationEnabled:s,setVibrationEnabled:c,notificationsEnabled:l,setNotificationsEnabled:u,currentTab:d,setCurrentTab:f,activeLesson:p,setActiveLesson:m,handleStartLesson:h,handleLoseHeart:g,handleRefillPractice:_,runActiveLessonComplete:y,claimedAchievements:b,handleClaimAchievement:x,perfectLessons:C,nightLessons:w,masteredSlides:ee,handleMasterSlide:te,isReviewMode:ne,gems:T,setGems:E,streakFreezes:re,dailyXpEarned:ie,dailyXpGoal:ae,level:oe,levelTitle:ce,totalLessons:D,lessonsToday:O,longestStreak:le}=he(),[ue,de]=(0,v.useState)(!1),[fe,A]=(0,v.useState)(()=>!localStorage.getItem(`devlingo_onboarded`)),[ge,_e]=(0,v.useState)(null),[ve,ye]=(0,v.useState)(null),[be,xe]=(0,v.useState)(()=>{let e=localStorage.getItem(`devlingo_unlocked_seen`);return e?JSON.parse(e):[]}),Se=(0,v.useRef)(!1);(0,v.useEffect)(()=>{let e=e=>{e.preventDefault(),_e(e)};return window.addEventListener(`beforeinstallprompt`,e),()=>{window.removeEventListener(`beforeinstallprompt`,e)}},[]),(0,v.useEffect)(()=>{typeof navigator<`u`&&`setAppBadge`in navigator&&(n>0?navigator.setAppBadge(n).catch(e=>{console.warn(`Error setting badge:`,e)}):navigator.clearAppBadge().catch(e=>{console.warn(`Error clearing badge:`,e)}))},[n]),(0,v.useEffect)(()=>{me(n)},[]),(0,v.useEffect)(()=>{l&&k(n)},[n,l]);let Ce=async()=>{if(!ge)return;S(s),ge.prompt();let{outcome:e}=await ge.userChoice;console.log(`User prompt outcome: ${e}`),_e(null)},we=(0,v.useCallback)(()=>{t(e=>e+50),E(e=>e+50),localStorage.setItem(`devlingo_onboarded`,`true`),A(!1),setTimeout(()=>{se().then(e=>{u(e)})},2e3)},[t,E,u]);return(0,v.useEffect)(()=>{let t={xp:e,streak:n,completedSkills:i,perfectLessons:C,nightLessons:w,totalLessons:D,lessonsToday:O,longestStreak:le},r=cM.filter(e=>e.getProgress(t)>=e.maxProgress).map(e=>e.id);if(!Se.current){xe(e=>{let t=Array.from(new Set([...e,...r]));return localStorage.setItem(`devlingo_unlocked_seen`,JSON.stringify(t)),t}),Se.current=!0;return}let a=cM.filter(e=>e.getProgress(t)>=e.maxProgress&&!be.includes(e.id));if(a.length>0){let e=a[0];ye({title:e.title,description:e.description,xpReward:e.xpReward}),xe(t=>{let n=[...t,e.id];return localStorage.setItem(`devlingo_unlocked_seen`,JSON.stringify(n)),n}),s&&navigator.vibrate&&navigator.vibrate([100,50,100]),pe(e.title),dM({particleCount:60,spread:60,origin:{y:.2}})}},[e,n,i,C,w,D,O,le,be,s]),(0,v.useEffect)(()=>{if(ve){let e=setTimeout(()=>{ye(null)},5e3);return()=>clearTimeout(e)}},[ve]),(0,$.jsxs)(`div`,{className:`app-container`,children:[fe&&(0,$.jsx)(KM,{onComplete:we}),(0,$.jsx)(Jj,{currentTab:d,setCurrentTab:f,soundEnabled:a,setSoundEnabled:o,vibrationEnabled:s,setVibrationEnabled:c,notificationsEnabled:l,setNotificationsEnabled:u}),(0,$.jsxs)(`main`,{className:`main-content`,children:[(0,$.jsx)(Yj,{xp:e,streak:n,hearts:r,vibrationEnabled:s,onOpenSettings:()=>de(!0),gems:T,level:oe,levelTitle:ce,dailyXpEarned:ie,dailyXpGoal:ae,streakFreezes:re}),(0,$.jsx)(eM,{}),(0,$.jsxs)(`div`,{className:`scroll-content`,children:[d===`map`&&(0,$.jsx)(nM,{completedSkills:i,onStartLesson:h,vibrationEnabled:s,masteredSlides:ee}),d===`stats`&&(0,$.jsx)(sM,{xp:e,streak:n,hearts:r,completedSkills:i,handleRefillPractice:_,masteredSlides:ee,onStartLesson:h}),d===`achievements`&&(0,$.jsx)(hM,{xp:e,streak:n,completedSkills:i,claimedAchievements:b,perfectLessons:C,nightLessons:w,onClaimReward:x,vibrationEnabled:s,totalLessons:D,lessonsToday:O,longestStreak:le}),d===`practice`&&(0,$.jsx)(jM,{})]}),ge&&(0,$.jsx)(`div`,{className:`pwa-install-banner`,children:(0,$.jsxs)(`div`,{className:`pwa-install-content`,children:[(0,$.jsxs)(`div`,{className:`pwa-install-text`,children:[(0,$.jsx)(`strong`,{children:`Установить DevLingo`}),(0,$.jsx)(`span`,{children:`Как приложение на телефон`})]}),(0,$.jsx)(`button`,{className:`btn-primary pwa-install-btn`,onClick:Ce,children:`Установить`}),(0,$.jsx)(`button`,{className:`pwa-dismiss-btn`,onClick:()=>_e(null),children:(0,$.jsx)(Dj,{size:16})})]})})]}),p&&(0,$.jsx)(UM,{lesson:p.lesson,onClose:()=>{S(s),m(null)},onComplete:y,onLoseHeart:g,hearts:r,soundEnabled:a,vibrationEnabled:s,isReviewMode:ne,onMasterSlide:e=>{p.skillId!==`review`&&te(`${p.skillId}_${p.lesson.id}_slide_${e}`)}}),(0,$.jsx)(WM,{isOpen:ue,onClose:()=>{S(s),de(!1)},soundEnabled:a,setSoundEnabled:o,vibrationEnabled:s,setVibrationEnabled:c,notificationsEnabled:l,setNotificationsEnabled:u,deferredPrompt:ge,onInstallApp:Ce}),ve&&(0,$.jsx)(`div`,{className:`achievement-toast-overlay`,children:(0,$.jsxs)(`div`,{className:`achievement-toast card`,children:[(0,$.jsxs)(`div`,{className:`toast-content`,children:[(0,$.jsx)(`div`,{className:`toast-icon-wrapper`,children:(0,$.jsx)(wk,{size:20,className:`toast-trophy-icon`})}),(0,$.jsxs)(`div`,{className:`toast-text`,children:[(0,$.jsx)(`span`,{className:`toast-meta`,children:`Достижение разблокировано!`}),(0,$.jsx)(`h4`,{className:`toast-title`,children:ve.title}),(0,$.jsx)(`p`,{className:`toast-desc`,children:ve.description})]})]}),(0,$.jsx)(`button`,{className:`toast-close-btn`,onClick:()=>ye(null),title:`Закрыть`,children:(0,$.jsx)(Dj,{size:16})})]})})]})},{})}));export{l as n,d as t};
+      `}),(0,$.jsxs)(`div`,{className:`ob-overlay`,children:[(0,$.jsxs)(`div`,{className:`ob-card`,children:[(0,$.jsx)(`div`,{className:`ob-icon-ring`,style:{background:`${a.color}15`,border:`2px solid ${a.color}40`},children:(0,$.jsx)(s,{size:36,color:a.color})}),(0,$.jsx)(`h1`,{className:`ob-title`,children:a.title}),(0,$.jsx)(`p`,{className:`ob-subtitle`,children:a.subtitle}),a.pills&&(0,$.jsx)(`div`,{className:`ob-pills`,children:a.pills.map(e=>(0,$.jsxs)(`div`,{className:`ob-pill`,children:[(0,$.jsx)(e.icon,{size:16,color:a.color}),e.label]},e.label))}),a.bonuses&&(0,$.jsx)(`div`,{className:`ob-bonuses`,children:a.bonuses.map(e=>(0,$.jsxs)(`div`,{className:`ob-bonus`,children:[(0,$.jsx)(ET,{size:14}),e]},e))}),(0,$.jsxs)(`button`,{className:`ob-btn`,onClick:()=>{if(o){e();return}i(e=>e+1),n(e=>e+1)},children:[o?`Начать обучение`:`Далее`,(0,$.jsx)(Io,{size:18})]})]},r),(0,$.jsx)(`div`,{className:`ob-dots`,children:YM.map((e,n)=>(0,$.jsx)(`div`,{className:`ob-dot`,style:{background:n===t?a.color:`rgba(255,255,255,0.15)`,transform:n===t?`scale(1.3)`:`scale(1)`}},n))})]})]})};(0,y.createRoot)(document.getElementById(`root`)).render((0,$.jsx)(v.StrictMode,{children:(0,$.jsx)(()=>{let{xp:e,setXp:t,streak:n,hearts:r,completedSkills:i,soundEnabled:a,setSoundEnabled:o,vibrationEnabled:s,setVibrationEnabled:c,notificationsEnabled:l,setNotificationsEnabled:u,currentTab:d,setCurrentTab:f,activeLesson:p,setActiveLesson:m,handleStartLesson:h,handleLoseHeart:g,handleRefillPractice:_,runActiveLessonComplete:y,claimedAchievements:b,handleClaimAchievement:x,perfectLessons:C,nightLessons:w,masteredSlides:ee,handleMasterSlide:te,isReviewMode:ne,gems:T,setGems:E,streakFreezes:re,dailyXpEarned:ie,dailyXpGoal:ae,level:oe,levelTitle:ce,totalLessons:D,lessonsToday:O,longestStreak:le}=he(),[ue,de]=(0,v.useState)(!1),[fe,A]=(0,v.useState)(()=>!localStorage.getItem(`devlingo_onboarded`)),[ge,_e]=(0,v.useState)(null),[ve,ye]=(0,v.useState)(null),[be,xe]=(0,v.useState)(()=>{let e=localStorage.getItem(`devlingo_unlocked_seen`);return e?JSON.parse(e):[]}),Se=(0,v.useRef)(!1);(0,v.useEffect)(()=>{let e=e=>{e.preventDefault(),_e(e)};return window.addEventListener(`beforeinstallprompt`,e),()=>{window.removeEventListener(`beforeinstallprompt`,e)}},[]),(0,v.useEffect)(()=>{typeof navigator<`u`&&`setAppBadge`in navigator&&(n>0?navigator.setAppBadge(n).catch(e=>{console.warn(`Error setting badge:`,e)}):navigator.clearAppBadge().catch(e=>{console.warn(`Error clearing badge:`,e)}))},[n]),(0,v.useEffect)(()=>{me(n)},[]),(0,v.useEffect)(()=>{l&&k(n)},[n,l]);let Ce=async()=>{if(!ge)return;S(s),ge.prompt();let{outcome:e}=await ge.userChoice;console.log(`User prompt outcome: ${e}`),_e(null)},we=(0,v.useCallback)(()=>{t(e=>e+50),E(e=>e+50),localStorage.setItem(`devlingo_onboarded`,`true`),A(!1),setTimeout(()=>{se().then(e=>{u(e)})},2e3)},[t,E,u]);return(0,v.useEffect)(()=>{let t={xp:e,streak:n,completedSkills:i,perfectLessons:C,nightLessons:w,totalLessons:D,lessonsToday:O,longestStreak:le},r=cM.filter(e=>e.getProgress(t)>=e.maxProgress).map(e=>e.id);if(!Se.current){xe(e=>{let t=Array.from(new Set([...e,...r]));return localStorage.setItem(`devlingo_unlocked_seen`,JSON.stringify(t)),t}),Se.current=!0;return}let a=cM.filter(e=>e.getProgress(t)>=e.maxProgress&&!be.includes(e.id));if(a.length>0){let e=a[0];ye({title:e.title,description:e.description,xpReward:e.xpReward}),xe(t=>{let n=[...t,e.id];return localStorage.setItem(`devlingo_unlocked_seen`,JSON.stringify(n)),n}),s&&navigator.vibrate&&navigator.vibrate([100,50,100]),pe(e.title),dM({particleCount:60,spread:60,origin:{y:.2}})}},[e,n,i,C,w,D,O,le,be,s]),(0,v.useEffect)(()=>{if(ve){let e=setTimeout(()=>{ye(null)},5e3);return()=>clearTimeout(e)}},[ve]),(0,$.jsxs)(`div`,{className:`app-container`,children:[fe&&(0,$.jsx)(XM,{onComplete:we}),(0,$.jsx)(Jj,{currentTab:d,setCurrentTab:f,soundEnabled:a,setSoundEnabled:o,vibrationEnabled:s,setVibrationEnabled:c,notificationsEnabled:l,setNotificationsEnabled:u}),(0,$.jsxs)(`main`,{className:`main-content`,children:[(0,$.jsx)(Yj,{xp:e,streak:n,hearts:r,vibrationEnabled:s,onOpenSettings:()=>de(!0),gems:T,level:oe,levelTitle:ce,dailyXpEarned:ie,dailyXpGoal:ae,streakFreezes:re}),(0,$.jsx)(eM,{}),(0,$.jsxs)(`div`,{className:`scroll-content`,style:d===`practice`?{display:`none`}:void 0,children:[d===`map`&&(0,$.jsx)(nM,{completedSkills:i,onStartLesson:h,vibrationEnabled:s,masteredSlides:ee}),d===`stats`&&(0,$.jsx)(sM,{xp:e,streak:n,hearts:r,completedSkills:i,handleRefillPractice:_,masteredSlides:ee,onStartLesson:h}),d===`achievements`&&(0,$.jsx)(hM,{xp:e,streak:n,completedSkills:i,claimedAchievements:b,perfectLessons:C,nightLessons:w,onClaimReward:x,vibrationEnabled:s,totalLessons:D,lessonsToday:O,longestStreak:le})]}),d===`practice`&&(0,$.jsx)(MM,{}),ge&&(0,$.jsx)(`div`,{className:`pwa-install-banner`,children:(0,$.jsxs)(`div`,{className:`pwa-install-content`,children:[(0,$.jsxs)(`div`,{className:`pwa-install-text`,children:[(0,$.jsx)(`strong`,{children:`Установить DevLingo`}),(0,$.jsx)(`span`,{children:`Как приложение на телефон`})]}),(0,$.jsx)(`button`,{className:`btn-primary pwa-install-btn`,onClick:Ce,children:`Установить`}),(0,$.jsx)(`button`,{className:`pwa-dismiss-btn`,onClick:()=>_e(null),children:(0,$.jsx)(Dj,{size:16})})]})})]}),p&&(0,$.jsx)(qM,{lesson:p.lesson,onClose:()=>{S(s),m(null)},onComplete:y,onLoseHeart:g,hearts:r,soundEnabled:a,vibrationEnabled:s,isReviewMode:ne,onMasterSlide:e=>{p.skillId!==`review`&&te(`${p.skillId}_${p.lesson.id}_slide_${e}`)}}),(0,$.jsx)(JM,{isOpen:ue,onClose:()=>{S(s),de(!1)},soundEnabled:a,setSoundEnabled:o,vibrationEnabled:s,setVibrationEnabled:c,notificationsEnabled:l,setNotificationsEnabled:u,deferredPrompt:ge,onInstallApp:Ce}),ve&&(0,$.jsx)(`div`,{className:`achievement-toast-overlay`,children:(0,$.jsxs)(`div`,{className:`achievement-toast card`,children:[(0,$.jsxs)(`div`,{className:`toast-content`,children:[(0,$.jsx)(`div`,{className:`toast-icon-wrapper`,children:(0,$.jsx)(wk,{size:20,className:`toast-trophy-icon`})}),(0,$.jsxs)(`div`,{className:`toast-text`,children:[(0,$.jsx)(`span`,{className:`toast-meta`,children:`Достижение разблокировано!`}),(0,$.jsx)(`h4`,{className:`toast-title`,children:ve.title}),(0,$.jsx)(`p`,{className:`toast-desc`,children:ve.description})]})]}),(0,$.jsx)(`button`,{className:`toast-close-btn`,onClick:()=>ye(null),title:`Закрыть`,children:(0,$.jsx)(Dj,{size:16})})]})})]})},{})}));export{l as n,d as t};
