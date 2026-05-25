@@ -6,6 +6,7 @@ import { ExamCountdown } from '../widgets/exam-countdown/ui/ExamCountdown';
 import { MapPage } from '../pages/map/ui/MapPage';
 import { StatsPage } from '../pages/stats/ui/StatsPage';
 import { AchievementsPage } from '../pages/achievements/ui/AchievementsPage';
+import { PracticePage } from '../pages/practice/ui/PracticePage';
 import { LessonRunner } from '../widgets/lesson-runner/ui/LessonRunner';
 import { SettingsModal } from '../features/settings-modal/ui/SettingsModal';
 import { Onboarding } from '../features/onboarding/ui/Onboarding';
@@ -275,6 +276,11 @@ export const App: React.FC = () => {
               lessonsToday={lessonsToday}
               longestStreak={longestStreak}
             />
+          )}
+
+          {/* TAB: Practice (LeetCode-style) */}
+          {currentTab === 'practice' && (
+            <PracticePage />
           )}
         </div>
 

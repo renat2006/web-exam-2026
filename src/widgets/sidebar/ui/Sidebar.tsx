@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Map, Award, TrendingUp, Volume2, VolumeX, Bell, Smartphone, Code } from 'lucide-react';
+import { Map, Award, TrendingUp, Volume2, VolumeX, Bell, Smartphone, Code, Terminal } from 'lucide-react';
 import { vibrateClick, vibrateTick } from '../../../shared/lib/haptics/vibrate';
 
 interface SidebarProps {
@@ -97,6 +97,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
         >
           <Award size={20} />
           <span>Достижения</span>
+        </button>
+
+        <button
+          onClick={() => handleNavClick('practice')}
+          className={`nav-item ${currentTab === 'practice' ? 'active' : ''} nav-item-practice`}
+        >
+          <Terminal size={20} />
+          <span>Практика</span>
         </button>
       </nav>
 
