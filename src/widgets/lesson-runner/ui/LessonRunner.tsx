@@ -109,6 +109,12 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
           icon: <Code size={13} />,
           className: 'slide-indicator-practice'
         };
+      case 'find-the-bug':
+        return {
+          label: 'Практическое задание: Найди баг',
+          icon: <HelpCircle size={13} />,
+          className: 'slide-indicator-practice'
+        };
       default:
         return {
           label: 'Практическое задание',
@@ -144,6 +150,9 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
     } else if (currentSlide.type === 'coding') {
       setMascotState('thinking');
       setMascotSpeech('Время лайвкодинга! Прочтите описание, напишите код и нажмите "Запустить тесты" для проверки.');
+    } else if (currentSlide.type === 'find-the-bug') {
+      setMascotState('thinking');
+      setMascotSpeech('Найди баг! Изучи код с ошибкой и выбери правильное исправление.');
     }
   }, [currentSlideIndex, lesson]);
 
@@ -199,6 +208,10 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
         return;
       }
       correct = orderedItems.every((val, index) => val === currentSlide.correctOrder[index]);
+      feedback = currentSlide.explanation;
+    } else if (currentSlide.type === 'find-the-bug') {
+      if (selectedOption === null) return;
+      correct = selectedOption === currentSlide.correctIndex;
       feedback = currentSlide.explanation;
     }
 
@@ -523,6 +536,84 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
                   );
                 })}
               </div>
+            </div>
+          )}
+
+          {/* Find the Bug Slide */}
+          {currentSlide.type === 'find-the-bug' && (
+            <div className="quiz-slide anim-slide-in">
+              <div style={{ marginBottom: '0.75rem' }}>
+                <span style={{
+                  background: 'rgba(239,68,68,0.15)',
+                  color: '#ef4444',
+                  borderRadius: '6px',
+                  padding: '3px 10px',
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.05em'
+                }}>🐛 НАЙДИ БАГ</span>
+              </div>
+              <h2 className="slide-title">{currentSlide.title}</h2>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '0.75rem', fontSize: '0.9rem' }}>
+                {currentSlide.description}
+              </p>
+              {currentSlide.hints && currentSlide.hints.length > 0 && (
+                <div style={{ marginBottom: '0.75rem' }}>
+                  {currentSlide.hints.map((hint, i) => (
+                    <div key={i} style={{
+                      display: 'flex', gap: '8px', alignItems: 'flex-start',
+                      color: 'var(--text-secondary)', fontSize: '0.82rem',
+                      marginBottom: '4px'
+                    }}>
+                      <span style={{ color: 'var(--accent-primary)', fontWeight: 700 }}>💡</span>
+                      <span>{hint}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div className="theory-code card" style={{ marginBottom: '1rem', borderLeft: '3px solid #ef4444' }}>
+                <div style={{ fontSize: '0.75rem', color: '#ef4444', fontWeight: 700, marginBottom: '6px', letterSpacing: '0.05em' }}>
+                  ❌ КОД С ОШИБКОЙ
+                </div>
+                <pre className="code-block"><code>{currentSlide.buggyCode}</code></pre>
+              </div>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '0.5rem', fontWeight: 600 }}>
+                Что нужно исправить?
+              </p>
+              <div className="quiz-options-list">
+                {currentSlide.options.map((option, index) => {
+                  const isSelected = selectedOption === index;
+                  let optionClass = '';
+                  if (isSelected) optionClass = 'selected';
+                  if (isAnswered) {
+                    if (index === currentSlide.correctIndex) optionClass = 'correct';
+                    else if (isSelected) optionClass = 'incorrect';
+                    else optionClass = 'disabled';
+                  }
+                  return (
+                    <button
+                      key={index}
+                      disabled={isAnswered}
+                      onClick={() => {
+                        setSelectedOption(index);
+                        vibrateClick(vibrationEnabled);
+                        playSynthesizedSound('tap', soundEnabled);
+                      }}
+                      className={`quiz-option ${optionClass}`}
+                    >
+                      <span>{option}</span>
+                    </button>
+                  );
+                })}
+              </div>
+              {isAnswered && (
+                <div className="theory-code card" style={{ marginTop: '1rem', borderLeft: '3px solid #22c55e' }}>
+                  <div style={{ fontSize: '0.75rem', color: '#22c55e', fontWeight: 700, marginBottom: '6px', letterSpacing: '0.05em' }}>
+                    ✅ ПРАВИЛЬНОЕ ИСПРАВЛЕНИЕ
+                  </div>
+                  <pre className="code-block"><code>{currentSlide.fixedCode}</code></pre>
+                </div>
+              )}
             </div>
           )}
 

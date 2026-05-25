@@ -58,7 +58,19 @@ export interface CodingSlide {
   explanation?: string;       // Detailed explanation of the logic
 }
 
-export type Slide = TheorySlide | ChoiceSlide | TrueFalseSlide | OrderSlide | CodingSlide;
+export interface FindBugSlide {
+  type: 'find-the-bug';
+  title: string;
+  description: string;
+  buggyCode: string;
+  hints?: string[];
+  explanation: string;
+  fixedCode: string;        // Reference solution (shown after answering)
+  options: string[];        // What is the bug? 4 choices
+  correctIndex: number;
+}
+
+export type Slide = TheorySlide | ChoiceSlide | TrueFalseSlide | OrderSlide | CodingSlide | FindBugSlide;
 
 export interface Lesson {
   id: string;
