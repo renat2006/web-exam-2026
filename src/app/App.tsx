@@ -237,7 +237,7 @@ export const App: React.FC = () => {
 
         <ExamCountdown />
 
-        <div className="scroll-content">
+        <div className="scroll-content" style={currentTab === 'practice' ? { display: 'none' } : undefined}>
           {/* TAB: Skill Map */}
           {currentTab === 'map' && (
             <MapPage
@@ -277,12 +277,12 @@ export const App: React.FC = () => {
               longestStreak={longestStreak}
             />
           )}
-
-          {/* TAB: Practice (LeetCode-style) */}
-          {currentTab === 'practice' && (
-            <PracticePage />
-          )}
         </div>
+
+        {/* TAB: Practice (LeetCode-style) — outside scroll-content for full-bleed layout */}
+        {currentTab === 'practice' && (
+          <PracticePage />
+        )}
 
         {/* PWA Install Banner */}
         {deferredPrompt && (
