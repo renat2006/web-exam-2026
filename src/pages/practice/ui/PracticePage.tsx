@@ -270,10 +270,9 @@ const ProblemSolveView: React.FC<ProblemSolveViewProps> = ({ problem, solved, on
   const [hintsShown, setHintsShown] = useState(0);
   const [showSolution, setShowSolution] = useState(false);
   const [activePanel, setActivePanel] = useState<'desc' | 'editor' | 'tests'>('desc');
-  const [isMobile, setIsMobile] = useState(false);
   const attempts = useRef(0);
   const isSolved = solved.has(problem.id);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
@@ -465,53 +464,44 @@ const ProblemSolveView: React.FC<ProblemSolveViewProps> = ({ problem, solved, on
             </div>
           </div>
 
-          {/* Editor */}
+          {/* Editor — Monaco everywhere */}
           <div className="psolve-editor-area">
-            {isMobile ? (
-              /* Mobile: styled textarea */
-              <textarea
-                ref={textareaRef}
-                className="psolve-textarea"
+            <Suspense fallback={
+              <div className="psolve-editor-loading">
+                <div className="psolve-spinner" />
+                <span>Загрузка редактора...</span>
+              </div>
+            }>
+              <MonacoEditor
+                height="100%"
+                language="typescript"
+                theme="vs-dark"
                 value={code}
-                onChange={e => setCode(e.target.value)}
-                spellCheck={false}
-                autoCapitalize="off"
-                autoCorrect="off"
+                onChange={(val) => setCode(val || '')}
+                options={{
+                  fontSize: isMobile ? 13 : 14,
+                  fontFamily: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace",
+                  minimap: { enabled: false },
+                  lineNumbers: isMobile ? 'off' : 'on',
+                  roundedSelection: true,
+                  scrollBeyondLastLine: false,
+                  automaticLayout: true,
+                  tabSize: 2,
+                  wordWrap: 'on',
+                  padding: { top: 12, bottom: 12 },
+                  cursorBlinking: 'smooth',
+                  cursorSmoothCaretAnimation: 'on',
+                  smoothScrolling: true,
+                  bracketPairColorization: { enabled: true },
+                  suggest: { showKeywords: true },
+                  overviewRulerLanes: 0,
+                  hideCursorInOverviewRuler: true,
+                  scrollbar: { verticalScrollbarSize: 6, horizontalScrollbarSize: 6 },
+                  folding: false,
+                  glyphMargin: false,
+                }}
               />
-            ) : (
-              /* Desktop: Monaco */
-              <Suspense fallback={
-                <div className="psolve-editor-loading">
-                  <div className="psolve-spinner" />
-                  <span>Загрузка редактора...</span>
-                </div>
-              }>
-                <MonacoEditor
-                  height="100%"
-                  language="typescript"
-                  theme="vs-dark"
-                  value={code}
-                  onChange={(val) => setCode(val || '')}
-                  options={{
-                    fontSize: 14,
-                    fontFamily: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace",
-                    minimap: { enabled: false },
-                    lineNumbers: 'on',
-                    roundedSelection: true,
-                    scrollBeyondLastLine: false,
-                    automaticLayout: true,
-                    tabSize: 2,
-                    wordWrap: 'on',
-                    padding: { top: 16, bottom: 16 },
-                    cursorBlinking: 'smooth',
-                    cursorSmoothCaretAnimation: 'on',
-                    smoothScrolling: true,
-                    bracketPairColorization: { enabled: true },
-                    suggest: { showKeywords: true },
-                  }}
-                />
-              </Suspense>
-            )}
+            </Suspense>
           </div>
         </div>
 
@@ -1133,23 +1123,7 @@ const practiceCSS = `
 .psolve-editor-run.success { background: linear-gradient(135deg, #16a34a, #22c55e); }
 .psolve-editor-run:disabled { opacity: 0.7; }
 
-.psolve-editor-area { flex: 1; min-height: 0; overflow: hidden; background: #1e1e2e; }
-
-.psolve-textarea {
-  width: 100%; height: 100%;
-  background: #1a1b2e;
-  color: #e6edf3;
-  border: none;
-  padding: 18px;
-  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
-  font-size: 15px;
-  line-height: 1.6;
-  resize: none;
-  outline: none;
-  -webkit-text-size-adjust: none;
-  tab-size: 2;
-}
-.psolve-textarea::placeholder { color: #555; }
+.psolve-editor-area { flex: 3; min-height: 350px; overflow: hidden; background: #1e1e2e; }
 
 .psolve-editor-loading {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -1291,10 +1265,13 @@ const practiceCSS = `
 
   .psolve-editor {
     flex: 1;
-    min-height: 300px;
+    min-height: 0;
+  }
+  .psolve-editor-area {
+    min-height: calc(100vh - 220px);
+    flex: 1;
   }
   .psolve-editor-toolbar { padding: 8px 12px; }
-  .psolve-textarea { font-size: 14px; padding: 14px; }
 
   .psolve-tests {
     flex: 1;
