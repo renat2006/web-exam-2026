@@ -466,44 +466,57 @@ const ProblemSolveView: React.FC<ProblemSolveViewProps> = ({ problem, solved, on
               </div>
             </div>
 
-            {/* Editor — Monaco everywhere */}
+            {/* Editor: native textarea on mobile, Monaco on desktop */}
             <div className="psolve-editor-area">
-              <Suspense fallback={
-                <div className="psolve-editor-loading">
-                  <div className="psolve-spinner" />
-                  <span>Загрузка редактора...</span>
-                </div>
-              }>
-                <MonacoEditor
-                  height="100%"
-                  language="typescript"
-                  theme="vs-dark"
+              {isMobile ? (
+                <textarea
+                  className="psolve-textarea"
                   value={code}
-                  onChange={(val) => setCode(val || '')}
-                  options={{
-                    fontSize: isMobile ? 13 : 14,
-                    fontFamily: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace",
-                    minimap: { enabled: false },
-                    lineNumbers: isMobile ? 'off' : 'on',
-                    roundedSelection: true,
-                    scrollBeyondLastLine: false,
-                    automaticLayout: true,
-                    tabSize: 2,
-                    wordWrap: 'on',
-                    padding: { top: 12, bottom: 12 },
-                    cursorBlinking: 'smooth',
-                    cursorSmoothCaretAnimation: 'on',
-                    smoothScrolling: true,
-                    bracketPairColorization: { enabled: true },
-                    suggest: { showKeywords: true },
-                    overviewRulerLanes: 0,
-                    hideCursorInOverviewRuler: true,
-                    scrollbar: { verticalScrollbarSize: 6, horizontalScrollbarSize: 6 },
-                    folding: false,
-                    glyphMargin: false,
-                  }}
+                  onChange={e => setCode(e.target.value)}
+                  spellCheck={false}
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  autoComplete="off"
+                  data-gramm="false"
                 />
-              </Suspense>
+              ) : (
+                <Suspense fallback={
+                  <div className="psolve-editor-loading">
+                    <div className="psolve-spinner" />
+                    <span>Загрузка редактора...</span>
+                  </div>
+                }>
+                  <MonacoEditor
+                    height="100%"
+                    language="typescript"
+                    theme="vs-dark"
+                    value={code}
+                    onChange={(val) => setCode(val || '')}
+                    options={{
+                      fontSize: 14,
+                      fontFamily: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace",
+                      minimap: { enabled: false },
+                      lineNumbers: 'on',
+                      roundedSelection: true,
+                      scrollBeyondLastLine: false,
+                      automaticLayout: true,
+                      tabSize: 2,
+                      wordWrap: 'on',
+                      padding: { top: 12, bottom: 12 },
+                      cursorBlinking: 'smooth',
+                      cursorSmoothCaretAnimation: 'on',
+                      smoothScrolling: true,
+                      bracketPairColorization: { enabled: true },
+                      suggest: { showKeywords: true },
+                      overviewRulerLanes: 0,
+                      hideCursorInOverviewRuler: true,
+                      scrollbar: { verticalScrollbarSize: 6, horizontalScrollbarSize: 6 },
+                      folding: false,
+                      glyphMargin: false,
+                    }}
+                  />
+                </Suspense>
+              )}
             </div>
           </div>
 
@@ -1261,41 +1274,89 @@ const practiceCSS = `
   .pract-card { padding: 16px; }
   .pract-card-title { font-size: 15px; }
 
-  /* Solve view: full screen panels */
-  .psolve-topbar { padding: 8px 12px; }
+  /* Solve view: FULLSCREEN panels on mobile */
+  .psolve-topbar {
+    padding: 8px 12px;
+  }
   .psolve-run-fab { display: none; }
   .psolve-tabs { display: flex; }
 
-  .psolve-body { flex-direction: column; }
+  .psolve-body {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
 
   .psolve-desc {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    flex: 1;
     border-right: none;
-    min-width: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1;
   }
-  .psolve-desc-inner { padding: 16px; }
-  .psolve-title { font-size: 18px; }
-  .psolve-desc-text { font-size: 14px; line-height: 1.65; }
+  .psolve-desc.hidden { display: none; }
+  .psolve-desc-inner { padding: 20px 16px 100px; }
+  .psolve-title { font-size: 20px; }
+  .psolve-desc-text { font-size: 15px; line-height: 1.7; }
 
   .psolve-right-col {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    flex: 1;
+    z-index: 1;
   }
+  .psolve-right-col.hidden { display: none !important; }
 
   .psolve-editor {
-    flex: 1;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
+  .psolve-editor.hidden { display: none !important; }
   .psolve-editor-area {
-    min-height: 60vh;
+    flex: 1;
+    min-height: 0;
   }
   .psolve-editor-toolbar { padding: 8px 12px; }
 
+  .psolve-textarea {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #0d1117;
+    color: #e6edf3;
+    border: none;
+    padding: 16px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Cascadia Code', ui-monospace, monospace;
+    font-size: 15px;
+    line-height: 1.7;
+    resize: none;
+    outline: none;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 2;
+    caret-color: #6366f1;
+    letter-spacing: 0.02em;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+  }
+  .psolve-textarea::placeholder { color: #444; }
+  .psolve-textarea:focus {
+    outline: none;
+  }
+
   .psolve-tests {
-    flex: 1;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
     max-height: none;
-    min-height: 0;
-    border-top: none;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .psolve-tests.hidden { display: none !important; }
+  .psolve-tests-body {
+    padding-bottom: 100px;
   }
 }
 
