@@ -451,6 +451,20 @@ export const SKILL_NODES: SkillNode[] = [
             explanation:
               'SEO (Search Engine Optimization) — улучшение видимости в поисковых системах. Технические критерии: (1) Семантический HTML (<h1>, <article>, <nav>) — поисковик понимает структуру. (2) Мета-теги: <title>, <meta name="description">. (3) Core Web Vitals: LCP, FID, CLS — скорость и стабильность. (4) HTTPS — безопасность. (5) Alt у изображений. (6) Структурированные данные (Schema.org). (7) Мобильная адаптивность. (8) Читаемые URL. <meta keywords> игнорируется Google с 2009 года.',
           },
+          // ✅ Theory #12 — точная формулировка
+          {
+            type: 'multiple-choice',
+            question: 'Что такое микроразметка Open Graph и Schema.org? Чем они отличаются и где используются?',
+            options: [
+              'Open Graph и Schema.org — одно и то же, оба нужны для SEO',
+              'Open Graph (og:title, og:image, og:description) — протокол для красивых превью при шеринге в соцсетях; Schema.org — словарь структурированных данных (JSON-LD) для поисковиков, даёт богатые фрагменты (rich snippets) в выдаче',
+              'Open Graph — только для Twitter, Schema.org — только для Google',
+              'Оба используются только для платной рекламы',
+            ],
+            correctIndex: 1,
+            explanation:
+              'Open Graph (<meta property="og:title" content="..."/>) создан Facebook. Управляет превью при шеринге ссылки: картинка, заголовок, описание, тип контента. Используется ВКонтакте, Telegram, Twitter/X, LinkedIn. Schema.org — не метатеги, а структурированные данные: через JSON-LD (<script type="application/ld+json">) описывает тип контента (Product, Recipe, Article). Google использует это для карточек в поиске: звёздочки рейтинга, цена, время приготовления рецепта. Разница: OG — для соцсетей, Schema.org — для поисковиков.',
+          },
           // ✅ Theory #3 — точная формулировка
           {
             type: 'multiple-choice',
@@ -723,6 +737,42 @@ for (let j = 0; j < 3; j++) {} // j только внутри цикла
             correctIndex: 1,
             explanation:
               'var: область видимости — функция (не блок), hoisting (поднимается в начало функции как undefined), можно объявлять повторно. let: блочная область ({...}), Temporal Dead Zone (TDZ — нельзя использовать до объявления), нельзя повторно объявить в той же области. const: как let, но нельзя переприсвоить (const x = 1; x = 2 — ошибка). Важно: const с объектом — нельзя переприсвоить ссылку, но можно изменить свойства объекта.',
+          },
+          // ✅ Theory #17 — точная формулировка
+          {
+            type: 'multiple-choice',
+            question: 'Для чего используется цикл `for…of`?',
+            options: [
+              'for…of перебирает ключи объекта (как for…in)',
+              'for…of перебирает значения любого итерируемого объекта: массива, строки, Map, Set, NodeList, аргументов функции — получая само значение, а не индекс/ключ',
+              'for…of работает только с массивами и не поддерживает строки',
+              'for…of — устаревшая замена обычного for, отличий нет',
+            ],
+            correctIndex: 1,
+            explanation:
+              'for…of итерирует значения любого итерируемого (iterable) объекта — того, у кого есть [Symbol.iterator]. Работает с: Array, String, Map, Set, NodeList, arguments, TypedArray, генераторами. Пример: for (const char of "abc") → "a", "b", "c". Отличие от for…in: for…in даёт КЛЮЧИ/индексы объекта (включая унаследованные), for…of даёт ЗНАЧЕНИЯ. for…in с массивами — антипаттерн (даёт строковые индексы "0", "1"). for…of с обычным объектом {} — ошибка (не итерируем). Для объектов: Object.entries(obj) — потом for…of.',
+            codeSnippet: `// for…of по разным итерируемым
+for (const val of [1, 2, 3]) console.log(val); // 1 2 3
+for (const ch of 'abc') console.log(ch); // a b c
+for (const [k, v] of new Map([['a', 1]])) console.log(k, v); // a 1
+
+// for…in — ключи (НЕ for…of)
+const obj = { x: 1, y: 2 };
+for (const key in obj) console.log(key); // x y`,
+          },
+          // ✅ Theory #36 — точная формулировка «Что выведет код ниже?»
+          {
+            type: 'multiple-choice',
+            question: 'Что выведет код ниже?\n\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}',
+            options: [
+              '0 → 1 → 2 (каждый колбэк запоминает своё i)',
+              '3 → 3 → 3 (все колбэки замкнуты на одну переменную var i, которая к моменту выполнения равна 3)',
+              'undefined → undefined → undefined',
+              'Ошибка: нельзя использовать var в for',
+            ],
+            correctIndex: 1,
+            explanation:
+              'var не имеет блочной области видимости — все три замыкания ссылаются на ОДНУ переменную i. К моменту когда setTimeout выполняет колбэки (после завершения цикла) i уже равна 3. Решения: (1) let вместо var — каждая итерация создаёт новый scope с своим i. (2) IIFE: setTimeout(((j) => () => console.log(j))(i), 0). Это классический вопрос-ловушка на понимание замыканий и var/let.',
           },
         ],
       },
@@ -2865,6 +2915,43 @@ build:
             correctIndex: 1,
             explanation:
               'Discriminated union: type Shape = { kind: "circle"; r: number } | { kind: "square"; x: number }. Поле kind — дискриминатор. В switch(shape.kind) { case "circle": /* TypeScript знает r доступен */ }. Exhaustiveness check через never: в default: const _: never = shape; — если добавить новый вид фигуры и забыть обработать его в switch, TypeScript выдаст ошибку (нельзя присвоить новый тип к never). Паттерн защищает от "забытых" веток при расширении union.',
+          },
+          // ✅ Theory #74 — точная формулировка
+          {
+            type: 'multiple-choice',
+            question: 'Когда нужно использовать ключевое слово declare?',
+            options: [
+              'declare используется для объявления приватных переменных класса',
+              'declare говорит TypeScript: «эта переменная/функция/модуль существует во время выполнения, но определена вне этого файла (например, в глобальном скрипте или внешней библиотеке)». Создаёт типы без генерации JS-кода',
+              'declare нужен для объявления всех глобальных переменных',
+              'declare — синоним const, только для TypeScript',
+            ],
+            correctIndex: 1,
+            explanation:
+              'declare используется в .d.ts файлах (declaration files) и в коде для описания вещей, которые существуют в runtime, но TypeScript о них не знает. Примеры: declare const __DEV__: boolean (webpack-переменная); declare module "*.svg" { const c: string; export default c } (импорт SVG); declare global { interface Window { myLib: MyLib } } (расширение глобального Window). declare НЕ генерирует JavaScript-код — только добавляет информацию о типах для компилятора.',
+          },
+          // ✅ Theory #82 — точная формулировка
+          {
+            type: 'multiple-choice',
+            question: 'Что такое conditional types и ключевое слово `infer`? Реализуйте `ReturnType<T>` самостоятельно.',
+            options: [
+              'Conditional types — это if/else в TypeScript только для значений, а не для типов',
+              'Conditional types: T extends U ? X : Y — тип-выражение «если T совместим с U — тип X, иначе Y». infer — извлекает тип из шаблона: type ReturnType<T> = T extends (...args: any[]) => infer R ? R : never',
+              'infer — ключевое слово для вывода типов в функциях (как let для значений)',
+              'Conditional types работают только с примитивами',
+            ],
+            correctIndex: 1,
+            explanation:
+              'Conditional types: T extends U ? X : Y — на уровне системы типов. Пример: type IsString<T> = T extends string ? true : false. infer внутри extends-условия извлекает тип: type ReturnType<T> = T extends (...args: any[]) => infer R ? R : never. Здесь infer R «захватывает» возвращаемый тип функции T. Если T — функция, R = её return type; иначе — never. Реализация: type MyReturnType<T extends (...args: any[]) => any> = T extends (...args: any[]) => infer R ? R : never. Это мощный инструмент для создания утилитарных типов.',
+            codeSnippet: `// Conditional types + infer
+type ReturnType<T> = T extends (...args: any[]) => infer R ? R : never;
+
+type R1 = ReturnType<() => string>;        // string
+type R2 = ReturnType<(x: number) => boolean>; // boolean
+
+// Ещё пример — извлечь тип Promise
+type Awaited<T> = T extends Promise<infer V> ? V : T;
+type A = Awaited<Promise<number>>; // number`,
           },
         ],
       },

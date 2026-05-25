@@ -491,6 +491,11 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({
           {currentSlide.type === 'multiple-choice' && (
             <div className="quiz-slide anim-slide-in">
               <h2 className="slide-title">{currentSlide.question}</h2>
+              {currentSlide.codeSnippet && (
+                <div className="theory-code card" style={{ marginBottom: '1rem' }}>
+                  <pre className="code-block"><code>{currentSlide.codeSnippet}</code></pre>
+                </div>
+              )}
               <div className="quiz-options-list">
                 {currentSlide.options.map((option, index) => {
                   const isSelected = selectedOption === index;

@@ -28,6 +28,7 @@ export interface ChoiceSlide {
   options: string[];
   correctIndex: number;
   explanation: string;
+  codeSnippet?: string;
 }
 
 export interface TrueFalseSlide {
