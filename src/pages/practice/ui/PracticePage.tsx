@@ -440,124 +440,127 @@ const ProblemSolveView: React.FC<ProblemSolveViewProps> = ({ problem, solved, on
           </div>
         </div>
 
-        {/* ═══ Editor panel ═══ */}
-        <div className={`psolve-panel psolve-editor ${!isMobile || activePanel === 'editor' ? 'visible' : 'hidden'}`}>
-          {/* Toolbar */}
-          <div className="psolve-editor-toolbar">
-            <span className="psolve-editor-filename">
-              <Code2 size={14} /> solution.ts
-            </span>
-            <div className="psolve-editor-actions">
-              <button className="psolve-editor-btn" onClick={handleReset}>
-                <RotateCcw size={14} /> Сброс
-              </button>
-              {!isMobile && (
-                <button
-                  className={`psolve-editor-run ${status === 'running' ? 'running' : ''} ${status === 'passed' ? 'success' : ''}`}
-                  onClick={handleRun}
-                  disabled={status === 'running'}
-                >
-                  <Play size={14} />
-                  {status === 'running' ? 'Запуск...' : '▶ Запустить тесты'}
+        {/* ═══ Right column: Editor + Tests ═══ */}
+        <div className={`psolve-right-col ${!isMobile || activePanel !== 'desc' ? 'visible' : 'hidden'}`}>
+          {/* Editor panel */}
+          <div className={`psolve-editor ${!isMobile || activePanel === 'editor' ? 'visible' : 'hidden'}`}>
+            {/* Toolbar */}
+            <div className="psolve-editor-toolbar">
+              <span className="psolve-editor-filename">
+                <Code2 size={14} /> solution.ts
+              </span>
+              <div className="psolve-editor-actions">
+                <button className="psolve-editor-btn" onClick={handleReset}>
+                  <RotateCcw size={14} /> Сброс
                 </button>
-              )}
+                {!isMobile && (
+                  <button
+                    className={`psolve-editor-run ${status === 'running' ? 'running' : ''} ${status === 'passed' ? 'success' : ''}`}
+                    onClick={handleRun}
+                    disabled={status === 'running'}
+                  >
+                    <Play size={14} />
+                    {status === 'running' ? 'Запуск...' : '▶ Запустить тесты'}
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Editor — Monaco everywhere */}
+            <div className="psolve-editor-area">
+              <Suspense fallback={
+                <div className="psolve-editor-loading">
+                  <div className="psolve-spinner" />
+                  <span>Загрузка редактора...</span>
+                </div>
+              }>
+                <MonacoEditor
+                  height="100%"
+                  language="typescript"
+                  theme="vs-dark"
+                  value={code}
+                  onChange={(val) => setCode(val || '')}
+                  options={{
+                    fontSize: isMobile ? 13 : 14,
+                    fontFamily: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace",
+                    minimap: { enabled: false },
+                    lineNumbers: isMobile ? 'off' : 'on',
+                    roundedSelection: true,
+                    scrollBeyondLastLine: false,
+                    automaticLayout: true,
+                    tabSize: 2,
+                    wordWrap: 'on',
+                    padding: { top: 12, bottom: 12 },
+                    cursorBlinking: 'smooth',
+                    cursorSmoothCaretAnimation: 'on',
+                    smoothScrolling: true,
+                    bracketPairColorization: { enabled: true },
+                    suggest: { showKeywords: true },
+                    overviewRulerLanes: 0,
+                    hideCursorInOverviewRuler: true,
+                    scrollbar: { verticalScrollbarSize: 6, horizontalScrollbarSize: 6 },
+                    folding: false,
+                    glyphMargin: false,
+                  }}
+                />
+              </Suspense>
             </div>
           </div>
 
-          {/* Editor — Monaco everywhere */}
-          <div className="psolve-editor-area">
-            <Suspense fallback={
-              <div className="psolve-editor-loading">
-                <div className="psolve-spinner" />
-                <span>Загрузка редактора...</span>
-              </div>
-            }>
-              <MonacoEditor
-                height="100%"
-                language="typescript"
-                theme="vs-dark"
-                value={code}
-                onChange={(val) => setCode(val || '')}
-                options={{
-                  fontSize: isMobile ? 13 : 14,
-                  fontFamily: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace",
-                  minimap: { enabled: false },
-                  lineNumbers: isMobile ? 'off' : 'on',
-                  roundedSelection: true,
-                  scrollBeyondLastLine: false,
-                  automaticLayout: true,
-                  tabSize: 2,
-                  wordWrap: 'on',
-                  padding: { top: 12, bottom: 12 },
-                  cursorBlinking: 'smooth',
-                  cursorSmoothCaretAnimation: 'on',
-                  smoothScrolling: true,
-                  bracketPairColorization: { enabled: true },
-                  suggest: { showKeywords: true },
-                  overviewRulerLanes: 0,
-                  hideCursorInOverviewRuler: true,
-                  scrollbar: { verticalScrollbarSize: 6, horizontalScrollbarSize: 6 },
-                  folding: false,
-                  glyphMargin: false,
-                }}
-              />
-            </Suspense>
-          </div>
-        </div>
+          {/* Tests panel */}
+          <div className={`psolve-tests ${!isMobile || activePanel === 'tests' ? 'visible' : 'hidden'}`}>
+            <div className="psolve-tests-header">
+              <Terminal size={16} />
+              <span>Результаты</span>
+              {status !== 'idle' && (
+                <span className={`psolve-tests-badge ${status}`}>
+                  {status === 'running' ? '⏳ Запуск...'
+                    : status === 'passed' ? `✅ ${passCount}/${problem.testCases.length}`
+                    : `❌ ${passCount}/${problem.testCases.length}`}
+                </span>
+              )}
+            </div>
 
-        {/* ═══ Tests panel ═══ */}
-        <div className={`psolve-panel psolve-tests ${!isMobile || activePanel === 'tests' ? 'visible' : 'hidden'}`}>
-          <div className="psolve-tests-header">
-            <Terminal size={16} />
-            <span>Результаты</span>
-            {status !== 'idle' && (
-              <span className={`psolve-tests-badge ${status}`}>
-                {status === 'running' ? '⏳ Запуск...'
-                  : status === 'passed' ? `✅ ${passCount}/${problem.testCases.length}`
-                  : `❌ ${passCount}/${problem.testCases.length}`}
-              </span>
-            )}
-          </div>
+            <div className="psolve-tests-body">
+              {status === 'idle' && (
+                <div className="psolve-tests-empty">
+                  <Play size={28} className="psolve-tests-empty-icon" />
+                  <p className="psolve-tests-empty-title">Нажми «Тесты» для проверки</p>
+                  <p className="psolve-tests-empty-sub">Напиши решение и запусти тесты</p>
+                </div>
+              )}
 
-          <div className="psolve-tests-body">
-            {status === 'idle' && (
-              <div className="psolve-tests-empty">
-                <Play size={28} className="psolve-tests-empty-icon" />
-                <p className="psolve-tests-empty-title">Нажми «Тесты» для проверки</p>
-                <p className="psolve-tests-empty-sub">Напиши решение и запусти тесты</p>
-              </div>
-            )}
+              {status === 'running' && (
+                <div className="psolve-tests-empty">
+                  <div className="psolve-spinner" />
+                  <p className="psolve-tests-empty-title">Выполнение тестов...</p>
+                </div>
+              )}
 
-            {status === 'running' && (
-              <div className="psolve-tests-empty">
-                <div className="psolve-spinner" />
-                <p className="psolve-tests-empty-title">Выполнение тестов...</p>
-              </div>
-            )}
-
-            {(status === 'passed' || status === 'failed') && (
-              <>
-                {results.map((r, i) => (
-                  <div key={i} className={`psolve-test-row ${r.status}`}>
-                    <span className="psolve-test-icon">{r.status === 'pass' ? '✅' : '❌'}</span>
-                    <div className="psolve-test-info">
-                      <span className="psolve-test-name">{r.name}</span>
-                      {r.message && <span className="psolve-test-err">{r.message}</span>}
+              {(status === 'passed' || status === 'failed') && (
+                <>
+                  {results.map((r, i) => (
+                    <div key={i} className={`psolve-test-row ${r.status}`}>
+                      <span className="psolve-test-icon">{r.status === 'pass' ? '✅' : '❌'}</span>
+                      <div className="psolve-test-info">
+                        <span className="psolve-test-name">{r.name}</span>
+                        {r.message && <span className="psolve-test-err">{r.message}</span>}
+                      </div>
+                      {r.duration !== undefined && (
+                        <span className="psolve-test-time">{r.duration}ms</span>
+                      )}
                     </div>
-                    {r.duration !== undefined && (
-                      <span className="psolve-test-time">{r.duration}ms</span>
-                    )}
-                  </div>
-                ))}
+                  ))}
 
-                {status === 'passed' && (
-                  <div className="psolve-success-banner">
-                    <span className="psolve-success-emoji">🎉</span>
-                    <span>Все тесты пройдены!</span>
-                  </div>
-                )}
-              </>
-            )}
+                  {status === 'passed' && (
+                    <div className="psolve-success-banner">
+                      <span className="psolve-success-emoji">🎉</span>
+                      <span>Все тесты пройдены!</span>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -1079,12 +1082,24 @@ const practiceCSS = `
 }
 .psolve-solution-btn:hover { background: rgba(99,102,241,0.12); color: var(--text-secondary); }
 
-/* Editor panel */
-.psolve-editor {
+/* Right column: editor + tests stacked */
+.psolve-right-col {
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+.psolve-right-col.hidden { display: none; }
+.psolve-right-col.visible { display: flex; }
+
+/* Editor panel */
+.psolve-editor {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 .psolve-editor-toolbar {
   display: flex;
@@ -1123,7 +1138,7 @@ const practiceCSS = `
 .psolve-editor-run.success { background: linear-gradient(135deg, #16a34a, #22c55e); }
 .psolve-editor-run:disabled { opacity: 0.7; }
 
-.psolve-editor-area { flex: 3; min-height: 350px; overflow: hidden; background: #1e1e2e; }
+.psolve-editor-area { flex: 1; min-height: 0; overflow: hidden; background: #1e1e2e; }
 
 .psolve-editor-loading {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -1263,13 +1278,16 @@ const practiceCSS = `
   .psolve-title { font-size: 18px; }
   .psolve-desc-text { font-size: 14px; line-height: 1.65; }
 
+  .psolve-right-col {
+    width: 100%;
+    flex: 1;
+  }
+
   .psolve-editor {
     flex: 1;
-    min-height: 0;
   }
   .psolve-editor-area {
-    min-height: calc(100vh - 220px);
-    flex: 1;
+    min-height: 60vh;
   }
   .psolve-editor-toolbar { padding: 8px 12px; }
 
@@ -1299,18 +1317,8 @@ const practiceCSS = `
   }
 
   .psolve-desc { display: flex; }
-
-  .psolve-editor {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .psolve-tests {
-    border-top: 1px solid var(--border-color);
-  }
-
-  .psolve-panel.hidden {
-    display: flex;
-  }
+  .psolve-right-col { display: flex !important; }
+  .psolve-editor { display: flex !important; }
+  .psolve-tests { display: flex !important; }
 }
 `;
