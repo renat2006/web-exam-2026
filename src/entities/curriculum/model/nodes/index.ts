@@ -23,6 +23,7 @@ import { REACT_BASICS } from './react-basics';
 import { REACT_ADVANCED } from './react-advanced';
 import { CLIENT_SERVER } from './client-server';
 import { TESTING } from './testing';
+import { SECURITY } from './security';
 
 export const SKILL_NODES: SkillNode[] = [
   HTTP_BASICS,
@@ -48,4 +49,5 @@ export const SKILL_NODES: SkillNode[] = [
   REACT_ADVANCED,
   CLIENT_SERVER,
   TESTING,
+  SECURITY,
 ];
