@@ -5,7 +5,7 @@ export const TESTING: SkillNode = {
   title: 'Тестирование веб-приложений',
   category: 'Testing',
   description: 'Jest, React Testing Library, Cypress, моки, unit/E2E тесты, snapshot-тестирование, CI, покрытие кода.',
-  iconName: 'CheckCircle',
+  iconName: 'Settings',
   lessons: [
     {
       id: 'testing-basics',

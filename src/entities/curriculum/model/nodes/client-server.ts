@@ -3,7 +3,7 @@ import type { SkillNode } from '../types';
 export const CLIENT_SERVER: SkillNode = {
   id: 'client-server',
   title: 'Клиент-серверное взаимодействие и API',
-  category: 'Client+Server',
+  category: 'Network',
   description: 'REST API, Fetch, Axios, WebSocket, Swagger/OpenAPI, обработка ошибок, передача данных, SSE, Long Polling, архитектура API-слоя.',
   iconName: 'Globe',
   lessons: [
