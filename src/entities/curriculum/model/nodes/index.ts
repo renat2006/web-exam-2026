@@ -22,6 +22,7 @@ import { PRACTICE_FIND_THE_BUG } from './practice-find-the-bug';
 import { REACT_BASICS } from './react-basics';
 import { REACT_ADVANCED } from './react-advanced';
 import { CLIENT_SERVER } from './client-server';
+import { TESTING } from './testing';
 
 export const SKILL_NODES: SkillNode[] = [
   HTTP_BASICS,
@@ -46,4 +47,5 @@ export const SKILL_NODES: SkillNode[] = [
   REACT_BASICS,
   REACT_ADVANCED,
   CLIENT_SERVER,
+  TESTING,
 ];
