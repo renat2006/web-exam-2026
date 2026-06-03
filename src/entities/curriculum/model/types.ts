@@ -83,7 +83,7 @@ export interface SkillNode {
   id: string;
   week?: number;
   title: string;
-  category?: 'HTTP' | 'HTML/CSS' | 'JavaScript' | 'TypeScript' | 'Tooling' | 'React' | 'Tools' | 'Architecture' | 'SPA';
+  category?: 'HTTP' | 'HTML/CSS' | 'JavaScript' | 'TypeScript' | 'Tooling' | 'React' | 'Tools' | 'Architecture' | 'SPA' | 'Testing' | 'Security' | 'Network';
   description: string;
   iconName?: 'Globe' | 'Layout' | 'Code' | 'Shield' | 'Settings' | 'Layers' | 'Zap' | 'RefreshCw' | 'Package' | 'MousePointer';
   lessons: Lesson[];
