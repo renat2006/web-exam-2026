@@ -21,6 +21,7 @@ import { PRACTICE_ASYNC_CODING } from './practice-async-coding';
 import { PRACTICE_FIND_THE_BUG } from './practice-find-the-bug';
 import { REACT_BASICS } from './react-basics';
 import { REACT_ADVANCED } from './react-advanced';
+import { CLIENT_SERVER } from './client-server';
 
 export const SKILL_NODES: SkillNode[] = [
   HTTP_BASICS,
@@ -44,4 +45,5 @@ export const SKILL_NODES: SkillNode[] = [
   PRACTICE_FIND_THE_BUG,
   REACT_BASICS,
   REACT_ADVANCED,
+  CLIENT_SERVER,
 ];
